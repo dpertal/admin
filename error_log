@@ -1,0 +1,2 @@
+[14-Aug-2014 04:57:57 UTC] PHP Fatal error:  Class 'Role' not found in /home2/crgtesti/public_html/framework/db/ar/CActiveRecord.php on line 395
+[14-Aug-2014 05:01:44 UTC] PHP Fatal error:  Class 'PromoBox' not found in /home2/crgtesti/public_html/framework/db/ar/CActiveRecord.php on line 395
