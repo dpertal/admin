@@ -92,6 +92,27 @@ class ContentController extends Controller
 
 		if(isset($_POST['PageContent']))
 		{
+            //Checking for banner changing
+            if (!empty($_FILES['image_url']['name'])){
+                $targetDir = dirname(Yii::app()->basePath) . '/assets/uploads/';
+                if (!file_exists($targetDir))
+                    mkdir($targetDir);
+
+                //Check for valid file type
+                if (strpos($_FILES['image_url']['type'], 'image') >= 0){
+
+                    //Check for valid image
+                    $imageSize = getimagesize($_FILES['image_url']['tmp_name']);
+                    if ($imageSize[0] > 0){
+                        move_uploaded_file($_FILES['image_url']['tmp_name'], $targetDir . basename($_FILES['image_url']['name']));
+                        $imagePath = '/assets/uploads/' . basename($_FILES['image_url']['name']);
+                        $model->image_url = $imagePath;
+                    }
+                    else unset($model->image_url);
+                }
+                else unset($model->image_url);
+            }
+
 			$model->attributes=$_POST['PageContent'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

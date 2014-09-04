@@ -15,7 +15,7 @@
                     // There is a call to performAjaxValidation() commented in generated controller code.
                     // See class documentation of CActiveForm for details on this.
                     'enableAjaxValidation' => false,
-                    'htmlOptions' => array('class' => 'form-horizontal'),
+                    'htmlOptions' => array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data'),
                 ));
                 ?>
                 <div class="form-group">
@@ -39,20 +39,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 col-lg-2 control-label">Head Line</label>
+                    <label class="col-sm-3 col-lg-2 control-label">Page Title</label>
                     <div class="col-sm-9 col-lg-10 controls">
                         <?php echo $form->textField($model, 'headline', array('maxlenght' => 128, 'class' => 'form-control', 'placeholder' => 'Head Line')); ?>
                         <span class="help-inline"><?php echo $form->error($model, 'headline'); ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 col-lg-2 control-label">Tag Line</label>
+                    <label class="col-sm-3 col-lg-2 control-label">Description</label>
                     <div class="col-sm-9 col-lg-10 controls">
                         <?php echo $form->textField($model, 'tag_line', array('maxlenght' => 256, 'class' => 'form-control', 'placeholder' => 'Tag Line')); ?>
                         <span class="help-inline"><?php echo $form->error($model, 'tag_line'); ?></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                     <label class="col-sm-3 col-lg-2 control-label">Link Text</label>
                     <div class="col-sm-9 col-lg-10 controls">
                         <?php echo $form->textField($model, 'link_text', array('maxlenght' => 255, 'class' => 'form-control', 'placeholder' => 'Link Text')); ?>
@@ -60,10 +60,45 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 col-lg-2 control-label">Image Url</label>
+                    <label class="col-sm-3 col-lg-2 control-label">Banner</label>
                     <div class="col-sm-9 col-lg-10 controls">
-                        <?php echo $form->textField($model, 'image_url', array('maxlenght' => 255, 'class' => 'form-control', 'placeholder' => 'Image Url')); ?>
-                        <span class="help-inline"><?php echo $form->error($model, 'image_url'); ?></span>
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                               <?php if (!empty($model->image_url)) : ?>
+                                   <img src="<?php echo $model->image_url; ?>" alt="" />
+                               <?php else : ?>
+                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/assets/uploads/no-image.gif" alt="" />
+                               <?php endif; ?>
+                            </div>
+                            <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            <div>
+                               <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span>
+                               <span class="fileupload-exists">Change</span>
+                               <input type="file" class="file-input" name="image_url" /></span>
+                               <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Meta Title</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <?php echo $form->textField($model, 'meta_title', array('maxlenght' => 255, 'class' => 'form-control', 'placeholder' => 'Meta Title')); ?>
+                        <span class="help-inline"><?php echo $form->error($model, 'meta_title'); ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Meta Keywords</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <?php echo $form->textField($model, 'meta_keyword', array('maxlenght' => 255, 'class' => 'form-control', 'placeholder' => 'Meta Keyword')); ?>
+                        <span class="help-inline"><?php echo $form->error($model, 'meta_keyword'); ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Meta Description</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <?php echo $form->textField($model, 'meta_description', array('maxlenght' => 255, 'class' => 'form-control', 'placeholder' => 'Meta Description')); ?>
+                        <span class="help-inline"><?php echo $form->error($model, 'meta_description'); ?></span>
                     </div>
                 </div>
 

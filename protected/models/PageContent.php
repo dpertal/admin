@@ -16,6 +16,9 @@
  * @property integer $created_by
  * @property string $modified
  * @property integer $modified_by
+ * @property string $meta_title
+ * @property string $meta_keyword
+ * @property string $meta_description
  *
  * The followings are the available model relations:
  * @property Page $page
@@ -45,7 +48,7 @@ class PageContent extends CActiveRecord
 			array('headline, link_text, link_url', 'length', 'max'=>128),
 			array('tag_line', 'length', 'max'=>256),
 			array('image_url', 'length', 'max'=>255),
-			array('created, modified', 'safe'),
+			array('created, modified, meta_title, meta_keyword, meta_description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, page_id, program_id, headline, tag_line, link_text, link_url, image_url, created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
@@ -83,6 +86,9 @@ class PageContent extends CActiveRecord
 			'created_by' => 'Created By',
 			'modified' => 'Modified',
 			'modified_by' => 'Modified By',
+            'meta_title'    => 'Meta title',
+            'meta_keyword'  => 'Meta keywork',
+            'meta_description'  => 'Meta description'
 		);
 	}
 
@@ -116,6 +122,9 @@ class PageContent extends CActiveRecord
 		$criteria->compare('created_by',$this->created_by);
 		$criteria->compare('modified',$this->modified,true);
 		$criteria->compare('modified_by',$this->modified_by);
+		$criteria->compare('meta_title',$this->meta_title);
+		$criteria->compare('meta_keyword',$this->meta_keyword);
+		$criteria->compare('meta_description',$this->meta_description);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
