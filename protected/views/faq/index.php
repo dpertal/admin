@@ -39,10 +39,10 @@
                         </thead>
                         <tbody>
                             <?php
-                            $this->widget('zii.widgets.CListView', array(
-                                'dataProvider' => $dataProvider,
-                                'itemView' => '_view',
-                            ));
+                                $this->widget('zii.widgets.CListView', array(
+                                    'dataProvider' => $dataProvider,
+                                    'itemView' => '_view',
+                                ));
                             ?>
                         </tbody>
                     </table>
@@ -50,5 +50,4 @@
             </div>
         </div>
     </div>
-
 </div>

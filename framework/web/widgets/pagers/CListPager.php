@@ -46,7 +46,7 @@ class CListPager extends CBasePager
 	public function init()
 	{
 		if($this->header===null)
-			$this->header=Yii::t('yii','Go to page: ');
+			$this->header=Yii::t('yii','');
 		if(!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id']=$this->getId();
 		if($this->promptText!==null)
