@@ -24,4 +24,4 @@
 </div>
 <!-- END Breadcrumb -->
 
-<?php $this->renderPartial('_form', array('model' => $model)); ?>
+<?php $this->renderPartial('_form', array('model' => $model, 'program_id' => $program_id)); ?>

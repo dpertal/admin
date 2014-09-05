@@ -23,7 +23,7 @@
                     <div class="col-sm-9 col-lg-10 controls">
                         <?php
                         $promoBox = CHtml::listData(Page::model()->findAll(), 'id', 'title');
-                        echo $form->dropDownList($model, 'page_id', $promoBox, array('prompt' => 'Select Program', 'class' => 'form-control'));
+                        echo $form->dropDownList($model, 'page_id', $promoBox, array('prompt' => 'Select Page', 'class' => 'form-control'));
                         ?>
                         <span class="help-inline"><?php echo $form->error($model, 'page_id'); ?></span>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="col-sm-9 col-lg-10 controls">
                         <?php
                         $promoBox = CHtml::listData(Program::model()->findAll(), 'id', 'name');
-                        echo $form->dropDownList($model, 'program_id', $promoBox, array('prompt' => 'Select Program', 'class' => 'form-control'));
+                        echo $form->dropDownList($model, 'program_id', $promoBox, array('prompt' => 'Select Program', 'class' => 'form-control', 'options' => array($program_id => array('selected' => 'selected'))));
                         ?>
                         <span class="help-inline"><?php echo $form->error($model, 'program_id'); ?></span>
                     </div>

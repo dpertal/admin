@@ -59,7 +59,7 @@ class ContentController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($id = null)
 	{
 		$model=new PageContent;
 
@@ -75,6 +75,7 @@ class ContentController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+            'program_id' => $id
 		));
 	}
 
@@ -153,8 +154,10 @@ class ContentController extends Controller
      * */
     public function actionProgram($id){
         $dataProvider=new CActiveDataProvider('PageContent',array('criteria' => array('condition' => 'program_id = :id', 'params'=>array(':id' => $id))));
+        $program = Program::model()->findAllByPk($id);
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
+            'program' => $program[0]
         ));
     }
 
