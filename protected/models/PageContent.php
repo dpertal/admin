@@ -42,7 +42,7 @@ class PageContent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('page_id, program_id', 'ECompositeUniqueValidator'),
+            array('page_id, program_id', 'ECompositeUniqueValidator'),
 			array('page_id, program_id, headline', 'required'),
 			array('page_id, program_id, created_by, modified_by', 'numerical', 'integerOnly'=>true),
 			array('headline, link_text, link_url', 'length', 'max'=>128),

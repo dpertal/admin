@@ -1,6 +1,7 @@
 <tr>
     <td><?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id' => $data->id)); ?></td>
     <td><?php echo CHtml::encode($data->question); ?></td>
+    <td><?php echo CHtml::encode($data->program['name']); ?></td>
     <td><?php echo CHtml::encode($data->answar); ?></td>
     <td>
         <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/index.php/faq/update/" . $data->id ?>"><i class="fa fa-edit"></i> Edit</a>
