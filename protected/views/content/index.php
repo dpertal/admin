@@ -35,7 +35,6 @@
                                 <th>Page</th>
                                 <th>Program</th>
                                 <th>Headline</th>
-                                
                                 <th style="width: 145px">Action</th>
                             </tr>
                         </thead>
