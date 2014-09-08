@@ -425,6 +425,7 @@ class ImportController extends Controller {
                 if (!isset($sizeDB)) {
                     $sizeDB = new BannerSize();
                 }
+                print_r($sizeDB);
                 $bannerDB->banner_size_id = $sizeDB->external_id;
                 $bannerDB->save();
                 print_r($bannerDB->errors);
