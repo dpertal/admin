@@ -21,7 +21,7 @@ class ImportController extends Controller {
         $retailerIds = array();
         
         foreach ($retailers as $retailer) {
-            echo $name = $retailer->name;
+            $name = $retailer->name;
             $externalId = $retailer->mid;
            
             //Check If Retailer already exists
@@ -79,10 +79,9 @@ class ImportController extends Controller {
         }
      
         //import banners
-        $this->importLinkShareBanners($client,$retailerIds);
+        $this->importLinkShareBanners($retailerIds);
         
-        //import couponsd x nxxn jxjnxn jxnxnxxjxx x x  x xxxx xnxxmjxnxmhhhhhhhhhhxx xjmhxx hhxnmhxmxmxmhxjnxmhmxmhxmhxmmmmmmmmmmmmmmmmmmmhxmxmmmmmxnmxmhxxxmhxmhxmxmmmmmmmmmmmmmmmmmmmmhxxxxxyxxyxmmmmmmmmmmmmmmmmmmh./h/y/;.h.hh;hhh;.h.;.h
-        $this->importLinkShareCoupon($client,$retailerIds);
+        $this->importLinkShareCoupon($retailerIds);
     }
 
     public function actionCommissionFatoryImport($id) {
@@ -385,15 +384,20 @@ class ImportController extends Controller {
         }
     }
 
-    public function importLinkShareBanners($client,$retailerIds) {
+    public function importLinkShareBanners($retailerIds) {
         //Download Banners
         $pageNo = 1;
+        $client = new SoapClient('http://lld2.linksynergy.com/services/soapLinks/?wsdl');
+        echo 1;
         $result = $client->getBannerLinks(array('token' => '004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9', 'page' => '1'));
+        echo 2;
+        print_r($result);
+        
         $banners = $result->return;
         do {
             foreach ($banners as $banner) {
 
-                $merchantID = $banner->mid;
+                echo $merchantID = $banner->mid;
                 if (array_key_exists($merchantID, $retailerIds)) {
                     $retailerID = $retailerIds[$merchantID];
                 } else {
@@ -425,23 +429,24 @@ class ImportController extends Controller {
                 if (!isset($sizeDB)) {
                     $sizeDB = new BannerSize();
                 }
-                print_r($sizeDB);
                 $bannerDB->banner_size_id = $sizeDB->external_id;
                 $bannerDB->save();
-                print_r($bannerDB->errors);
-                die();
             }
             $result = $client->getBannerLinks(array('token' => '004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9', 'page' => ++$pageNo));
             $banners = isset($result->return) ? $result->return : null;
         } while (!empty($banners));
     }
 
-    public function importLinkShareCoupon($client,$retailerIds) {
+    public function importLinkShareCoupon($retailerIds) {
         //Download Coupons
+        echo "importLinkShareCoupon";
         $pageNo = 1;
         $coupons = file_get_contents('http://couponfeed.linksynergy.com/coupon?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&resultsperpage=500');
         $couponXML = new SimpleXMLElement($coupons);
         $pageCount = $couponXML->TotalPages;
+        
+        
+        
         do {
             foreach ($couponXML->link as $coupon) {
                 $merchantID = $coupon->advertiserid . '';
@@ -472,8 +477,6 @@ class ImportController extends Controller {
                 $couponDB->end_date = $coupon->offerenddate;
 
                 $couponDB->save();
-                print_r($couponDB->errors);
-                die();
             }
             if ($pageNo++ == $pageCount) {
                 break;
