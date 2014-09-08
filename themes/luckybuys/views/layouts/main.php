@@ -17,11 +17,11 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
         <title>LuckBuys Home</title>
-        <link rel="stylesheet" type="text/css" href="<?=$BASE_URL?>/skin/luckybuys/css/style.css">
-        <link rel="stylesheet" type="text/css" href="<?=$BASE_URL?>/skin/luckybuys/css/responsive.css">
+        <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="<?=$BASE_URL?>/skin/luckybuys/js/main.js"></script>
+        <script src="<?= $BASE_URL ?>/skin/luckybuys/js/main.js"></script>
     </head>
     <body>
         <div class="collapse-menu collapsed">
@@ -40,18 +40,18 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <div class="header">
                 <div class="header-detail">
                     <div class="collapse-menu-icon">
-                        <a href="#"><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_menu_white.png" alt="" border="0" /></a>
+                        <a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ic_menu_white.png" alt="" border="0" /></a>
                     </div>
-                    <div class="logo"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo.png" alt="" /></div>
+                    <div class="logo"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo.png" alt="" /></div>
                     <div class="top-navigator hidden-phone">
                         <ul>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/aboutus">How It<br/>Work</a></li>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/hotdeals">Hot<br/>Deal</a></li>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/news">Latest<br/>News</a></li>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/retailers">Our<br/>Retailers</a></li>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/shop">Online<br/>Shop</a></li>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/store">Store<br/>Locator</a></li>
-                            <li><a href="<?=$BASE_URL?>/index.php/site/myaccount">My<br/>Account</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/aboutus">How It<br/>Work</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/hotdeals">Hot<br/>Deal</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/news">Latest<br/>News</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/retailers">Our<br/>Retailers</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/shop">Online<br/>Shop</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/store">Store<br/>Locator</a></li>
+                            <li><a href="<?= $BASE_URL ?>/index.php/site/myaccount">My<br/>Account</a></li>
                         </ul>
                         <div class="clear"></div>
                     </div>
@@ -67,7 +67,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     <a href="#" class="login">Login</a>
                     <form name="search_frm" method="post" action="">
                         <input type="text" name="query" value="" placeholder="Search" />
-                        <input type="image" src="<?=$BASE_URL?>/skin/luckybuys/images/search-ico.png" />
+                        <input type="image" src="<?= $BASE_URL ?>/skin/luckybuys/images/search-ico.png" />
                     </form>
                     <a class="btn blue hidden-small-phone" href="#">Join Lucky Buys</a>
                 </div>
@@ -75,7 +75,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 
             <div class="banner hidden-phone">
                 <div class="banner-detail">
-                    <img src="<?=$BASE_URL?>/skin/luckybuys/images/banner_home.png" alt="" />
+                    <img src="<?= $BASE_URL ?>/skin/luckybuys/images/banner_home.png" alt="" />
                 </div>
             </div><!-- END BANNER -->
 
@@ -88,23 +88,23 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     <div class="footer-blocks">
                         <div class="blocks">
                             <ul>
-                                <li><a href="<?=$BASE_URL?>">Home</a></li>
-                                <li><a href="<?=$BASE_URL?>/index.php/site/news">Latest News</a></li>
-                                <li><a href="<?=$BASE_URL?>/index.php/site/hotdeals">Hot Deals</a></li>
-                                <li><a href="<?=$BASE_URL?>/index.php/site/retailers">Our Retailers</a></li>
+                                <li><a href="<?= $BASE_URL ?>">Home</a></li>
+                                <li><a href="<?= $BASE_URL ?>/index.php/site/news">Latest News</a></li>
+                                <li><a href="<?= $BASE_URL ?>/index.php/site/hotdeals">Hot Deals</a></li>
+                                <li><a href="<?= $BASE_URL ?>/index.php/site/retailers">Our Retailers</a></li>
                             </ul>
                         </div>
                         <div class="blocks">
                             <ul>
                                 <li><a href="#">Online Offers</a></li>
-                                <li><a href="#">Deal Locator</a></li>
+                                <li><a href="<?= $BASE_URL ?>/index.php/site/store">Deal Locator</a></li>
                                 <li><a href="#">My Account</a></li>
                                 <li><a href="#">Shopping Bag</a></li>
                             </ul>
                         </div>
                         <div class="blocks last">
                             <ul>
-                                <li><a href="<?=$BASE_URL?>/index.php/site/faq">FAQ's</a></li>
+                                <li><a href="<?= $BASE_URL ?>/index.php/site/faq">FAQ's</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
                                 <li><a href="#">Contact Us</a></li>
                                 <li><a href="#">Term &amp; Conditions</a></li>
@@ -114,8 +114,8 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     </div>
                     <div class="footer-right">
                         <p>Powered by</p>
-                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/footer-logo.png" alt="" /></p>
-                        <p>&copy; Give Back Bonius Cash 2014</p>
+                        <p><img src="<?= $BASE_URL ?>/skin/luckybuys/images/footer-logo.png" alt="" /></p>
+                        <p>&copy; Give Back Bonus Cash 2014</p>
                     </div>
                     <div class="clear"></div>
                 </div>

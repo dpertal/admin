@@ -28,10 +28,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
         </div>
         <div class="retailer-boxes">
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -44,10 +44,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -60,10 +60,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -76,10 +76,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -92,10 +92,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -108,10 +108,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -124,10 +124,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -140,10 +140,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -156,10 +156,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -172,10 +172,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -188,10 +188,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">
@@ -204,10 +204,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div>
             <div class="retailer-box">
-                <p class="image"><img src="images/logo-4wd.png" alt="" /></p>
+                <p class="image"><img src="<?=$BASE_URL?>/skin/luckybuys/images/logo-4wd.png" alt="" /></p>
                 <div class="cash-precent">
                     <div class="left">
-                        <p><img src="images/ic_online_blue.png" /></p>
+                        <p><img src="<?=$BASE_URL?>/skin/luckybuys/images/ic_online_blue.png" /></p>
                         Online
                     </div>
                     <div class="right">

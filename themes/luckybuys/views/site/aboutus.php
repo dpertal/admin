@@ -140,15 +140,15 @@ $BASE_URL = Yii::app()->request->baseUrl;
 <div class="clear"></div>
 <div class="bottom-ads">
     <ul>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-1.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-2.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-3.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-4.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-5.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-6.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-7.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-8.jpg" alt="" /></li>
-        <li><img src="<?=$BASE_URL?>/skin/luckybuys/images/ads-9.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-1.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-2.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-3.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-4.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-5.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-6.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-7.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-8.jpg" alt="" /></li>
+        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-9.jpg" alt="" /></li>
     </ul>
 </div>
 <div class="clear"></div>
