@@ -14,7 +14,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <div class="category"><a href="#">Food &amp;<br/> Entertainment</a></div>
         <div class="category"><a href="#">Home &amp;<br/> Lifestyle</a></div>
         <div class="category"><a href="#">Health &amp;<br/> Beauty</a></div>
-        <div class="category"><a href="#">Childrens &amp;<br/> Toys</a></div>
+        <div class="category"><a href="#">Childerns &amp;<br/> Toys</a></div>
         <div class="category"><a href="#">Travel &amp;<br/> Tourism</a></div>
         <div class="clear"></div>
         <div class="category-paginator">
