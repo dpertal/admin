@@ -1,7 +1,7 @@
 <?php
 
 class SiteController extends Controller {
-    public $currentProgram = 3;
+
     public function actions() {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
@@ -18,7 +18,11 @@ class SiteController extends Controller {
     }
 
     public function actionIndex() {
-        $this->render('index');
+        $program = Yii::app()->params['program'];
+        $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => "4"));
+        $news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
+        print_r($news);
+        $this->render('index', array('offers' => $offers));
     }
 
     public function actionContact() {
@@ -39,26 +43,32 @@ class SiteController extends Controller {
 
         $this->render('aboutus');
     }
-
-    public function actionHotdeals() {
-
-        $this->render('hotdeals');
+    
+    public function actionHotdeals($type=0) {
+        $criteria = new CDbCriteria;
+        $criteria->together = true;
+        $criteria->with = array('retailer');
+        $now = new CDbExpression("NOW()");
+        $criteria->addCondition(" (retailer.id =  retailer_id)"
+                . " and (start_date is null or start_date<= now()) and end_date >= now() and current = 1");
+        
+        $model = Offer::model()->findAll($criteria);
+        
+        $this->render('hotdeals', array('model'=>$model));
     }
 
     public function actionNews() {
-        $model = News::model()->findAll('program_id = '.$this->currentProgram);
+        $model = News::model()->findAll('program_id = ' . Yii::app()->params['program']);
         $this->render('news', array(
             'model' => $model,
         ));
-        
     }
-    
+
     public function actionFaq() {
         $model = Faq::model()->findAll();
         $this->render('faq', array(
             'model' => $model,
         ));
-        
     }
 
     public function actionShop() {

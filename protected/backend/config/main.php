@@ -22,7 +22,7 @@ return array(
     'import' => array(
         'backend.models.*',
         'backend.components.*',
-        'ext.yii-mail.YiiMailMessage',
+        'backend.extensions.yii-mail.YiiMailMessage',
         'backend.extensions.ECompositeUniqueValidator',
     ),
     'modules' => array(

@@ -5,16 +5,21 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+$theme = 'luckybuys';
+$program = 3;
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'CRG.',
          'defaultController' => 'site',
 	// preloading 'log' component
 	'preload'=>array('log'),
-        'theme'=>'luckybuys',
+        'theme'=>$theme,
+        
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+            'application.models.*',
 		'application.components.*',
 		'ext.yii-mail.YiiMailMessage',
                 'ext.ECompositeUniqueValidator',
@@ -112,6 +117,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'info@crg.com.au',
+                'program' => $program,
 	),
 	
 );

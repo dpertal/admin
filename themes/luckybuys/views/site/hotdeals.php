@@ -26,150 +26,21 @@ $BASE_URL = Yii::app()->request->baseUrl;
         </div>
     </div>
     <div class="hot-deals-list">
+        <?php foreach($model as $deal) {
+        ?>
         <div class="deal-box">
             <div class="left">
-                <h4 class="title">boohoo.com</h4>
+                <h4 class="title"><?=$deal->title?></h4>
                 <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
+                    <p><?=$deal->summary?></p>
+                    <p>Valid Until <?php echo date_format(new DateTime($deal->end_date), 'd F Y'); ?></p>
                 </div>
             </div>
             <div class="right">
                 <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
             </div>
         </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
-        <div class="deal-box">
-            <div class="left">
-                <h4 class="title">boohoo.com</h4>
-                <div class="description">
-                    <p>25% Off New Season</p>
-                    <p>Valid Until 03 September 2014</p>
-                </div>
-            </div>
-            <div class="right">
-                <img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo_boohoo.png" alt="" />
-            </div>
-        </div>
+        <? }?>
         <div class="clear"></div>
         <div class="hot-deals-paginator">
             <span><a href="#"> << </a></span>
