@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'faq':
  * @property integer $id
+ * @program_id interger $program_id
  * @property string $question
  * @property string $answar
  * @property string $created
@@ -28,7 +29,7 @@ class Faq extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('question, answar', 'required'),
+            array('program_id, question, answar', 'required'),
             array('created_by, modified_by', 'numerical', 'integerOnly' => true),
             array('question', 'length', 'max' => 100),
             array('created, modified', 'safe'),
@@ -45,6 +46,7 @@ class Faq extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'program' => array(self::BELONGS_TO, 'Program', 'program_id'),
         );
     }
 
@@ -54,6 +56,7 @@ class Faq extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
+            'program_id' => 'Program',
             'question' => 'Question',
             'answar' => 'Answar',
             'created' => 'Created',
@@ -81,6 +84,7 @@ class Faq extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
+        $criteria->compare('program_id', $this->program_id, true);
         $criteria->compare('question', $this->question, true);
         $criteria->compare('answar', $this->answar, true);
         $criteria->compare('created', $this->created, true);

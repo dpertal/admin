@@ -19,6 +19,16 @@
                 ));
                 ?>
                 <div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Program</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <?php
+                            $promoBox = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                            echo $form->dropDownList($model, 'program_id', $promoBox, array('prompt' => 'Select Program', 'class' => 'form-control'));
+                        ?>
+                        <span class="help-inline"><?php echo $form->error($model, 'program_id'); ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 col-lg-2 control-label">Question</label>
                     <div class="col-sm-9 col-lg-10 controls">
                         <?php echo $form->textField($model, 'question', array('size' => 100, 'class' => 'form-control', 'maxlength' => 64, 'placeholder' => 'Question')); ?>
