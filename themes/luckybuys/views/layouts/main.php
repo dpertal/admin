@@ -73,15 +73,9 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
             </div><!-- END SEARCH BAR -->
 
-            <div class="banner hidden-phone">
-                <div class="banner-detail">
-                    <img src="<?= $BASE_URL ?>/skin/luckybuys/images/banner_home.png" alt="" />
-                </div>
-            </div><!-- END BANNER -->
-
-            <div class="main-content">
+            <div class="content-wrapper">
                 <?php echo $content; ?>
-            </div><!-- END CONTENT -->
+            </div>
 
             <div class="footer">
                 <div class="footer-detail">

@@ -1,5 +1,4 @@
 <?php
-
 class SiteController extends Controller {
 
     public function actions() {
@@ -19,10 +18,10 @@ class SiteController extends Controller {
 
     public function actionIndex() {
         $program = Yii::app()->params['program'];
+        $homeContent = PageContent::model()->findAll("program_id = $program AND page_id = 1");
         $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => "4"));
         $news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
-        print_r($news);
-        $this->render('index', array('offers' => $offers));
+        $this->render('index', array('offers' => $offers, 'home' => $homeContent[0]));
     }
 
     public function actionContact() {
