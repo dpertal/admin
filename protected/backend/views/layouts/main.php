@@ -48,6 +48,8 @@ if ($this->uniqueid == 'content') {
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/font-awesome/css/font-awesome.min.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty-responsive.css" />
+            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.css" />
+            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/custom.css" />
     </head>
 
 
@@ -306,6 +308,8 @@ if ($this->uniqueid == 'content') {
             <script src="<?php echo $BASE_URL; ?>/assets/bootstrap/js/bootstrap.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/jquery-cookie/jquery.cookie.js"></script>
+            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/jquery.dataTables.js"></script>
+        	<script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.js"></script>
 
             <!--page specific plugin scripts-->
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.js"></script>

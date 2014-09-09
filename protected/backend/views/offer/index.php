@@ -28,7 +28,7 @@
 
             <div class="box-content">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover fill-head">
+                    <table class="table table-advance" id="table1">
                         <thead>
                             <tr>
                                 <th>Name</th>

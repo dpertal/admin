@@ -31,7 +31,7 @@
 
             <div class="box-content">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover fill-head">
+                    <table class="table table-advance" id="table1">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -41,7 +41,7 @@
                                 <th>Promo 3</th>
                                 <th>Promo 4</th>
                                 <th>Contact Email</th>
-                                <th style="width: 145px">Action</th>
+                                <th style="width: 90px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
