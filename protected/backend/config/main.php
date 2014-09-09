@@ -23,7 +23,7 @@ return array(
         'backend.models.*',
         'backend.components.*',
         'ext.yii-mail.YiiMailMessage',
-        'ext.ECompositeUniqueValidator',
+        'backend.extensions.ECompositeUniqueValidator',
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
@@ -72,14 +72,14 @@ return array(
          */
         // uncomment the following to use a MySQL database
         //live
-        'db' => array(
+        'db1' => array(
             'connectionString' => 'mysql:host=localhost;dbname=crgtesti_db',
             'emulatePrepare' => true,
             'username' => 'crgtesti_user',
             'password' => 'Passme@14',
             'charset' => 'utf8',
         ),
-        'db1' => array(
+        'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
             'emulatePrepare' => true,
             'username' => 'root',
