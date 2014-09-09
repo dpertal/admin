@@ -28,11 +28,11 @@ class NewsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'program'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete'),
+				'actions'=>array('create','update','delete', 'program'),
 				'users'=>array('@'),
 			),
 			
@@ -57,7 +57,7 @@ class NewsController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($id = null)
 	{
 		$model=new News;
 
@@ -73,6 +73,7 @@ class NewsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+            'program_id' => $id
 		));
 	}
 
@@ -124,6 +125,19 @@ class NewsController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+
+    /**
+     * View content filter by program
+     */
+    public function actionProgram($id)
+    {
+        $dataProvider=new CActiveDataProvider('News', array('criteria' => array('condition' => 'program_id = :id', 'params'=>array(':id' => $id))));
+        $program = Program::model()->findAllByPk($id);
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+            'program' => $program[0]
+        ));
+    }
 
 	/**
 	 * Manages all models.

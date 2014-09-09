@@ -1,7 +1,7 @@
 <!-- BEGIN Page Title -->
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-file-o"></i> News Management</h1>
+        <h1><i class="fa fa-file-o"></i> News Management<?php if (isset($program)){ echo ' - ' . $program->name; } ?></h1>
     </div>
 </div>
 <!-- END Page Title -->
@@ -14,9 +14,9 @@
             <a href="<?= Yii::app()->request->baseUrl . "/admin.php/admin/" ?>">Home</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">News Management</li>
+        <li class="active">News Management<?php if (isset($program)){ echo ' - ' . $program->name; } ?></li>
         <li style="float: right; margin-top: -5px;">
-            <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/admin.php/news/create" ?>"><i class="fa fa-add"></i> Add News</a>
+            <a class="btn btn-primary btn-sm" href="<?php if (isset($program)) { echo Yii::app()->request->baseUrl . "/admin.php/news/create/" . $program->id; } else { echo Yii::app()->request->baseUrl . "/admin.php/news/create"; } ?>"><i class="fa fa-add"></i> Add News</a>
         </li>
     </ul>
 </div>

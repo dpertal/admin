@@ -200,26 +200,74 @@ if ($this->uniqueid == 'content') {
                     </li>
                     
                     <li class="<?= $news ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/news/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Manage News</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
+                        <?php
+                            $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                            if (empty($programs)) :
+                            ?>
+                            <a href="<?= $BASE_URL ?>/admin.php/news/" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Manage News</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                                <?php else : ?>
+                                    <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Manage News</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                            <ul class="submenu">
+                                <?php foreach ($programs as $id => $program) : ?>
+                                    <li><a href="<?= $BASE_URL ?>/admin.php/news/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                     </li>
                     <li class="<?= $faq ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/faq/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Manage FAQ</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
+                        <?php
+                            $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                            if (empty($programs)) :
+                        ?>
+                            <a href="<?= $BASE_URL ?>/admin.php/faq/" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Manage FAQ</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                                <?php else : ?>
+                                    <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Manage FAQ</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                             <ul class="submenu">
+                                <?php foreach ($programs as $id => $program) : ?>
+                                    <li><a href="<?= $BASE_URL ?>/admin.php/faq/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                     </li>
                     
                     <li class="<?= $cont ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/content/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Manage Content</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
+                        <?php
+                            $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                            if (empty($programs)) :
+                        ?>
+                            <a href="<?= $BASE_URL ?>/admin.php/content/" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Manage Content</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                                <?php else : ?>
+                                    <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Manage Content</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                            <ul class="submenu">
+                                <?php foreach ($programs as $id => $program) : ?>
+                                    <li><a href="<?= $BASE_URL ?>/admin.php/content/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                         <?php endif; ?>
                     </li>
                 </ul>
                 <!-- END Navlist -->
