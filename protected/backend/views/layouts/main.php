@@ -44,6 +44,7 @@ if ($this->uniqueid == 'content') {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/bootstrap/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/font-awesome/css/font-awesome.min.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty-responsive.css" />
@@ -266,6 +267,7 @@ if ($this->uniqueid == 'content') {
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.crosshair.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.tooltip.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/sparkline/jquery.sparkline.min.js"></script>
+            <script src="<?php $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 
             <!--flaty scripts-->
             <script src="<?php echo $BASE_URL; ?>/js/flaty.js"></script>
