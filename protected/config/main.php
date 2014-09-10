@@ -7,7 +7,11 @@
 // CWebApplication properties can be configured here.
 $theme = 'luckybuys';
 $program = 3;
+define('PROGRAM_ID', $program);
+define('ENC_KEY', 'c4sHwArd5875630smgpep');
 $frontend = dirname(dirname(__FILE__));
+define('ROOT', dirname($frontend) . DIRECTORY_SEPARATOR);
+define('ROOT_THEME', dirname($frontend) . DIRECTORY_SEPARATOR  . 'themes/' . $theme);
 
 
 return array(
@@ -17,7 +21,7 @@ return array(
 	'preload'=>array('log'),
     'theme'=>$theme,
     'controllerPath' => $frontend . '/controllers',
-    'viewPath' => dirname($frontend) . DIRECTORY_SEPARATOR . 'themes/' . $theme . '/views',
+    'viewPath' => ROOT_THEME . '/views',
     'runtimePath' => $frontend . '/runtime',
         
 	// autoloading model and component classes
@@ -26,7 +30,7 @@ return array(
         'application.models.*',
 		'application.components.*',
 		'ext.yii-mail.YiiMailMessage',
-        'ext.ECompositeUniqueValidator',
+        'ext.ECompositeUniqueValidator'
 	),
 
 	'modules'=>array(
@@ -88,13 +92,14 @@ return array(
 		 		'charset' => 'utf8',
 		 ),
 
+            /*
          'db'=>array(
              'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
              'emulatePrepare' => true,
              'username' => 'root',
              'password' => '',
              'charset' => 'utf8',
-         ),
+         ),*/
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
