@@ -1,6 +1,13 @@
 <?php
 $BASE_URL = Yii::app()->request->baseUrl;
 ?>
+<div class="banner hidden-phone">
+    <div class="banner-detail">
+        <img src="<?= $BASE_URL . $content->image_url; ?>" alt="" />
+    </div>
+</div><!-- END BANNER -->
+<div class="main-content">
+
 <div class="online-shop">
     <div class="section-1">
         <ul>

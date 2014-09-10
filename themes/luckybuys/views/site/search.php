@@ -3,7 +3,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 ?>
 <div class="banner hidden-phone">
     <div class="banner-detail">
-        <img src="<?= $BASE_URL . $content->image_url; ?>" alt="" />
+        
     </div>
 </div><!-- END BANNER -->
 <div class="main-content">
@@ -16,21 +16,11 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <p>Filter search by selecting one or more of the following categories</p>
         </div>
         <div class="retailer-categories">
-            <?php foreach ($categories as $category) {?>
-                <div class="category"><a href="<?= $BASE_URL . "/index.php/site/retailers?cat=1" ?>"><?=$category->name?></a></div>
-            <? }?>
+            
             
             
             <div class="clear"></div>
-            <div class="category-paginator">
-                <span><a href="#"> << </a></span>
-                <span><a href="#"> < </a></span>
-                <span><a href="#"> 1 </a></span>
-                <span><a href="#"> 2 </a></span>
-                <span><a href="#"> 3 </a></span>
-                <span><a href="#"> > </a></span>
-                <span><a href="#"> >> </a></span>
-            </div>
+            
             <div class="retailer-boxes">
                 <?php foreach ($model as $retailer) {
                     ?>

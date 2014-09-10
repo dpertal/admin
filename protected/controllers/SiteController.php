@@ -1,4 +1,5 @@
 <?php
+
 class SiteController extends Controller {
 
     public function actions() {
@@ -15,13 +16,28 @@ class SiteController extends Controller {
             ),
         );
     }
+    
+    function actionGetRetailers() {
+        if (!empty($_GET['term'])) {
+            $sql = 'SELECT name as id, name as value, name as label FROM retailer WHERE name LIKE :qterm ';
+            $sql .= ' ORDER BY first_name ASC';
+            $command = Yii::app()->db->createCommand($sql);
+            $qterm = $_GET['term'] . '%';
+            $command->bindParam(":qterm", $qterm, PDO::PARAM_STR);
+            $result = $command->queryAll();
+            echo CJSON::encode($result);
+            exit;
+        } else {
+            return false;
+        }
+    }
 
     public function actionIndex() {
         $program = Yii::app()->params['program'];
-        $homeContent = PageContent::model()->findAll("program_id = $program AND page_id = 1");
+        $homeContent = PageContent::model()->find("program_id = $program AND page_id = 1");
         $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => "4"));
         $news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
-        $this->render('index', array('offers' => $offers, 'home' => $homeContent[0]));
+        $this->render('index', array('offers' => $offers, 'home' => $homeContent));
     }
 
     public function actionContact() {
@@ -42,18 +58,23 @@ class SiteController extends Controller {
 
         $this->render('aboutus');
     }
-    
-    public function actionHotdeals($type=0) {
+
+    public function actionHotdeals($type = 0) {
+        $cat = "";
+        if (isset($_REQUEST) && isset($_REQUEST['cat']) && $_REQUEST['cat'] != '') {
+            $cat = "and t.offer_type_id = " . $_REQUEST['cat'];
+        }
         $criteria = new CDbCriteria;
         $criteria->together = true;
         $criteria->with = array('retailer');
         $now = new CDbExpression("NOW()");
         $criteria->addCondition(" (retailer.id =  retailer_id)"
-                . " and (start_date is null or start_date<= now()) and end_date >= now() and current = 1");
-        
+                . " and (start_date is null or start_date<= now()) and end_date >= now() and current = 1 $cat");
+
         $model = Offer::model()->findAll($criteria);
-        
-        $this->render('hotdeals', array('model'=>$model));
+        $program = Yii::app()->params['program'];
+        $content = PageContent::model()->find("program_id = $program AND page_id = 4");
+        $this->render('hotdeals', array('model' => $model, 'content' => $content));
     }
 
     public function actionNews() {
@@ -71,13 +92,28 @@ class SiteController extends Controller {
     }
 
     public function actionShop() {
-
-        $this->render('shop');
+        
+        $program = Yii::app()->params['program'];
+        $content = PageContent::model()->find("program_id = $program AND page_id = 5");
+        
+        $this->render('shop', array('content' => $content));
     }
 
     public function actionRetailers() {
+        $categories = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 6");
+        
+        //TODO: Need to filter on the base of categories.
+        $model = Retailer::model()->findAll("logo_url <> '' and logo_url is not null");
 
-        $this->render('retailer');
+        $program = Yii::app()->params['program'];
+        $content = PageContent::model()->find("program_id = $program AND page_id = 5");
+
+        $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories));
+    }
+    
+    public function actionSearch() {
+        $model = Retailer::model()->findAll('name like "%'.$_REQUEST['retailer'].'%"');
+        $this->render('search', array('model' => $model));
     }
 
     public function actionError() {
