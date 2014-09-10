@@ -116,7 +116,7 @@
                 $("#lastName").attr('readonly', true);
 
                 //Begin ajax request to server
-                $.post('loadCustomerData.php?loadCustomerData=true',
+                $.post('<?= Yii::app()->request->baseUrl ?>/index.php/Account/LoadCustomer',
                     {cardNumber:cc_number, lastname:customer_name},
                     function(response){
 
@@ -126,38 +126,35 @@
                             var accountAddress = response.account.Address;
 
                             //Passing data into the form
-                            $('select[name="newUser.salutation"]').val(accountInfo.salutation);
-                            $('input[name="newUser.firstname"]').val(accountInfo.firstname);
-                            $('input[name="newUser.lastname"]').val(accountInfo.lastname);
-                            $('input[name="newUser.mobile"]').val(accountInfo.mobile);
-                            $('input[name="newUser.email"]').val(accountInfo.email);
-                            $('input[name="newUser.username"]').val(accountInfo.username);
-                            $('input[name="newUser.password"]').val(accountInfo.password);
+                            $('select[name="data\[salutation\]"]').val(accountInfo.salutation);
+                            $('input[name="data\[firstname\]"]').val(accountInfo.firstname);
+                            $('input[name="data\[lastname\]"]').val(accountInfo.lastname);
+                            $('input[name="data\[mobile\]"]').val(accountInfo.mobile);
+                            $('input[name="data\[email\]"]').val(accountInfo.email);
+                            $('input[name="data\[username\]"]').val(accountInfo.username);
+                            $('input[name="data\[password\]"]').val(accountInfo.password);
                             $('input[name="passwordConfirm"]').val(accountInfo.password);
 
                             var accountDOB = accountInfo.dob;
                             if (accountDOB != ''){
                                 accountDOB = accountDOB.split('/');
-                                $('input[name=dobD]').val(accountDOB[1]);
-                                $('input[name=dobM]').val(accountDOB[0]);
-                                $('input[name=dobY]').val(accountDOB[2]);
+                                $('input[name="data\[dobD\]"]').val(accountDOB[1]);
+                                $('input[name="data\[dobM\]"]').val(accountDOB[0]);
+                                $('input[name="data\[dobY\]"]').val(accountDOB[2]);
                             }
 
-                            if (accountAddress != null){
-                                //The account address
-                                $('input[name="newAddress.street1"]').val(accountAddress.street1);
-                                $('input[name="newAddress.street2"]').val(accountAddress.street2);
-                                $('input[name="newAddress.suburb"]').val(accountAddress.suburb);
-                                $('select[name="newAddress.state"]').val(accountAddress.state);
-                                $('input[name="newAddress.postcode"]').val(accountAddress.postcode);
-                            }
+                            $('input[name="data\[street1\]"]').val(accountInfo.street1);
+                            $('input[name="data\[street2\]"]').val(accountInfo.street2);
+                            $('input[name="data\[suburb\]"]').val(accountInfo.suburb);
+                            $('select[name="data\[state\]"]').val(accountInfo.state);
+                            $('input[name="data\[postcode\]"]').val(accountInfo.postcode);
 
                             $(".message").addClass('success').find('p').html('Congratulation! your data has been filled in');
                             $(".message").slideDown(500);
                             setTimeout(function(){ $(".message").slideUp(500); }, 3000);
 
                             //Pass the id if user is already exist
-                            $("#mainForm").append('<input type="hidden" name="newUser.accountId" value="' + accountInfo.id + '" />');
+                            $("#join-form").append('<input type="hidden" name="data[accountId]" value="' + accountInfo.id + '" />');
                         }
                         else {
                             $(".message").addClass('error').find('p').html(response.msg);
