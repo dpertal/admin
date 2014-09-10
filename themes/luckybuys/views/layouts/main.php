@@ -65,8 +65,23 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <div class="search-bar">
                 <div class="search-bar-detail">
                     <a href="#" class="login">Login</a>
-                    <form name="search_frm" method="post" action="">
-                        <input type="text" name="query" value="" placeholder="Search" />
+                    <form name="search_frm" method="post" action="<?= $BASE_URL ?>/index.php/site/search">
+                        <?php
+                        $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                            'name' => 'retailer',
+                            'value' => '',
+                            'source' => $BASE_URL.'/index.php/site/getRetailers', // <- path to controller which returns dynamic data
+                            'options' => array(
+                                'minLength' => '1', // min chars to start search
+                                'select' => 'js:function(event, ui) { console.log(ui.item.id +":"+ui.item.value); }'
+                            ),
+                            'htmlOptions' => array(
+                                'id' => 'retailer',
+                                'rel' => 'val',
+                                'placeholder' =>'Search'
+                            ),
+                        ));
+                        ?>
                         <input type="image" src="<?= $BASE_URL ?>/skin/luckybuys/images/search-ico.png" />
                     </form>
                     <a class="btn blue hidden-small-phone" href="#">Join Lucky Buys</a>
