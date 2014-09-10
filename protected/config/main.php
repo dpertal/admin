@@ -7,22 +7,26 @@
 // CWebApplication properties can be configured here.
 $theme = 'luckybuys';
 $program = 3;
+$frontend = dirname(dirname(__FILE__));
+
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'CRG.',
-         'defaultController' => 'site',
-	// preloading 'log' component
+    'defaultController' => 'site',
 	'preload'=>array('log'),
-        'theme'=>$theme,
+    'theme'=>$theme,
+    'controllerPath' => $frontend . '/controllers',
+    'viewPath' => dirname($frontend) . DIRECTORY_SEPARATOR . 'themes/' . $theme . '/views',
+    'runtimePath' => $frontend . '/runtime',
         
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
-            'application.models.*',
+        'application.models.*',
 		'application.components.*',
 		'ext.yii-mail.YiiMailMessage',
-                'ext.ECompositeUniqueValidator',
+        'ext.ECompositeUniqueValidator',
 	),
 
 	'modules'=>array(
@@ -41,7 +45,7 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
-                        'class' => 'WebUser',
+            'class' => 'WebUser',
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
@@ -76,21 +80,22 @@ return array(
 		// uncomment the following to use a MySQL database
 		//live
 		
-		 'db1'=>array(
+		 'db'=>array(
 		 		'connectionString' => 'mysql:host=localhost;dbname=crgtesti_db',
 		 		'emulatePrepare' => true,
 		 		'username' => 'crgtesti_user',
 		 		'password' => 'Passme@14',
 		 		'charset' => 'utf8',
 		 ),
-		
-		'db'=>array(
-				'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
-				'emulatePrepare' => true,
-				'username' => 'root',
-				'password' => '',
-				'charset' => 'utf8',
-		),
+
+         'db'=>array(
+             'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
+             'emulatePrepare' => true,
+             'username' => 'root',
+             'password' => '',
+             'charset' => 'utf8',
+         ),
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
