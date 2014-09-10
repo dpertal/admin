@@ -70,7 +70,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                             'name' => 'retailer',
                             'value' => '',
-                            'source' => '/index.php/site/getRetailers', // <- path to controller which returns dynamic data
+                            'source' => $BASE_URL.'/index.php/site/getRetailers', // <- path to controller which returns dynamic data
                             'options' => array(
                                 'minLength' => '1', // min chars to start search
                                 'select' => 'js:function(event, ui) { console.log(ui.item.id +":"+ui.item.value); }'
