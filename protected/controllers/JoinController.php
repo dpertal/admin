@@ -21,7 +21,8 @@ class JoinController extends Controller{
 
             //Check if this is update or create new
             if (isset($data['accountId'])){
-                $Account = Account::model()->findAllByPk($data['accountId'])[0];
+                $Account = Account::model()->findAllByPk($data['accountId']);
+                $Account = $Account[0];
                 $checkRecord['status'] = false;
             }
             else {
