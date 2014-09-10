@@ -20,7 +20,7 @@ class SiteController extends Controller {
     function actionGetRetailers() {
         if (!empty($_GET['term'])) {
             $sql = 'SELECT name as id, name as value, name as label FROM retailer WHERE name LIKE :qterm ';
-            $sql .= ' ORDER BY first_name ASC';
+            $sql .= ' ORDER BY name ASC';
             $command = Yii::app()->db->createCommand($sql);
             $qterm = $_GET['term'] . '%';
             $command->bindParam(":qterm", $qterm, PDO::PARAM_STR);
