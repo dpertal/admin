@@ -84,7 +84,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         ?>
                         <input type="image" src="<?= $BASE_URL ?>/skin/luckybuys/images/search-ico.png" />
                     </form>
-                    <a class="btn blue hidden-small-phone" href="#">Join Lucky Buys</a>
+                    <?php echo CHtml::link('Join Lucky Buys', array('Join/index'), array('class' => 'btn blue hidden-small-phone')); ?>
                 </div>
             </div><!-- END SEARCH BAR -->
 
