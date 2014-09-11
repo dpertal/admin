@@ -3,9 +3,9 @@
     <p class="subline">You are about to join the LuckyBuys BonusCash revolution. Read more about the LuckyBuys BonusCash program benefits, frequently asked questions, your account & if you're not a member, how to join today!</p>
     <div class="join-topmenu">
         <ul>
-            <li id="jointab_join"> <a href="https://www.luckybuysbonuscash.com.au/Join" class="sub_tab">Join Now</a></li>
-            <li id="jointab_benefits"><a href="https://www.luckybuysbonuscash.com.au/Join/Benefits" class="sub_tab">LuckyBuys BonusCash card benefits</a></li>
-            <li id="jointab_faq"><a href="https://www.luckybuysbonuscash.com.au/FAQ" class="sub_tab">FAQ</a></li>
+            <li id="jointab_join"><?php echo CHtml::link('Join now', 'Join/index', array('class' => 'sub_tab')); ?></li>
+            <li id="jointab_benefits"><?php echo CHtml::link('LuckyBuys BonusCash card benefits', 'Join/Benefits', array('class' => 'sub_tab')); ?></li>
+            <li id="jointab_faq"><?php echo CHtml::link('FAQ', 'Faq/index', array('class' => 'sub_tab')); ?></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<script src="<?= Yii::app()->request->baseUrl ?>/skin/luckybuys/js/jquery.validate.js"></script>
+<?php echo CHtml::scriptFile(Yii::app()->request->baseUrl . '/skin/luckybuys/js/jquery.validate.js'); ?>
 <script type="text/javascript"><!--
     //Validate form
 

@@ -1,4 +1,9 @@
 <?php
+/*
+ * @JoinController
+ * @Tran Tuan
+ * @10/09/2014
+ * */
 
 class JoinController extends Controller{
 
@@ -12,7 +17,13 @@ class JoinController extends Controller{
         );
     }
 
+    /*
+     * IndexAction
+     * @Handle and render for join home
+     * */
     public function actionIndex(){
+
+        return $this->render('join_success');
 
         $data = null;
 
@@ -68,7 +79,6 @@ class JoinController extends Controller{
                     }
 
                     //Send confirmation email
-                    $data['from'] = 'info@bonuscash.com.au';
                     $data['to'] = $Account->email;
                     $data['subject'] = 'LuckyBuys Email Confirmation';
                     $data['body'] = $this->renderFile(ROOT_THEME . '/views/emails/confirmationEmail.php', array(
@@ -90,5 +100,39 @@ class JoinController extends Controller{
             else $this->render('index', array('message' => $checkRecord['message'], 'data' => $data));
         }
         return $this->render('index', array('data' => $data));
+    }
+
+    /*
+     * Resend confirmation email
+     * @Will be accessed via Ajax, allow user to resend system email confirmation
+     * @Return: Json with result format
+     * */
+    function actionResendConfirmationEmail(){
+        $result = array('status' => 'error', 'message' => 'No action performed');
+        if (Yii::app()->request->isPostRequest){
+            $token = Yii::app()->request->getPost('token');
+
+            $account = Account::model()->find("email_token = '{$token}'");
+
+            //If there is an account related to this token
+            if (!empty($account)){
+                //Send confirmation email
+                $data['to'] = $account->email;
+                $data['subject'] = 'LuckyBuys Email Confirmation';
+                $data['body'] = $this->renderFile(ROOT_THEME . '/views/emails/confirmationEmail.php', array(
+                    'appName' => 'LuckyBuys',
+                    'firstname' => $account->firstname,
+                    'emailToken' => $account->email_token,
+                    'domainURL' => Yii::app()->getBaseUrl(true)
+                ), true);
+
+                //Send mail
+                Yii::sendEmail($data);
+                $result = array('status' => 'success', 'message' => 'Confirmation email has been resent');
+            }
+            else $result['message'] = 'There is no account related to this token';
+        }
+        header("Content-type: application/json");
+        echo json_encode($result);
     }
 }

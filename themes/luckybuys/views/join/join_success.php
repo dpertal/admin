@@ -1,9 +1,9 @@
 <div class="main-content">
     <div class="join-topmenu">
         <ul>
-            <li id="jointab_join"> <a href="https://www.luckybuysbonuscash.com.au/Join" class="sub_tab">Join Now</a></li>
-            <li id="jointab_benefits"><a href="https://www.luckybuysbonuscash.com.au/Join/Benefits" class="sub_tab">LuckyBuys BonusCash card benefits</a></li>
-            <li id="jointab_faq"><a href="https://www.luckybuysbonuscash.com.au/FAQ" class="sub_tab">FAQ</a></li>
+            <li id="jointab_join"><?php echo CHtml::link('Join now', 'Join/index', array('class' => 'sub_tab')); ?></li>
+            <li id="jointab_benefits"><?php echo CHtml::link('LuckyBuys BonusCash card benefits', 'Join/Benefits', array('class' => 'sub_tab')); ?></li>
+            <li id="jointab_faq"><?php echo CHtml::link('FAQ', 'Faq/index', array('class' => 'sub_tab')); ?></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -20,6 +20,32 @@
 
         <h3>Did not receive an email?</h3>
 
-        <p>Check your spam folder. or <a href="javascript:;">Click here</a> to resend the mail.</p>
+        <p>Check your spam folder. or <?php echo CHtml::link('Click here', 'javascript:;', array('id' => 'resendEmail')); ?> to resend the mail.</p>
+        <div class="message">
+            <p>This is message success</p>
+         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+        $("#resendEmail").click(function(){
+            var token = '<?php //echo $email_token; ?>';
+            if (token == ''){
+                $(".message").addClass('error').find('p').html('Invalid token request');
+                $(".message").slideDown(500);
+                setTimeout(function(){ $(".message").slideUp(500); }, 3000);
+            }
+            else{
+                $(this).removeAttr('href').html('<i>Loading</i>');
+                $(".message p").html('');
+                $(".message").removeClass('error').removeClass('success');
+                $.post('<?php echo $this->createAbsoluteUrl('Join/resendConfirmationEmail'); ?>',{token:token}, function(response){
+                    $(".message").addClass(response.status).find('p').html(response.message);
+                    $(".message").slideDown(500);
+                    setTimeout(function(){ $(".message").slideUp(500); }, 3000);
+                    $("#resendEmail").attr('href', 'javascript:;').html('Click here');
+                });
+            }
+        });
+    });
+</script>

@@ -38,6 +38,7 @@ class Yii extends YiiBase
     }
 
     public static function sendEmail($data){
+        $data['from'] = 'info@bonuscash.com.au';
         $headers = "From: LuckyBuys<" . $data['from'] . ">\r\n";
         $headers .= "Reply-To: ". $data['from'] . "\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
