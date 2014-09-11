@@ -35,9 +35,20 @@ class SiteController extends Controller {
     public function actionIndex() {
         $program = Yii::app()->params['program'];
         $homeContent = PageContent::model()->find("program_id = $program AND page_id = 1");
-        $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => "4"));
-        $news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
-        $this->render('index', array('offers' => $offers, 'home' => $homeContent));
+       // $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => 1));
+		
+		$criteria = new CDbCriteria;
+        $criteria->together = true;
+        $criteria->with = array('retailer');
+		$criteria->limit = 4;
+        $criteria->addCondition(" (retailer.id =  retailer_id)"
+		. " and (start_date is null or start_date<= now()) and end_date >= now() and current = 1");
+		
+        $offers = Offer::model()->findAll($criteria);
+       
+		$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
+		$about = PageContent::model()->find("program_id = $program AND page_id = 2");
+        $this->render('index', array('offers' => $offers, 'home' => $homeContent , 'about'=> $about , 'news'=> $news));
     }
 
     public function actionContact() {
