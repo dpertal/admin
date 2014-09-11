@@ -63,8 +63,8 @@ class JoinController extends Controller{
                 $Account->setAttribute('updated', date("Y-m-d H:i:s"));
                 $Account->setAttribute('dob', "$month/$day/$year");
                 $Account->setAttribute('confirmationStatus', 0);
-                $Account->setAttribute('synced', '');
-                $Account->setAttribute('deleted', '');
+                $Account->setAttribute('synced', NULL);
+                $Account->setAttribute('deleted', NULL);
                 $Account->setAttribute('email_token', md5(uniqid() . $data['email']));
 
                 //Saving record
@@ -135,4 +135,53 @@ class JoinController extends Controller{
         header("Content-type: application/json");
         echo json_encode($result);
     }
+
+    /*
+     * Account confirmation from email
+     * @User click on confirmation link at email
+     * */
+    public function actionConfirmation(){
+        $token = Yii::app()->request->getParam('token');
+
+        //Check if token is provided
+        if (!empty($token)){
+
+            //Check account token
+            $account = Account::model()->find("email_token = '{$token}'");
+            if (!empty($account)){
+                $account->setAttribute('confirmationStatus', 2);
+
+                //Fetching available barcode for this account
+                $barcode = Barcodes::model()->find("status = 0 AND program_id = " . PROGRAM_ID, array("ORDER BY" => "id ASC"));
+                if (!empty($barcode)){
+                    $account->barcode = $barcode->barcode;
+                    $barcode->setAttribute('status', 1); //Barcode has been set
+                    $barcode->save();
+                }
+                if ($account->save()){
+
+                    //Send welcome email
+                    $data['to'] = $account->email;
+                    $data['subject'] = 'Lucky Buys - Your account has been active successfully';
+                    $data['body'] = $this->renderFile(ROOT_THEME . '/views/emails/welcomeEmail.php', array(
+                        'appName' => 'LuckyBuys',
+                        'username'      => $account->username,
+                        'password'      => $account->password,
+                        'domainURL' => Yii::app()->getBaseUrl(true)
+                    ), true);
+                    Yii::sendEmail($data);
+
+                    return $this->render('confirm_email');
+                }
+                else{
+                    $error = $account->getErrors();
+                    $error = $error[0];
+                }
+            }
+            else $error = 'Invalid token request';
+        }
+        else $error = 'Invalid token request';
+        return $this->render('confirm_email', array('error' => $error));
+    }
+
 }
