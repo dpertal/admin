@@ -732,17 +732,34 @@ select.small {
     float: left;
     height: 408px !important;
     margin-bottom: 0;
-    margin-right: 9px;
+    margin-right: 9px !important;
     opacity: 0.8;
+}
+
+.home-box-second  h3{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    color: #000 !important;
 }
 
 .home-img-deal {
     background: url("../images/ic_online_blue.png") no-repeat scroll 5px 5px / 40px auto rgba(0, 0, 0, 0);
     float: left;
-    height: 90px;
+    height: 48px;
     margin-bottom: 10px;
     margin-left: 1%;
     padding: 5px 5px 5px 55px;
 }
 
-.home_row_detail{ clear: both; }
+.home_row_detail{ clear: both; margin-bottom: 20px; }
+
+#homeNewsSecond .home_row_detail {
+    clear: both;
+    margin: 0 10px 15px;
+}
+.home-row-deal p {
+	color: grey;
+}
+
+.headline-deal {
+    color: #000;
+}

@@ -19,9 +19,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <title>LuckBuys Home</title>
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
-
+		<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/overlay.css">
+			
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="<?= $BASE_URL ?>/skin/luckybuys/js/main.js"></script>
+		<script src="<?= $BASE_URL ?>/skin/luckybuys/js/retailer_info.js"></script>
+		<script src="<?= $BASE_URL ?>/skin/luckybuys/js/jquery.nicescroll.js"></script>
     </head>
     <body>
         <div class="collapse-menu collapsed">

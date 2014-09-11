@@ -35,20 +35,38 @@ class SiteController extends Controller {
     public function actionIndex() {
         $program = Yii::app()->params['program'];
         $homeContent = PageContent::model()->find("program_id = $program AND page_id = 1");
+		$welcomeContent = PageContent::model()->find("program_id = $program AND page_id = 6");
        // $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => 1));
 		
 		$criteria = new CDbCriteria;
         $criteria->together = true;
         $criteria->with = array('retailer');
 		$criteria->limit = 4;
-        $criteria->addCondition(" (retailer.id =  retailer_id)"
-		. " and (start_date is null or start_date<= now()) and end_date >= now() and current = 1");
+        $criteria->addCondition("is_home_page = 1 and current = 1");
 		
         $offers = Offer::model()->findAll($criteria);
-       
-		$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
+ 
+		$criteria_news = new CDbCriteria;
+        $criteria_news->together = true;
+		$criteria_news->limit = 4;
+        $criteria_news->addCondition("program_id = $program and current = 1");
+	
+        $news = News::model()->findAll($criteria_news);
+		//$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
 		$about = PageContent::model()->find("program_id = $program AND page_id = 2");
-        $this->render('index', array('offers' => $offers, 'home' => $homeContent , 'about'=> $about , 'news'=> $news));
+        $this->render('index', array('offers' => $offers, 'home' => $homeContent , 'about'=> $about , 'news'=> $news , 'welcome'=>$welcomeContent));
+    }
+	
+	function actionAjax() {
+		$id = Yii::app()->request->getParam('id');
+		if($id){
+			$result = Offer::model()->find('id ='.$id);
+			$this->layout = false;
+			
+			$this->render('viewOffer', array('offer'=>$result));
+        } else {
+            return false;
+        }
     }
 
     public function actionContact() {
