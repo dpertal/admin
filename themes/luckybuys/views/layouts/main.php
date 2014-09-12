@@ -67,7 +67,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 
             <div class="search-bar">
                 <div class="search-bar-detail">
-                    <?php echo CHtml::link('Login', 'Login/index', array('class' => 'login')); ?>
+                    <?php echo CHtml::link('Login', array('Login/index'), array('class' => 'login')); ?>
                     <form name="search_frm" method="post" action="<?= $BASE_URL ?>/index.php/site/search">
                         <?php
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
@@ -87,7 +87,11 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         ?>
                         <input type="image" src="<?= $BASE_URL ?>/skin/luckybuys/images/search-ico.png" />
                     </form>
-                    <?php echo CHtml::link('Join Lucky Buys', array('Join/index'), array('class' => 'btn blue hidden-small-phone')); ?>
+                    <?php
+                        if (Yii::app()->user->isGuest)
+                            echo CHtml::link('Join Lucky Buys', array('Join/index'), array('class' => 'btn blue hidden-small-phone'));
+                        else echo CHtml::link('Log out', array('Login/Logout'), array('class' => 'btn blue hidden-small-phone'));
+                    ?>
                 </div>
             </div><!-- END SEARCH BAR -->
 

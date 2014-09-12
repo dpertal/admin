@@ -92,12 +92,12 @@ a:hover{ text-decoration: underline; }
     right: 7px;
     top: 4px
 }
-a.btn{
+.btn{
     display: inline-block;
     padding: 11px;
     color: #FFF;
 }
-a.btn.blue{
+.btn.blue{
     background: #003876;
 }
 .banner{ background: url("../images/banner-bg.png") repeat-x top center; background-size: contain; }
@@ -661,7 +661,9 @@ select.small {
 }
 .join-home input[type="text"],
 input[type="password"],
-input[type="email"]{
+input[type="email"],
+.input input[type="text"],
+.input input[type="password"]{
     background: #FFF;
     color: #000;
     padding: 4px;
@@ -767,8 +769,24 @@ input[type="email"]{
 .section-header{
     border-bottom: thin solid #D3D3D3;
     color: #808080;
-    font-size: 1.1em;
+    font-size: 1.5em;
     font-weight: normal;
     padding: 5px;
     line-height: 1.5em;
+}
+.login-page{}
+.login-page p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.input{
+    clear: both;
+    margin-top: 3px;
+    margin-bottom: 3px
+}
+.input.submit{ padding-top: 10px; }
+.input.submit input{
+    border: none;
+    padding: 8px 35px;
+    cursor: pointer;
 }
