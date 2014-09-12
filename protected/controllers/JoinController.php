@@ -23,8 +23,6 @@ class JoinController extends Controller{
      * */
     public function actionIndex(){
 
-        return $this->render('join_success');
-
         $data = null;
 
         if (Yii::app()->request->isPostRequest){
@@ -182,6 +180,57 @@ class JoinController extends Controller{
         }
         else $error = 'Invalid token request';
         return $this->render('confirm_email', array('error' => $error));
+    }
+
+    /*
+     * Forgot password
+     * @User can access forgot password page to reset their password
+     * */
+    public function actionForgotPassword(){
+        return $this->render('forgot_password');
+    }
+
+    /*
+     *
+     * */
+
+    /*
+     * Ajax reset password from client
+     * @Will get request from client email and send password reset email
+     * */
+    public function actionResetPasswordAjax(){
+        $result = array('status' => 'error', 'message' => 'No action performed');
+        if (Yii::app()->request->isPostRequest){
+            $email = Yii::app()->request->getPost('email');
+
+            if (empty($email) || Yii::invalidEmail($email))
+                $result['message'] = 'That does not appear to be a valid email address!';
+            else{
+                $account = Account::model()->find("email = '{$email}'");
+                if ($account){
+                    $timestamp = time();
+                    $hash = sha1(uniqid().$timestamp);
+
+                    //Begin email
+                    $data['to'] = $email;
+                    $data['subject'] = 'LuckyBuys BonusCash Password Reset';
+
+                    $data['body'] = $this->renderFile(ROOT_THEME . '/views/emails/forgotPasswordEmail.php', array(
+                        'appName' => 'LuckyBuys',
+                        'email_token'   => Yii::doEncrypt($email),
+                        'time_token'    => Yii::doEncrypt($hash),
+                        'domainURL' => Yii::app()->getBaseUrl(true)
+                    ), true);
+
+                    Yii::sendEmail($data);
+
+                    $result = array('status' => 'success', 'message' => "Password reset instructions have been emailed to you");
+                }
+                else $result = array('status' => 'error', 'message' => "That email address doesn't exist in our system!");
+            }
+        }
+        header("Content-type: application/json");
+        echo json_encode($result);
     }
 
 }

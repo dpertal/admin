@@ -67,7 +67,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 
             <div class="search-bar">
                 <div class="search-bar-detail">
-                    <a href="#" class="login">Login</a>
+                    <?php echo CHtml::link('Login', 'Login/index', array('class' => 'login')); ?>
                     <form name="search_frm" method="post" action="<?= $BASE_URL ?>/index.php/site/search">
                         <?php
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(

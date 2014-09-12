@@ -660,7 +660,8 @@ select.small {
     font-size: 10px;
 }
 .join-home input[type="text"],
-.join-home input[type="password"]{
+.join-home input[type="password"],
+input[type="email"]{
     background: #FFF;
     color: #000;
     padding: 4px;
@@ -762,4 +763,12 @@ select.small {
 
 .headline-deal {
     color: #000;
+}
+.section-header{
+    border-bottom: thin solid #D3D3D3;
+    color: #808080;
+    font-size: 1.1em;
+    font-weight: normal;
+    padding: 5px;
+    line-height: 1.5em;
 }
