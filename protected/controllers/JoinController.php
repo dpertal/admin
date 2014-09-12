@@ -191,8 +191,30 @@ class JoinController extends Controller{
     }
 
     /*
-     *
+     *Reset password page
      * */
+    public function actionResetPassword(){
+        if (Yii::app()->request->isPostRequest){
+            $emailToken = Yii::app()->request->getPost('emailToken');
+            $timeToken = Yii::app()->request->getPost('timeToken');
+
+            $email = Yii::doDecrypt($emailToken);
+            $time = Yii::doDecrypt($timeToken);
+
+            $account = Account::model()->find("email = '{$email}'");
+
+            if ($account){
+                $accountPassword = Yii::app()->request->getPost('password');
+                $account->setAttribute('password', $accountPassword);
+                $account->save();
+                $result = array('status' => 'success', 'message' => 'Your password has been reset! You can use it in next time log in');
+            }
+            else $result = array('status' => 'error', 'message' => 'Account is not found');
+            header("Content-type: application/json");
+            echo json_encode($result);exit();
+        }
+        return $this->render('reset_password');
+    }
 
     /*
      * Ajax reset password from client

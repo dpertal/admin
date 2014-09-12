@@ -660,7 +660,7 @@ select.small {
     font-size: 10px;
 }
 .join-home input[type="text"],
-.join-home input[type="password"],
+input[type="password"],
 input[type="email"]{
     background: #FFF;
     color: #000;
