@@ -18,28 +18,18 @@ class UserIdentity extends CUserIdentity {
 	 */
 	public function authenticate() {
 		$username = strtolower ( $this->username );
-		$user = User::model ()->find ( 'LOWER(username)=?', array ($username ) );
-		
+		$user = Account::model()->find( "username = '{$username}'");
 		if ($user === null) {
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
 		} else if ($user->password != $this->password ) {
-			
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
-			
-		} else if ($user->active != 1 ) {
-					
-				$this->errorCode = self::ERROR_PASSWORD_INVALID;
-		} else {
+		}
+		else {
 			$this->_id = $user->id;
 			$this->username = $user->username;
-			$this->setState( 'user_name', $user->first_name .' '.$user->last_name);
-			$this->setState( 'last_login', $user->last_login );
-                        $this->setState( 'user_email', $user->username );
-                        
-			$this->setState( 'role_id', $user->role_id );
-			//$role = RoleType::model()->findByPk($user->role_id);
-			
-			$this->setState( 'role_name', 'todo');
+			$this->setState( 'user_name', $user->firstname .' '.$user->lastname);
+            $this->setState( 'user_name', $user->username );
+
 			$this->errorCode = self::ERROR_NONE;
 		}
 		return $this->errorCode == self::ERROR_NONE;

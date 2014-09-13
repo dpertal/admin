@@ -20,9 +20,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/css/colorbox.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
-
+		<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/overlay.css">
+			
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="<?= $BASE_URL ?>/skin/luckybuys/js/main.js"></script>
+		<script src="<?= $BASE_URL ?>/skin/luckybuys/js/retailer_info.js"></script>
+		<script src="<?= $BASE_URL ?>/skin/luckybuys/js/jquery.nicescroll.js"></script>
     </head>
     <body>
         <div class="collapse-menu collapsed">
@@ -65,7 +68,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 
             <div class="search-bar">
                 <div class="search-bar-detail">
-                    <a href="#" class="login">Login</a>
+                    <?php echo CHtml::link('Login', array('Login/index'), array('class' => 'login')); ?>
                     <form name="search_frm" method="post" action="<?= $BASE_URL ?>/index.php/site/search">
                         <?php
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
@@ -104,7 +107,11 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         ?>
                         <input type="image" src="<?= $BASE_URL ?>/skin/luckybuys/images/search-ico.png" />
                     </form>
-                    <?php echo CHtml::link('Join Lucky Buys', array('Join/index'), array('class' => 'btn blue hidden-small-phone')); ?>
+                    <?php
+                        if (Yii::app()->user->isGuest)
+                            echo CHtml::link('Join Lucky Buys', array('Join/index'), array('class' => 'btn blue hidden-small-phone'));
+                        else echo CHtml::link('Log out', array('Login/Logout'), array('class' => 'btn blue hidden-small-phone'));
+                    ?>
                 </div>
             </div><!-- END SEARCH BAR -->
 

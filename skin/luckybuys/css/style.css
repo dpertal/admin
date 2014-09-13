@@ -92,12 +92,12 @@ a:hover{ text-decoration: underline; }
     right: 7px;
     top: 4px
 }
-a.btn{
+.btn{
     display: inline-block;
     padding: 11px;
     color: #FFF;
 }
-a.btn.blue{
+.btn.blue{
     background: #003876;
 }
 .banner{ background: url("../images/banner-bg.png") repeat-x top center; background-size: contain; }
@@ -660,7 +660,10 @@ select.small {
     font-size: 10px;
 }
 .join-home input[type="text"],
-.join-home input[type="password"]{
+input[type="password"],
+input[type="email"],
+.input input[type="text"],
+.input input[type="password"]{
     background: #FFF;
     color: #000;
     padding: 4px;
@@ -724,4 +727,66 @@ select.small {
     margin-top: 5px;
     margin-bottom: 5px;
     line-height: 120%;
+}
+
+.home-box-second {
+    border: thin solid lightgrey;
+    display: inline-block;
+    float: left;
+    height: 408px !important;
+    margin-bottom: 0;
+    margin-right: 9px !important;
+    opacity: 0.8;
+}
+
+.home-box-second  h3{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    color: #000 !important;
+}
+
+.home-img-deal {
+    background: url("../images/ic_online_blue.png") no-repeat scroll 5px 5px / 40px auto rgba(0, 0, 0, 0);
+    float: left;
+    height: 48px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+    padding: 5px 5px 5px 55px;
+}
+
+.home_row_detail{ clear: both; margin-bottom: 20px; }
+
+#homeNewsSecond .home_row_detail {
+    clear: both;
+    margin: 0 10px 15px;
+}
+.home-row-deal p {
+	color: grey;
+}
+
+.headline-deal {
+    color: #000;
+}
+.section-header{
+    border-bottom: thin solid #D3D3D3;
+    color: #808080;
+    font-size: 1.5em;
+    font-weight: normal;
+    padding: 5px;
+    line-height: 1.5em;
+}
+.login-page{}
+.login-page p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.input{
+    clear: both;
+    margin-top: 3px;
+    margin-bottom: 3px
+}
+.input.submit{ padding-top: 10px; }
+.input.submit input{
+    border: none;
+    padding: 8px 35px;
+    cursor: pointer;
 }

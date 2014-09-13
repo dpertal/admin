@@ -23,8 +23,6 @@ class JoinController extends Controller{
      * */
     public function actionIndex(){
 
-        return $this->render('join_success');
-
         $data = null;
 
         if (Yii::app()->request->isPostRequest){
@@ -63,8 +61,8 @@ class JoinController extends Controller{
                 $Account->setAttribute('updated', date("Y-m-d H:i:s"));
                 $Account->setAttribute('dob', "$month/$day/$year");
                 $Account->setAttribute('confirmationStatus', 0);
-                $Account->setAttribute('synced', '');
-                $Account->setAttribute('deleted', '');
+                $Account->setAttribute('synced', NULL);
+                $Account->setAttribute('deleted', NULL);
                 $Account->setAttribute('email_token', md5(uniqid() . $data['email']));
 
                 //Saving record
@@ -135,4 +133,126 @@ class JoinController extends Controller{
         header("Content-type: application/json");
         echo json_encode($result);
     }
+
+    /*
+     * Account confirmation from email
+     * @User click on confirmation link at email
+     * */
+    public function actionConfirmation(){
+        $token = Yii::app()->request->getParam('token');
+
+        //Check if token is provided
+        if (!empty($token)){
+
+            //Check account token
+            $account = Account::model()->find("email_token = '{$token}'");
+            if (!empty($account)){
+                $account->setAttribute('confirmationStatus', 2);
+
+                //Fetching available barcode for this account
+                $barcode = Barcodes::model()->find("status = 0 AND program_id = " . PROGRAM_ID, array("ORDER BY" => "id ASC"));
+                if (!empty($barcode)){
+                    $account->barcode = $barcode->barcode;
+                    $barcode->setAttribute('status', 1); //Barcode has been set
+                    $barcode->save();
+                }
+                if ($account->save()){
+
+                    //Send welcome email
+                    $data['to'] = $account->email;
+                    $data['subject'] = 'Lucky Buys - Your account has been active successfully';
+                    $data['body'] = $this->renderFile(ROOT_THEME . '/views/emails/welcomeEmail.php', array(
+                        'appName' => 'LuckyBuys',
+                        'username'      => $account->username,
+                        'password'      => $account->password,
+                        'domainURL' => Yii::app()->getBaseUrl(true)
+                    ), true);
+                    Yii::sendEmail($data);
+
+                    return $this->render('confirm_email');
+                }
+                else{
+                    $error = $account->getErrors();
+                    $error = $error[0];
+                }
+            }
+            else $error = 'Invalid token request';
+        }
+        else $error = 'Invalid token request';
+        return $this->render('confirm_email', array('error' => $error));
+    }
+
+    /*
+     * Forgot password
+     * @User can access forgot password page to reset their password
+     * */
+    public function actionForgotPassword(){
+        return $this->render('forgot_password');
+    }
+
+    /*
+     *Reset password page
+     * */
+    public function actionResetPassword(){
+        if (Yii::app()->request->isPostRequest){
+            $emailToken = Yii::app()->request->getPost('emailToken');
+            $timeToken = Yii::app()->request->getPost('timeToken');
+
+            $email = Yii::doDecrypt($emailToken);
+            $time = Yii::doDecrypt($timeToken);
+
+            $account = Account::model()->find("email = '{$email}'");
+
+            if ($account){
+                $accountPassword = Yii::app()->request->getPost('password');
+                $account->setAttribute('password', $accountPassword);
+                $account->save();
+                $result = array('status' => 'success', 'message' => 'Your password has been reset! You can use it in next time log in');
+            }
+            else $result = array('status' => 'error', 'message' => 'Account is not found');
+            header("Content-type: application/json");
+            echo json_encode($result);exit();
+        }
+        return $this->render('reset_password');
+    }
+
+    /*
+     * Ajax reset password from client
+     * @Will get request from client email and send password reset email
+     * */
+    public function actionResetPasswordAjax(){
+        $result = array('status' => 'error', 'message' => 'No action performed');
+        if (Yii::app()->request->isPostRequest){
+            $email = Yii::app()->request->getPost('email');
+
+            if (empty($email) || Yii::invalidEmail($email))
+                $result['message'] = 'That does not appear to be a valid email address!';
+            else{
+                $account = Account::model()->find("email = '{$email}'");
+                if ($account){
+                    $timestamp = time();
+                    $hash = sha1(uniqid().$timestamp);
+
+                    //Begin email
+                    $data['to'] = $email;
+                    $data['subject'] = 'LuckyBuys BonusCash Password Reset';
+
+                    $data['body'] = $this->renderFile(ROOT_THEME . '/views/emails/forgotPasswordEmail.php', array(
+                        'appName' => 'LuckyBuys',
+                        'email_token'   => Yii::doEncrypt($email),
+                        'time_token'    => Yii::doEncrypt($hash),
+                        'domainURL' => Yii::app()->getBaseUrl(true)
+                    ), true);
+
+                    Yii::sendEmail($data);
+
+                    $result = array('status' => 'success', 'message' => "Password reset instructions have been emailed to you");
+                }
+                else $result = array('status' => 'error', 'message' => "That email address doesn't exist in our system!");
+            }
+        }
+        header("Content-type: application/json");
+        echo json_encode($result);
+    }
+
 }

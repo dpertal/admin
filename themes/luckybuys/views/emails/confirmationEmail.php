@@ -24,7 +24,7 @@
                       	<p style="color:#666; padding:0 0 10px 0;">Hello <?= $firstname ?>, </p>
 						<p style="color:#666; padding:0 0 10px 0;">Thanks for joining <?= $appName ?> Rewards and I know you are looking forward to receiving your Cash Rewards.</p>
 						<p style="color:#666; padding:0 0 10px 0;">There is just one more step in the process. Please click the link below to confirm your email address:</p>
-						<a style="color:#ab1e25; text-decoration:none" href="<?= $domainURL ?>/emailConfirmation.php?token=<?= $emailToken ?>" target="_blank"><?= $domainURL ?>/emailConfirmation.php?token=<?= $emailToken ?></a>
+						<a style="color:#ab1e25; text-decoration:none" href="<?= $domainURL ?>/Join/Confirmation.php?token=<?= $emailToken ?>" target="_blank"><?= $domainURL ?>/Join/Confirmation.php?token=<?= $emailToken ?></a>
 						<p style="color:#666; padding:0 0 10px 0;">If the link does not work, please cut and paste it into your web browser.</p>
 						<p style="color:#666; padding:0 0 10px 0;">After this step, your card will be sent to you in the next 7-10 days. If you want to go shopping now, you can, go to : <a href="<?= $domainURL ?>" target="_blank"><?= $domainURL ?></a> , login and start shopping.</p>
 						 <br />
