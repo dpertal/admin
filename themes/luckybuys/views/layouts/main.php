@@ -17,6 +17,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
         <title>LuckBuys Home</title>
+        <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/css/colorbox.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
 
@@ -70,7 +71,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                             'name' => 'retailer',
                             'value' => '',
-                            'source' => $BASE_URL.'/index.php/site/getRetailers', // <- path to controller which returns dynamic data
+                            'source' => $BASE_URL . '/index.php/site/getRetailers', // <- path to controller which returns dynamic data
                             'options' => array(
                                 'minLength' => '1', // min chars to start search
                                 'select' => 'js:function(event, ui) { console.log(ui.item.id +":"+ui.item.value); }'
@@ -78,7 +79,26 @@ $BASE_URL = Yii::app()->request->baseUrl;
                             'htmlOptions' => array(
                                 'id' => 'retailer',
                                 'rel' => 'val',
-                                'placeholder' =>'Search'
+                                'placeholder' => 'Search Retailer'
+                            ),
+                        ));
+                        ?>
+                        <input type="image" src="<?= $BASE_URL ?>/skin/luckybuys/images/search-ico.png" />
+                    </form>
+                    <form name="search_frm" method="post" action="<?= $BASE_URL ?>/index.php/site/searchCategory">
+                        <?php
+                        $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                            'name' => 'category',
+                            'value' => '',
+                            'source' => $BASE_URL . '/index.php/site/getCategory', // <- path to controller which returns dynamic data
+                            'options' => array(
+                                'minLength' => '1', // min chars to start search
+                                'select' => 'js:function(event, ui) { console.log(ui.item.id +":"+ui.item.value); }'
+                            ),
+                            'htmlOptions' => array(
+                                'id' => 'category',
+                                'rel' => 'val',
+                                'placeholder' => 'Search Category'
                             ),
                         ));
                         ?>

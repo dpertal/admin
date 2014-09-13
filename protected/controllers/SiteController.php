@@ -110,10 +110,28 @@ class SiteController extends Controller {
 
         $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories));
     }
-    
+    function actionGetCategory() {
+        if (!empty($_GET['term'])) {
+            $sql = 'SELECT name as id, name as value, name as label FROM retailer_category WHERE name LIKE :qterm ';
+            $sql .= ' ORDER BY name ASC';
+            $command = Yii::app()->db->createCommand($sql);
+            $qterm = '%' . $_GET['term'] . '%';
+            $command->bindParam(":qterm", $qterm, PDO::PARAM_STR);
+            $result = $command->queryAll();
+            echo CJSON::encode($result);
+            exit;
+        } else {
+            return false;
+        }
+    }
     public function actionSearch() {
         $model = Retailer::model()->findAll('name like "%'.$_REQUEST['retailer'].'%"');
         $this->render('search', array('model' => $model));
+    }
+    
+    public function actionSearchCategory() {
+        $model = Retailer::model()->findAll('name like "%'.$_REQUEST['category'].'%"');
+        $this->render('search_category', array('model' => $model));
     }
 
     public function actionError() {

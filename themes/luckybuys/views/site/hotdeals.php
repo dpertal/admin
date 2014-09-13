@@ -1,6 +1,7 @@
 <?php
 $BASE_URL = Yii::app()->request->baseUrl;
 ?>
+<script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/jquery/jquery.colorbox.js"></script>
 <div class="banner hidden-phone">
     <div class="banner-detail">
         <img src="<?= $BASE_URL . $content->image_url; ?>" alt="" />
@@ -36,20 +37,31 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <?php
             foreach ($model as $deal) {
                 ?>
-                <div class="deal-box" onclick="" style="cursor: pointer;">
-                    <div class="left">
-                        <h4 class="title"><?= $deal->title ?></h4>
-                        <div class="description">
-                            <p><?= $deal->summary ?></p>
-                            <p>Valid Until <?php echo date_format(new DateTime($deal->end_date), 'd F Y'); ?></p>
+                <a href="#popup<?=$deal->id?>" class="popup<?=$deal->id?>">
+                    <div class="deal-box popup" style="cursor: pointer;">
+                        <div class="left">
+                            <h4 class="title"><?= $deal->title ?></h4>
+                            <div class="description">
+                                <p><?= $deal->summary ?></p>
+                                <p>Valid Until <?php echo date_format(new DateTime($deal->end_date), 'd F Y'); ?></p>
+                            </div>
                         </div>
+                        <div class="right">
+                            <img src="<?= $deal->retailer->logo_url ?>" alt="" />
                     </div>
-                    <div class="right">
-                        <img src="<?= $deal->retailer->logo_url ?>" alt="" />
+                </div>
+            </a>
+            <div style="display:none;">
+                <div class="popup_wrap" id="popup<?=$deal->id?>">
+                    test<?=$deal->id?>
                 </div>
             </div>
+            <script type="text/javascript">
+                $(".popup<?=$deal->id?>").colorbox({inline: true});
+            </script>
             <? }?>
             <div class="clear"></div>
+
             <!--div class="hot-deals-paginator">
                 <span><a href="#"> << </a></span>
                 <span><a href="#"> < </a></span>
@@ -62,3 +74,4 @@ $BASE_URL = Yii::app()->request->baseUrl;
         </div>
     </div>
 </div>
+
