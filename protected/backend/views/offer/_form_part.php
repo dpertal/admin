@@ -1,3 +1,4 @@
+<?php echo $form->hiddenField($offer, '[' . $index . ']id', array()); ?>
 <div class="form-group">
     <label class="col-sm-3 col-lg-2 control-label">Retailer</label>
     <div class="col-sm-9 col-lg-10 controls">
@@ -45,12 +46,12 @@
 <div class="form-group">
     <label class="col-sm-3 col-lg-2 control-label">Start Date</label>
     <div class="col-sm-2 col-lg-2 controls" id='st'>
-        <?php echo $form->textField($offer, '[' . $index . ']start_date', array('class' => 'form-control', 'data-date-format'=>'YYYY/MM/DD', 'placeholder' => 'Start Date')); ?>
+        <?php echo $form->textField($offer, '[' . $index . ']start_date', array('class' => 'form-control date-picker', 'data-date-format'=>'yyyy-mm-dd','placeholder' => 'Start Date')); ?>
         <span class="help-inline"><?php echo $form->error($offer, '[' . $index . ']start_date'); ?></span>
     </div>
     <label class="col-sm-1 col-lg-1 control-label">End Date</label>
     <div class="col-sm-2 col-lg-2 controls">
-        <?php echo $form->textField($offer, '[' . $index . ']end_date', array('class' => 'form-control', 'placeholder' => 'End Date')); ?>
+        <?php echo $form->textField($offer, '[' . $index . ']end_date', array('class' => 'form-control date-picker', 'data-date-format'=>'yyyy-mm-dd', 'placeholder' => 'End Date')); ?>
         <span class="help-inline"><?php echo $form->error($offer, '[' . $index . ']end_date'); ?></span>
     </div>
 
