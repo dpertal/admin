@@ -790,3 +790,42 @@ input[type="email"],
     padding: 8px 35px;
     cursor: pointer;
 }
+
+
+
+
+.deal_popup{
+    width: 700px;
+    min-height: 300px;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+    background-color:white;
+    float: left;
+}
+.deal_popup .right{
+    width: 70%;
+    float: right;
+    padding:5px;
+}
+.deal_popup .right .title{
+    font-size: 15px;
+    color: #092A55;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.deal_popup .right .description{ font-size: 12px; }
+.deal_popup .right .description p{}
+
+.deal_popup .left{
+    width: 25%;
+    padding-top: 5px;
+    padding-right: 10px;
+    float: left;
+    font-size: 15px;
+    color: #092A55;
+    text-align:center;
+    border-right:1px black solid;
+}
+
+.deal_popup .left img{ width: 50%; }

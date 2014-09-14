@@ -95,7 +95,7 @@ return array(
         // uncomment the following to use a MySQL database
         //live
 		
-		 'db'=>array(
+		 'db1'=>array(
             'connectionString' => 'mysql:host=localhost;dbname=crgtesti_db',
             'emulatePrepare' => true,
             'username' => 'crgtesti_user',
@@ -103,14 +103,14 @@ return array(
             'charset' => 'utf8',
         ),
 
-            /*
+            
          'db'=>array(
             'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
-         ),*/
+         ),
 
 		'errorHandler'=>array(
             // use 'site/error' action to display errors
