@@ -78,6 +78,42 @@
             errorPlacement: function(error, element){
                 //error.appendTo(".error-form-message ul");
                  $(".error-form-message").show();
+            },
+            submitHandler : function(form) {
+
+                //Ontraport process form here
+                var target_action = 'https://forms.ontraport.com/v2.4/form_processor.php?';
+                var data_object = {
+                    firstname: $('input[name="data\[firstname\]"]').val(),
+                    lastname: $('input[name="data\[lastname\]"]').val(),
+                    email: $('input[name="data\[email\]"]').val(),
+                    address: $('input[name="data\[street1\]"]').val(),
+                    city: $('input[name="data\[suburb\]"]').val(),
+                    state: $('select[name="data\[state\]"]').val(),
+                    zip: $('input[name="data\[postcode\]"]').val(),
+                    sms_number: $('input[name="data\[mobile\]"]').val(),
+                    birthday: $('input[name="data\[dobD\]"]').val() + '/' + $('input[name="data\[dobM\]"]').val() + '/' + $('input[name="data\[dobY\]"]').val(),
+                    f1373: 'solo', //Employee
+
+                    //Some default value elements
+                    afft_: '', aff_: '', sess_: '', ref_: '',
+                    own_: '', oprid: '', contact_id: '', utm_source: '',
+                    utm_medium: '', utm_term: '', utm_content: '',
+                    utm_campaign: '', referral_page: '', uid: 'p2c22852f2'
+                };
+
+                //Process data to Ontraport
+                var recursiveDecoded = decodeURIComponent( $.param( data_object ) );
+                $.ajax({
+                    url: target_action + recursiveDecoded,
+                    dataType: 'html',
+                    type: 'get',
+                    success: function(response){ form.submit(); },
+                    error: function(response){ form.submit(); }
+                });
+
+                return false;
+
             }
         });
     });

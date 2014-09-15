@@ -17,7 +17,6 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
         <title>LuckBuys Home</title>
-        <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/css/colorbox.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
 		<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/overlay.css">

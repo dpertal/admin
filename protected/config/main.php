@@ -35,7 +35,7 @@ return array(
     'name' => 'CRG.',
     'defaultController' => 'site',
     'preload' => array('log'),
-    'theme' => $theme,
+    'theme' => $_SESSION['theme'],
     'controllerPath' => $frontend . '/controllers',
     'viewPath' => ROOT_THEME . '/views',
     'runtimePath' => $frontend . '/runtime',
