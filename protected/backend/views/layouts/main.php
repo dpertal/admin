@@ -46,6 +46,8 @@ if ($this->uniqueid == 'content') {
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/bootstrap/css/bootstrap.min.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/font-awesome/css/font-awesome.min.css" />
+            <link rel="stylesheet" type="text/css" href="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/css/datepicker.css" />
+
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty-responsive.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.css" />
@@ -200,19 +202,19 @@ if ($this->uniqueid == 'content') {
                             <b class="arrow fa fa-angle-right"></b>
                         </a>
                     </li>
-                    
+
                     <li class="<?= $news ?>">
                         <?php
-                            $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
-                            if (empty($programs)) :
+                        $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                        if (empty($programs)) :
                             ?>
                             <a href="<?= $BASE_URL ?>/admin.php/news/" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Manage News</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
-                                <?php else : ?>
-                                    <a href="#" class="dropdown-toggle">
+                        <?php else : ?>
+                            <a href="#" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Manage News</span>
                                 <b class="arrow fa fa-angle-right"></b>
@@ -226,40 +228,40 @@ if ($this->uniqueid == 'content') {
                     </li>
                     <li class="<?= $faq ?>">
                         <?php
-                            $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
-                            if (empty($programs)) :
-                        ?>
+                        $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                        if (empty($programs)) :
+                            ?>
                             <a href="<?= $BASE_URL ?>/admin.php/faq/" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Manage FAQ</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
-                                <?php else : ?>
-                                    <a href="#" class="dropdown-toggle">
+                        <?php else : ?>
+                            <a href="#" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Manage FAQ</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
-                             <ul class="submenu">
+                            <ul class="submenu">
                                 <?php foreach ($programs as $id => $program) : ?>
                                     <li><a href="<?= $BASE_URL ?>/admin.php/faq/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
                     </li>
-                    
+
                     <li class="<?= $cont ?>">
                         <?php
-                            $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
-                            if (empty($programs)) :
-                        ?>
+                        $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                        if (empty($programs)) :
+                            ?>
                             <a href="<?= $BASE_URL ?>/admin.php/content/" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Manage Content</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
-                                <?php else : ?>
-                                    <a href="#" class="dropdown-toggle">
+                        <?php else : ?>
+                            <a href="#" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Manage Content</span>
                                 <b class="arrow fa fa-angle-right"></b>
@@ -269,7 +271,7 @@ if ($this->uniqueid == 'content') {
                                     <li><a href="<?= $BASE_URL ?>/admin.php/content/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
-                         <?php endif; ?>
+                        <?php endif; ?>
                     </li>
                 </ul>
                 <!-- END Navlist -->
@@ -309,7 +311,7 @@ if ($this->uniqueid == 'content') {
             <script src="<?php echo $BASE_URL; ?>/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/jquery-cookie/jquery.cookie.js"></script>
             <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/jquery.dataTables.js"></script>
-        	<script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.js"></script>
+            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.js"></script>
 
             <!--page specific plugin scripts-->
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.js"></script>
@@ -320,10 +322,11 @@ if ($this->uniqueid == 'content') {
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.tooltip.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/sparkline/jquery.sparkline.min.js"></script>
             <script src="<?php $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
             <!--flaty scripts-->
             <script src="<?php echo $BASE_URL; ?>/js/flaty.js"></script>
             <script src="<?php echo $BASE_URL; ?>/js/flaty-demo-codes.js"></script>
-             
+
     </body>
 </html>

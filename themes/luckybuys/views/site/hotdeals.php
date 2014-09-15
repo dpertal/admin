@@ -1,6 +1,7 @@
 <?php
 $BASE_URL = Yii::app()->request->baseUrl;
 ?>
+<script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/jquery/jquery.colorbox.js"></script>
 <div class="banner hidden-phone">
     <div class="banner-detail">
         <img src="<?= $BASE_URL . $content->image_url; ?>" alt="" />
@@ -36,20 +37,69 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <?php
             foreach ($model as $deal) {
                 ?>
-                <div class="deal-box" onclick="" style="cursor: pointer;">
-                    <div class="left">
-                        <h4 class="title"><?= $deal->title ?></h4>
-                        <div class="description">
-                            <p><?= $deal->summary ?></p>
-                            <p>Valid Until <?php echo date_format(new DateTime($deal->end_date), 'd F Y'); ?></p>
+                <a href="#popup<?= $deal->id ?>" class="popup<?= $deal->id ?>">
+                    <div class="deal-box popup" style="cursor: pointer;">
+                        <div class="left">
+                            <h4 class="title"><?= $deal->title ?><?= $deal->offer_type_id ?></h4>
+                            <div class="description">
+                                <p><?= $deal->summary ?></p>
+                                <p>Valid Until <?php echo date_format(new DateTime($deal->end_date), 'd F Y'); ?></p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <img src="<?= $deal->retailer->logo_url ?>" alt="" />
                         </div>
                     </div>
-                    <div class="right">
-                        <img src="<?= $deal->retailer->logo_url ?>" alt="" />
+                </a>
+                <div style="display:none;">
+                    <div class="popup_wrap" id="popup<?= $deal->id ?>">
+                        <div class="deal_popup" style="cursor: pointer;">
+                            <div class="right">
+                                <h3 class="title"><?= $deal->title ?><?= $deal->offer_type_id ?></h3>
+                                <div class="description">
+                                    <p><?= $deal->retailer->description ?></p>
+                                    <br />
+                                    
+                                    
+                                    <h4 class="title">Hot Deal</h4>
+                                    <p><?= $deal->body ?></p>
+                                    <br />
+                                    <?
+                                    if(isset($deal->retailer->affiliateCoupons) && count($deal->retailer->affiliateCoupons)>0) {
+                                    echo '<h4 class="title">Coupons</h4>';
+                                    foreach($deal->retailer->affiliateCoupons as $coupon) {
+                                    ?>
+                                    
+                                    <p><?= $coupon->description ?></p>
+                                    <br />
+                                    <? } }?>
+                                </div>
+                            </div>
+                            <div class="left">
+                                <img src="<?= $deal->retailer->logo_url ?>" alt="" />
+                                <h4><?= $deal->summary ?></h4><br />
+                                <div style="border:1px black solid;vertical-align: middle;float: left; width: 95%;">
+                                    <div style="float: left;padding: 5px;">
+                                        <img style="width:50px !important;" src="<?= $BASE_URL ?>/skin/luckybuys/images/ic_online_blue.png" alt="" />
+                                    </div>
+                                    <div style="float: right;padding: 5px;padding-top: 15px; text-align: center;">
+                                        Shop Online
+                                    </div>
+                                    <div style="float:left;width:100%;background-color:#003876;padding-top: 5px;padding-bottom: 5px;color: white;">
+                                        <a>SHOP NOW</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <script type="text/javascript">
+                    $(".popup<?= $deal->id ?>").colorbox({inline: true});
+            </script>
             <? }?>
             <div class="clear"></div>
+
             <!--div class="hot-deals-paginator">
                 <span><a href="#"> << </a></span>
                 <span><a href="#"> < </a></span>
@@ -62,3 +112,4 @@ $BASE_URL = Yii::app()->request->baseUrl;
         </div>
     </div>
 </div>
+

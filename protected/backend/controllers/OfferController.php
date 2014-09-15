@@ -30,7 +30,7 @@ class OfferController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete','addFieldAjax'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'addFieldAjax'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -58,15 +58,23 @@ class OfferController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+
         $model = new Offer;
 
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['Offer'])) {
-            $model->attributes = $_POST['Offer'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            foreach ($_POST['Offer'] as $offer) {
+                $model1 = new Offer;
+                $model1->attributes = $offer;
+                if (!$model1->save()) {
+                    
+                }
+            }
+
+
+            $this->redirect(array('index', 'id' => $model->id));
         }
 
         $this->render('create', array(
@@ -80,15 +88,26 @@ class OfferController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+        
         $model = Retailer::model()->findByPk($id);
-
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Offer'])) {
-            $model->attributes = $_POST['Offer'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            foreach ($_POST['Offer'] as $offer) {
+                if(isset($offer['id']) && $offer['id'] != '') {
+                    $model1 = Offer::model()->findByPk($offer['id']);
+                } else {
+                    $model1 = new Offer;
+                }
+                
+                $model1->attributes = $offer;
+                if(isset($offer['id']) && $offer['id'] != '') {
+                    $model1->update();
+                } else {
+                    $model1->save();
+                }
+            }
         }
 
         $this->render('update', array(
@@ -172,7 +191,7 @@ class OfferController extends Controller {
     public function actionAddFieldAjax($rowindx, $index, $quote_id) {
         $model = new Offer();
         $form = new CActiveForm();
-        $this->renderPartial('_form_part', array('offer' => $model, 'form'=>$form , 'rowindx' => $rowindx, 'index' => $index, 'quote_id' => $quote_id), false, true);
+        $this->renderPartial('_form_part', array('offer' => $model, 'form' => $form, 'rowindx' => $rowindx, 'index' => $index, 'quote_id' => $quote_id), false, true);
     }
 
 }

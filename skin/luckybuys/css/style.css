@@ -121,12 +121,12 @@ a:hover{ text-decoration: underline; }
     right: 7px;
     top: 4px
 }
-a.btn{
+.btn{
     display: inline-block;
     padding: 11px;
     color: #FFF;
 }
-a.btn.blue{
+.btn.blue{
     background: #003876;
 }
 .banner{ background: url("../images/banner-bg.png") repeat-x top center; background-size: contain; }
@@ -689,7 +689,10 @@ select.small {
     font-size: 10px;
 }
 .join-home input[type="text"],
-.join-home input[type="password"]{
+input[type="password"],
+input[type="email"],
+.input input[type="text"],
+.input input[type="password"]{
     background: #FFF;
     color: #000;
     padding: 4px;
@@ -807,4 +810,65 @@ select.small {
 	
 }
 
+.section-header{
+    border-bottom: thin solid #D3D3D3;
+    color: #808080;
+    font-size: 1.5em;
+    font-weight: normal;
+    padding: 5px;
+    line-height: 1.5em;
+}
+.login-page{}
+.login-page p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.input{
+    clear: both;
+    margin-top: 3px;
+    margin-bottom: 3px
+}
+.input.submit{ padding-top: 10px; }
+.input.submit input{
+    border: none;
+    padding: 8px 35px;
+    cursor: pointer;
+}
+
+
+.deal_popup{
+    width: 700px;
+    min-height: 300px;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+    background-color:white;
+    float: left;
+}
+.deal_popup .right{
+    width: 70%;
+    float: right;
+    padding:5px;
+}
+.deal_popup .right .title{
+    font-size: 15px;
+    color: #092A55;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.deal_popup .right .description{ font-size: 12px; }
+.deal_popup .right .description p{}
+
+.deal_popup .left{
+    width: 25%;
+    padding-top: 5px;
+    padding-right: 10px;
+    float: left;
+    font-size: 15px;
+    color: #092A55;
+    text-align:center;
+    border-right:1px black solid;
+}
+
+.deal_popup .left img{ width: 50%; }
 

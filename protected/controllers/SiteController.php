@@ -16,8 +16,7 @@ class SiteController extends Controller {
             ),
         );
     }
-   
-	
+
     function actionGetRetailers() {
         if (!empty($_GET['term'])) {
             $sql = 'SELECT name as id, name as value, name as label FROM retailer WHERE name LIKE :qterm ';
@@ -36,27 +35,28 @@ class SiteController extends Controller {
     public function actionIndex() {
         $program = Yii::app()->params['program'];
         $homeContent = PageContent::model()->find("program_id = $program AND page_id = 1");
-		$welcomeContent = PageContent::model()->find("program_id = $program AND page_id = 6");
-       // $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => 1));
-		
-		$criteria = new CDbCriteria;
+        $welcomeContent = PageContent::model()->find("program_id = $program AND page_id = 6");
+        // $offers = Offer::model()->findAll("is_home_page = 1 and current = 1", array("limit" => 1));
+
+        $criteria = new CDbCriteria;
         $criteria->together = true;
         $criteria->with = array('retailer');
-		$criteria->limit = 4;
+        $criteria->limit = 4;
         $criteria->addCondition("is_home_page = 1 and current = 1");
-		
+
         $offers = Offer::model()->findAll($criteria);
- 
-		$criteria_news = new CDbCriteria;
+
+        $criteria_news = new CDbCriteria;
         $criteria_news->together = true;
-		$criteria_news->limit = 4;
+        $criteria_news->limit = 4;
         $criteria_news->addCondition("program_id = $program and current = 1");
-	
+
         $news = News::model()->findAll($criteria_news);
-		//$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
-		$about = PageContent::model()->find("program_id = $program AND page_id = 2");
-        $this->render('index', array('offers' => $offers, 'home' => $homeContent , 'about'=> $about , 'news'=> $news , 'welcome'=>$welcomeContent));
+        //$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
+        $about = PageContent::model()->find("program_id = $program AND page_id = 2");
+        $this->render('index', array('offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
     }
+
 	
 	function actionGetIDRetailers() {
 		$id = Yii::app()->request->getParam('id');
@@ -78,6 +78,7 @@ class SiteController extends Controller {
 			$this->layout = false;
 			
 			$this->render('viewOffer', array('offer'=>$result));
+
         } else {
             return false;
         }
@@ -135,16 +136,17 @@ class SiteController extends Controller {
     }
 
     public function actionShop() {
-        
+
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
-        
-        $this->render('shop', array('content' => $content));
+        $categories = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 5");
+
+        $this->render('shop', array('content' => $content, 'categories'=>$categories));
     }
 
     public function actionRetailers() {
         $categories = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 6");
-        
+
         //TODO: Need to filter on the base of categories.
         $model = Retailer::model()->findAll("logo_url <> '' and logo_url is not null");
 
@@ -153,10 +155,30 @@ class SiteController extends Controller {
 
         $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories));
     }
-    
+
+    function actionGetCategory() {
+        if (!empty($_GET['term'])) {
+            $sql = 'SELECT name as id, name as value, name as label FROM retailer_category WHERE name LIKE :qterm ';
+            $sql .= ' ORDER BY name ASC';
+            $command = Yii::app()->db->createCommand($sql);
+            $qterm = '%' . $_GET['term'] . '%';
+            $command->bindParam(":qterm", $qterm, PDO::PARAM_STR);
+            $result = $command->queryAll();
+            echo CJSON::encode($result);
+            exit;
+        } else {
+            return false;
+        }
+    }
+
     public function actionSearch() {
-        $model = Retailer::model()->findAll('name like "%'.$_REQUEST['retailer'].'%"');
+        $model = Retailer::model()->findAll('name like "%' . $_REQUEST['retailer'] . '%"');
         $this->render('search', array('model' => $model));
+    }
+
+    public function actionSearchCategory() {
+        $model = Retailer::model()->findAll('name like "%' . $_REQUEST['category'] . '%"');
+        $this->render('search_category', array('model' => $model));
     }
 
     public function actionError() {
