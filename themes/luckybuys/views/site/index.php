@@ -18,8 +18,12 @@
                 <img src="<?= $BASE_URL ?>/skin/luckybuys/images/video.jpg" alt="" />
             </div>	
         </div>
-		<div id="aboutHomeContent" class="blocks about-us" style="display: none;">
+		<div id="aboutHomeContent" class="blocks about-us home-box-second" style="display: none;">
+			<h3>About us &gt;</h3>
+			<div class="detail">
 			<?php echo $about->tag_line ;?>
+			
+			</div>
 		</div>
 		
         <div class="blocks hot-deals" id="homeDeals">
@@ -68,8 +72,11 @@
                 <img src="<?= $BASE_URL ?>/skin/luckybuys/images/store.jpg" alt="" />
             </div>
         </div>
-		<div id="homeOnlineSecond" class="blocks online-store" style="display: none;">
-			<?php echo $welcome->tag_line ; ?>
+		<div id="homeOnlineSecond" class="blocks online-store home-box-second" style="display: none;">
+			<h3>Online Store &gt;</h3>
+            <div class="detail">
+				<?php echo $welcome->tag_line ; ?>
+			</div>	
 		</div>	
         <div class="clear"></div>
     </div>

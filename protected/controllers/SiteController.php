@@ -1,7 +1,7 @@
 <?php
 
 class SiteController extends Controller {
-
+	
     public function actions() {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
@@ -16,7 +16,8 @@ class SiteController extends Controller {
             ),
         );
     }
-    
+   
+	
     function actionGetRetailers() {
         if (!empty($_GET['term'])) {
             $sql = 'SELECT name as id, name as value, name as label FROM retailer WHERE name LIKE :qterm ';
@@ -56,6 +57,19 @@ class SiteController extends Controller {
 		$about = PageContent::model()->find("program_id = $program AND page_id = 2");
         $this->render('index', array('offers' => $offers, 'home' => $homeContent , 'about'=> $about , 'news'=> $news , 'welcome'=>$welcomeContent));
     }
+	
+	function actionGetIDRetailers() {
+		$id = Yii::app()->request->getParam('id');
+		if($id){
+			$result = Retailer::model()->find('id ='.$id);
+			$this->layout = false;
+	
+			$this->render('viewRetailer', array('retailer'=>$result));
+        } else {
+            return false;
+        }
+    }
+	
 	
 	function actionAjax() {
 		$id = Yii::app()->request->getParam('id');

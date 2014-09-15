@@ -20,6 +20,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
 		<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/overlay.css">
+		<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/fonts.css">	
 			
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="<?= $BASE_URL ?>/skin/luckybuys/js/main.js"></script>
@@ -45,7 +46,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     <div class="collapse-menu-icon">
                         <a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ic_menu_white.png" alt="" border="0" /></a>
                     </div>
-                    <div class="logo"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo.png" alt="" /></div>
+                    <div class="logo"><a href="/"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo.png" alt="" /></a></div>
                     <div class="top-navigator hidden-phone">
                         <ul>
                             <li><a href="<?= $BASE_URL ?>/index.php/site/aboutus">How It<br/>Work</a></li>
@@ -58,9 +59,9 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         </ul>
                         <div class="clear"></div>
                     </div>
-                    <div class="bag">
+                    <!--<div class="bag">
                         <p><a href="#">My Bag (<span>0</span>)</a></p>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="clear"></div>
             </div><!-- END HEADER -->
@@ -98,15 +99,13 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <div class="main-content">
                 <div class="bottom-ads">
                     <ul>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-1.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-2.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-3.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-4.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-5.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-6.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-7.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-8.jpg" alt="" /></li>
-                        <li><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ads-9.jpg" alt="" /></li>
+						<?php foreach (Retailers::getListRetailers() as $retailer) : ?>
+						<li onclick="showRetailerOverlay('<?= $BASE_URL ?>/index.php/site/GetIDRetailers/<?=$retailer->id ?>');">
+							<?php if($retailer->logo_url != '') { ?> <img src="<?=$retailer->logo_url ?>" /> <?php } else { ?><img src="<?= $BASE_URL ?>/skin/luckybuys/images/ic_online_blue.png" alt="" /> <?php } ?>
+							<p class="bonus_cash"><?php echo 'Bonus cash'. $retailer->bonus_cash; ?> </p>
+						</li>
+						<?php endforeach ; ?>
+               		
                     </ul>
                 </div>
             </div>

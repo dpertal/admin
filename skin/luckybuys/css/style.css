@@ -34,19 +34,48 @@ a:hover{ text-decoration: underline; }
 .top-navigator{
     width: 480px;
     margin-left: 20px;
-    float: left;
+    float: right;
 }
+
 .top-navigator li{
-    text-align: center;
-    margin-left: 15px;
-    padding-top: 25px;
+		clear: none;
+		display: inline-block;
+		float: left;
+		font-size: 1.2em;
+		height: 50px;
+		line-height: 1em;
+		margin-top: 10px;
+		padding: 22px 5px 5px;
+		text-align: center;
+		vertical-align: middle;
+		width: 12%;
+}
+
+.top-navigator li.selected, .top-navigator li:hover {
+    background: url('../images/sel_tab_white.png');
+    background-size: fit;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    cursor: pointer;
+}
+
+
+.top-navigator li.selected a, .top-navigator li:hover a {
+    color: #003876;
+}
+
+
+.top-navigator li a {
+    color: #fff;
     float: left;
+    height: 100%;
+    text-decoration: none;
+    text-transform: capitalize;
+    width: 100%;
+	font-family: 'Lato',sans-serif;
 }
-.top-navigator li a{
-    color: #FFF;
-    text-transform: uppercase;
-    font-size: 12px;
-}
+
 .bag{
     margin-top: 25px;
     background: url("../images/bag.png") no-repeat right top;
@@ -137,13 +166,13 @@ a.btn.blue{
 .bottom-blocks .blocks .detail{}
 .bottom-blocks .blocks .detail img{ width: 100%; }
 .bottom-ads{ margin-top: 30px; }
-.bottom-ads li{
-    width: 80px;
-    margin-left: 20px;
+.bottom-ads li {
+    display: inline-block;
+    margin-left: 7px;
     margin-right: 5px;
-    float: left;
+	text-align: center;
 }
-.bottom-ads li img{}
+.bottom-ads li img{ width: 100px; }
 .footer{
     margin-top: 40px;
     padding-top: 20px;
@@ -763,3 +792,19 @@ select.small {
 .headline-deal {
     color: #000;
 }
+
+.bottom-ads li:hover{
+	cursor: pointer;
+}
+.home-box-second .detail{
+	padding: 0 5px;
+}
+
+.bottom-ads li .bonus_cash {
+    color: #000;
+    font-size: 11px;
+    font-weight: bold;
+	
+}
+
+
