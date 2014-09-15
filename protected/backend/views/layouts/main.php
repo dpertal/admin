@@ -321,7 +321,7 @@ if ($this->uniqueid == 'content') {
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.crosshair.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.tooltip.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/sparkline/jquery.sparkline.min.js"></script>
-            <script src="<?php $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
             <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
             <!--flaty scripts-->
