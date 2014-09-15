@@ -141,7 +141,7 @@ class SiteController extends Controller {
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
         $categories = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 5");
 
-        $this->render('shop', array('content' => $content, 'categories'=>$categories));
+        $this->render('shop', array('content' => $content, 'categories' => $categories));
     }
 
     public function actionRetailers() {
@@ -154,6 +154,18 @@ class SiteController extends Controller {
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
 
         $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories));
+    }
+
+    public function actionCategory($id) {
+        $category = RetailerCategory::model()->findByPk($id);
+        $categories = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 6");
+        //TODO: Need to filter on the base of categories.
+        $model = Retailer::model()->findAll("logo_url <> '' and logo_url is not null order by rand() limit 100");
+
+        $program = Yii::app()->params['program'];
+        $content = PageContent::model()->find("program_id = $program AND page_id = 5");
+
+        $this->render('category', array('model' => $model, 'content' => $content,'current_cat'=>$category, 'categories'=>$categories));
     }
 
     function actionGetCategory() {

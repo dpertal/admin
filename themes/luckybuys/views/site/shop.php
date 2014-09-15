@@ -58,12 +58,11 @@ $BASE_URL = Yii::app()->request->baseUrl;
     <div class="online-shop">
         <div class="section-1">
             <ul>
+                <?php foreach ($categories as $category) : ?>
+                
                 <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
-                <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
-                <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
-                <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
-                <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
-                <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
+                <? endforeach;?>
+                
             </ul>
             <div class="clear"></div>
         </div>
