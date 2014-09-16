@@ -134,5 +134,6 @@ return array(
         // this is used in contact page
         'adminEmail' => 'info@crg.com.au',
         'program' => $_SESSION['program'],
+		'template_about'=>require(dirname(__FILE__).'/params.php'),
     ),
 );
