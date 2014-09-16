@@ -911,3 +911,15 @@ input[type="email"],
 	float: left;
 	width: 760px;
 }
+.style-form .input{}
+.style-form label{
+    width: 90px;
+    display: inline-block;
+}
+.style-form input[type="text"],
+.style-form input[type="password"]
+{}
+input[type="text"].disabled{
+    background: #F0F0F0;
+    border: 1px solid #E0E0E0;
+}

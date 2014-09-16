@@ -37,7 +37,31 @@
         }
 
         public function actionProfile(){
-            return $this->render('profile');
+            if (Yii::app()->request->isPostRequest){
+                $data = Yii::app()->request->getPost('data');
+                $account = Account::model()->findByPk(Yii::app()->user->id);
+
+                if (empty($data['password']))
+                    unset($data['password']);
+
+                foreach($data as $key => $value)
+                    $account->setAttribute($key, $value);
+
+                $account->setAttribute('updated', date("Y-m-d H:i:s"));
+
+                if ($account->save()){
+                    $error = false;
+                    $message = "Your profile has been updated";
+                }
+                else{
+                    $error = true;
+                    $message = "Update failed";
+                }
+                $account = Account::model()->find(Yii::app()->user->id);
+                return $this->render('profile', array('account' => $account, 'error' => $error, 'message' => $message));
+            }
+            $account = Account::model()->find(Yii::app()->user->id);
+            return $this->render('profile', array('account' => $account));
         }
     }
 ?>
