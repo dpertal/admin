@@ -14,7 +14,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <div class="retailer-categories">
             <?php foreach ($model as $cat) {
                 ?>
-            <div class="category"><a href="#"><?=$cat->name?></a></div>
+            <div class="category"><a href="<?php echo $BASE_URL."/index.php/site/category/".$cat->id?>"><?=$cat->name?></a></div>
             <? }?>
             <div class="clear"></div>
 

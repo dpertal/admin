@@ -30,7 +30,7 @@ class CategoryController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','delete','admin'),
+                'actions' => array('create', 'update', 'delete', 'admin'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -65,6 +65,27 @@ class CategoryController extends Controller {
 
         if (isset($_POST['RetailerCategory'])) {
             $model->attributes = $_POST['RetailerCategory'];
+            //Checking for banner changing
+
+            if (!empty($_FILES['image']['name'])) {
+                $targetDir = dirname(Yii::app()->basePath) . '/assets/uploads/';
+                if (!file_exists($targetDir))
+                    mkdir($targetDir);
+
+                //Check for valid file type
+                if (strpos($_FILES['image']['type'], 'image') >= 0) {
+
+                    //Check for valid image
+                    $imageSize = getimagesize($_FILES['image']['tmp_name']);
+                    if ($imageSize[0] > 0) {
+                        move_uploaded_file($_FILES['image']['tmp_name'], $targetDir . basename($_FILES['image']['name']));
+                        $imagePath = '/assets/uploads/' . basename($_FILES['image']['name']);
+                        $model->image = $imagePath;
+                    } else
+                        unset($model->image);
+                } else
+                    unset($model->image);
+            }
             if ($model->save())
                 $this->redirect(array('index', 'id' => $model->id));
         }
@@ -88,10 +109,34 @@ class CategoryController extends Controller {
         if (isset($_POST['RetailerCategory'])) {
             $model->attributes = $_POST['RetailerCategory'];
             $model->keywords = $_POST['RetailerCategory']['keywords'];
-            
-            if ($model->save()) 
+
+
+            //Checking for banner changing
+            if (!empty($_FILES['image']['name'])) {
+                echo $targetDir = dirname(Yii::app()->basePath) . '/assets/uploads/';
+                if (!file_exists($targetDir))
+                    mkdir($targetDir);
+
+                //Check for valid file type
+                if (strpos($_FILES['image']['type'], 'image') >= 0) {
+
+                    //Check for valid image
+                    $imageSize = getimagesize($_FILES['image']['tmp_name']);
+                    if ($imageSize[0] > 0) {
+                        move_uploaded_file($_FILES['image']['tmp_name'], $targetDir . basename($_FILES['image']['name']));
+                        $imagePath = '/assets/uploads/' . basename($_FILES['image']['name']);
+                        $model->image = $imagePath;
+                    } else
+                        unset($model->image);
+                } else
+                    unset($model->image);
+            }
+
+
+
+            if ($model->save()) {
                 $this->redirect(array('index', 'id' => $model->id));
-                
+            }
         }
 
         $this->render('update', array(
@@ -120,7 +165,7 @@ class CategoryController extends Controller {
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['RetailerCategory']))
             $model->attributes = $_GET['RetailerCategory'];
-        
+
         //$dataProvider = new CActiveDataProvider('RetailerCategory');
         $this->render('index', array(
             'dataProvider' => $model,

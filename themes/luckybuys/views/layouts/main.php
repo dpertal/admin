@@ -17,7 +17,6 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
         <title>LuckBuys Home</title>
-        <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/css/colorbox.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/responsive.css">
 		<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>/skin/luckybuys/css/overlay.css">
@@ -31,13 +30,16 @@ $BASE_URL = Yii::app()->request->baseUrl;
     <body>
         <div class="collapse-menu collapsed">
             <ul>
-                <li><a href="#">How It Work</a></li>
-                <li><a href="#">Hot Deal</a></li>
-                <li><a href="#">Latest News</a></li>
-                <li><a href="#">Our Retailers</a></li>
-                <li><a href="#">Online Shop</a></li>
-                <li><a href="#">Store Locator</a></li>
-                <li><a href="#">My Account</a></li>
+                <li><?php echo CHtml::link("How It<br/>Work", array("site/aboutus")); ?></li>
+                <li><?php echo CHtml::link("Hot<br/>Deal", array("site/hotdeals")); ?></li>
+                <li><?php echo CHtml::link("Latest<br/>News", array("site/news")); ?></li>
+                <li><?php echo CHtml::link("Our<br/>Retailers", array("site/retailers")); ?></li>
+                <li><?php echo CHtml::link("Online<br/>Shop", array("site/shop")); ?></li>
+                <li><?php echo CHtml::link("Store<br/>Locator", array("site/store")); ?></li>
+                <li><?php echo CHtml::link("My<br/>Account", array("site/myaccount")); ?></li>
+                <?php if (!Yii::app()->user->isGuest) : ?>
+                    <li><?php echo CHtml::link("My<br/>Profile", array("Account/Profile")); ?></li>
+                <?php endif ?>
             </ul>
         </div>
         <div class="wrapper">
@@ -50,13 +52,16 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     <div class="logo"><a href="/"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/logo.png" alt="" /></a></div>
                     <div class="top-navigator hidden-phone">
                         <ul>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/aboutus">How It<br/>Work</a></li>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/hotdeals">Hot<br/>Deal</a></li>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/news">Latest<br/>News</a></li>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/retailers">Our<br/>Retailers</a></li>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/shop">Online<br/>Shop</a></li>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/store">Store<br/>Locator</a></li>
-                            <li><a href="<?= $BASE_URL ?>/index.php/site/myaccount">My<br/>Account</a></li>
+                            <li><?php echo CHtml::link("How It<br/>Work", array("site/aboutus")); ?></li>
+                            <li><?php echo CHtml::link("Hot<br/>Deal", array("site/hotdeals")); ?></li>
+                            <li><?php echo CHtml::link("Latest<br/>News", array("site/news")); ?></li>
+                            <li><?php echo CHtml::link("Our<br/>Retailers", array("site/retailers")); ?></li>
+                            <li><?php echo CHtml::link("Online<br/>Shop", array("site/shop")); ?></li>
+                            <li><?php echo CHtml::link("Store<br/>Locator", array("site/store")); ?></li>
+                            <li><?php echo CHtml::link("My<br/>Account", array("site/myaccount")); ?></li>
+                            <?php if (!Yii::app()->user->isGuest) : ?>
+                            <li><?php echo CHtml::link("My<br/>Profile", array("account/profile")); ?></li>
+                            <?php endif ?>
                         </ul>
                         <div class="clear"></div>
                     </div>

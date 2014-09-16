@@ -39,7 +39,7 @@
                                 <th>Category Name</th>
                                 <th>Parent</th>
                                 <th>Active</th>
-                                <th style="width: 145px">Action</th>
+                                <th style="width: 152px">Action</th>
                             </tr>
                         </thead>
                         <tbody>

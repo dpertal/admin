@@ -36,5 +36,8 @@
             echo json_encode($result);exit();
         }
 
+        public function actionProfile(){
+            return $this->render('profile');
+        }
     }
 ?>

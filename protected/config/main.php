@@ -35,7 +35,7 @@ return array(
     'name' => 'CRG.',
     'defaultController' => 'site',
     'preload' => array('log'),
-    'theme' => $theme,
+    'theme' => $_SESSION['theme'],
     'controllerPath' => $frontend . '/controllers',
     'viewPath' => ROOT_THEME . '/views',
     'runtimePath' => $frontend . '/runtime',
@@ -94,25 +94,21 @@ return array(
          */
         // uncomment the following to use a MySQL database
         //live
-		
-		 'db'=>array(
+        'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=crgtesti_db',
             'emulatePrepare' => true,
             'username' => 'crgtesti_user',
             'password' => 'Passme@14',
             'charset' => 'utf8',
         ),
-
-            
-         /*'db'=>array(
+        'dblocal' => array(
             'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
-         ),*/
-
-		'errorHandler'=>array(
+        ),
+        'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
@@ -138,7 +134,5 @@ return array(
         // this is used in contact page
         'adminEmail' => 'info@crg.com.au',
         'program' => $_SESSION['program'],
-		'layout' => true,
-		'template_about'=>require(dirname(__FILE__).'/params.php'),
     ),
 );
