@@ -872,3 +872,42 @@ input[type="email"],
 
 .deal_popup .left img{ width: 50%; }
 
+.left-categories{
+	float: left;
+	width: 200px;
+}
+
+.left-categories .cattitle {
+    background-color: #fff;
+    border: 1px solid #b8b8b8;
+    display: block;
+    line-height: 37px;
+    margin-top: 5px;
+    min-height: 37px;
+    padding-left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 180px;
+}
+
+.left-categories .cattitle:hover{
+	background: #003876;
+	display: block;
+	color: #fff;
+	
+}
+
+.left-categories .cattitle a{
+	color: #003083;
+	text-decoration: none;
+		display: block;
+}	
+
+.left-categories .cattitle a:hover{
+	color: #fff;
+}
+
+.right-categories{
+	float: left;
+	width: 760px;
+}

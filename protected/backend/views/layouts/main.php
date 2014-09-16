@@ -12,6 +12,8 @@ $news = "";
 $retailer = "";
 $faq = "";
 $cont = "";
+$abouts = "";
+$config = "";
 if ($this->uniqueid == 'content') {
     $cont = "active";
 } else if ($this->uniqueid == 'faq') {
@@ -32,6 +34,12 @@ if ($this->uniqueid == 'content') {
     $categoryActive = "active";
 } else if ($this->uniqueid == 'offerType' || $this->uniqueid == 'offer') {
     $offers = "active";
+}
+else if ($this->uniqueid == 'abouts') {
+    $abouts = "active";
+}
+else if ($this->uniqueid == 'config') {
+    $config = "active";
 }
 ?>
 
@@ -273,6 +281,30 @@ if ($this->uniqueid == 'content') {
                             </ul>
                         <?php endif; ?>
                     </li>
+					
+					<li class="<?= $abouts ?>">
+                        <a href="#" class="dropdown-toggle">
+						<i class="fa fa-desktop"></i>
+						<span>About page</span>
+						<b class="arrow fa fa-angle-right"></b>
+                        </a>
+						
+                        <!-- BEGIN Submenu -->
+                        <ul class="submenu">
+                            <li><a href="<?= $BASE_URL ?>/admin.php/abouts">Manage About</a></li>
+                        </ul>
+                        <!-- END Submenu -->
+                    </li>
+					
+					<li class="<?= $config ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/config/" class="dropdown-toggle">
+						<i class="fa fa-list-alt"></i>
+						<span>Settings</span>
+						<b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+					
+					
                 </ul>
                 <!-- END Navlist -->
 
@@ -303,7 +335,7 @@ if ($this->uniqueid == 'content') {
         <!-- END Container -->
 
         <!--basic scripts-->
-        <?php if ($news == "") { ?>
+        <?php if ($news == "" && $abouts == "") { ?>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.0.3.min.js"><\/script>')</script>
             <? }?>

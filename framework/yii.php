@@ -24,12 +24,23 @@ require(dirname(__FILE__).'/YiiBase.php');
  */
 class Yii extends YiiBase
 {
+    public static function doEncrypt($value){
+        if (! ENC_KEY)
+            return $value;
+        $iv_size = mcrypt_get_iv_size(MCRYPT_3DES, MCRYPT_MODE_ECB);
+        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+        $result = urlencode(mcrypt_encrypt(MCRYPT_3DES, ENC_KEY, $value, "ecb", $iv));
+
+        return $result;
+    }
+
     public static function doDecrypt($value){
         if (! ENC_KEY)
             return $value;
         $iv_size = mcrypt_get_iv_size(MCRYPT_3DES, MCRYPT_MODE_ECB);
         $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
         $result = rtrim(mcrypt_decrypt(MCRYPT_3DES, ENC_KEY, urldecode($value), "ecb", $iv), "\0");
+
         return $result;
     }
 
@@ -45,5 +56,13 @@ class Yii extends YiiBase
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
         $send = mail($data['to'], $data['subject'], $data['body'], $headers);
+    }
+
+    public static function invalidEmail($email){
+        return filter_var($email, FILTER_VALIDATE_EMAIL, FILTER_NULL_ON_FAILURE) == null;
+    }
+
+    public static function validEmail($email){
+        return !self::invalidEmail($email);
     }
 }

@@ -99,8 +99,11 @@ class SiteController extends Controller {
     }
 
     public function actionAboutUs() {
-
-        $this->render('aboutus');
+		$template = Yii::app()->params['template_about'];
+		$idtemplate = $template["template_about"];
+		$result = Abouts::model()->find('template_id = '.$idtemplate.' and current = 1');
+        
+		$this->render('aboutus' , array('about'=>$result));
     }
 
     public function actionHotdeals($type = 0) {
@@ -152,8 +155,9 @@ class SiteController extends Controller {
 
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
-
-        $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories));
+		$layout = Yii::app()->params['layout'];
+		 
+        $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories , 'layout'=>$layout));
     }
 
     function actionGetCategory() {
