@@ -8,6 +8,7 @@
         <div class="input text">
             <label for="username">Username</label>
             <input type="text" name="username" id="username"/>
+            <input type="hidden" name='url' value="<? if(isset($_REQUEST['url'])){echo $_REQUEST['url'];}?>" />
         </div>
         <div class="input password">
             <label for="password">Password</label>
