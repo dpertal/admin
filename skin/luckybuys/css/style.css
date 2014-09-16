@@ -924,3 +924,41 @@ input[type="text"].disabled{
     background: #F0F0F0;
     border: 1px solid #E0E0E0;
 }
+.store-contents{ padding-top: 15px; }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.store-search-results{ margin-top: 25px; }
+.store-locator{
+    float: left;
+    width: 100%;
+    font-weight: normal;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+.store-locator thead {
+    background: #3D3935;
+    color: #FFF;
+    font-family: "MuseoSans500",Arial,sans-serif;
+}
+.store-locator td, .store-locator th {
+    padding: 15px 15px;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: 1.3em;
+    border: 2px solid #FFF;
+}
+.store-locator .even {
+    background: #F8F8F9;
+}
+.store-locator .even:hover {
+    background: #F1F1F1;
+}
+.store-locator .odd {
+    background: #FFF;
+}
+.store-locator .odd:hover {
+    background: #F4F4F4;
+}
+.store-locator a{ color:  #000000; }

@@ -209,5 +209,8 @@ class SiteController extends Controller {
         }
     }
 
+    public function actionStore(){
+        return $this->render('store_locators');
+    }
 
 }
