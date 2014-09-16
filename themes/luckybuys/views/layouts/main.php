@@ -163,7 +163,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                             <ul>
                                 <li><a href="<?= $BASE_URL ?>/index.php/site/faq">FAQ's</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><?php echo CHtml::link('Contact Us', array('site/contact')); ?></li>
                                 <li><a href="#">Term &amp; Conditions</a></li>
                             </ul>
                         </div>
