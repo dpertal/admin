@@ -50,7 +50,15 @@
 				<div class="form-group">
                     <label class="col-sm-3 col-lg-2 control-label">Description</label>
                     <div class="col-sm-9 col-lg-10 controls">
-						<?php echo $form->textArea($model, 'description', array('size' => 600, 'class' => 'form-control', 'maxlength' => 600, 'placeholder' => 'Description')); ?>
+						<?php //echo $form->textArea($model, 'description', array('size' => 600, 'class' => 'form-control', 'maxlength' => 600, 'placeholder' => 'Description')); ?>
+						<?php
+							$this->widget('backend.extensions.ckeditor.CKEditorWidget', array(
+                            'model' => $model,
+                            'attribute' => 'description',
+							/* 'editorTemplate' => 'full',
+                            'htmlOptions' => array('rows' => 6, 'cols' => 50, 'class' => 'tinymce'),*/
+							));
+                        ?>
                         <span class="help-inline"><?php echo $form->error($model, 'description'); ?></span>
                     </div>
                 </div>
@@ -60,11 +68,11 @@
                     <div class="col-sm-9 col-lg-10 controls">
 
                         <?php
-                        $this->widget('backend.extensions.tinymce.ETinyMce', array(
+                        $this->widget('backend.extensions.ckeditor.CKEditorWidget', array(
                             'model' => $model,
                             'attribute' => 'content',
-                            'editorTemplate' => 'full',
-                            'htmlOptions' => array('rows' => 6, 'cols' => 50, 'class' => 'tinymce'),
+                           /* 'editorTemplate' => 'full',
+                            'htmlOptions' => array('rows' => 6, 'cols' => 50, 'class' => 'tinymce'),*/
                         ));
                         ?>
                         <span class="help-inline"><?php echo $form->error($model, 'content'); ?></span>
