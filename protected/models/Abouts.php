@@ -7,7 +7,11 @@
  * @property integer $id
  * @property integer $template_id
  * @property string $title
+ * @property string $sub_title
  * @property string $description
+ * @property string $content
+ * @property integer $use_background
+ * @property string $image_url
  * @property integer $current
  * @property string $created
  * @property integer $created_by
@@ -41,7 +45,7 @@ class Abouts extends CActiveRecord
 			array('created, modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, template_id, title, description, current, created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
+			array('id, template_id, title, sub_title, description, content, image_url, use_background, current, created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
 		);
 	}
 
