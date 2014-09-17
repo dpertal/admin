@@ -14,6 +14,8 @@ $faq = "";
 $cont = "";
 $abouts = "";
 $config = "";
+$pages = "";
+
 if ($this->uniqueid == 'content') {
     $cont = "active";
 } else if ($this->uniqueid == 'faq') {
@@ -40,6 +42,9 @@ else if ($this->uniqueid == 'abouts') {
 }
 else if ($this->uniqueid == 'config') {
     $config = "active";
+}
+else if ($this->uniqueid == 'Pages/page'){
+    $pages = "active";
 }
 ?>
 
@@ -304,6 +309,13 @@ else if ($this->uniqueid == 'config') {
 						<i class="fa fa-list-alt"></i>
 						<span>Settings</span>
 						<b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+                    <li class="<?= $pages ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/Pages/page" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Pages</span>
+                            <b class="arrow fa fa-angle-right"></b>
                         </a>
                     </li>
 					
