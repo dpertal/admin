@@ -210,5 +210,40 @@ class SiteController extends Controller {
         }
     }
 
+    public function actionStore(){
+        if (Yii::app()->request->isPostRequest){
+
+            $pager = Yii::app()->request->getPost('pager');
+
+            if (empty($pager)){
+                $offset = 0;
+                $pager = 1;
+            }
+            else $offset = ($pager - 1) * 10;
+
+            $postcode = Yii::app()->request->getPost('store_query');
+            $location = Retailer::get_lat_long($postcode);
+            $latitude = $location['lat'];
+            $longitude = $location['lng'];
+            $sql = "SELECT *,
+                    (((acos(sin((".$latitude."*pi()/180)) * sin((`lat`*pi()/180))
+                    +cos((".$latitude."*pi()/180)) * cos((`lat`*pi()/180))
+                    * cos(((".$longitude."- `lng`)*pi()/180))))*180/pi())*60*1.1515)
+                    as distance
+                    FROM `retailer`
+                    ORDER BY distance ASC LIMIT {$offset},10";
+            $results = Yii::app()->db->createCommand($sql)->queryAll();
+
+            $request_type = Yii::app()->request->getPost('type');
+
+            if ($request_type == 'json'){
+                header ('Content-Type: application/json');
+                echo json_encode($results);
+                exit();
+            }
+            return $this->render('store_locators', array('stores' => $results, 'query' => $postcode, 'pager' => $pager));
+        }
+        return $this->render('store_locators', array('query' => '', 'pager' => 0));
+    }
 
 }

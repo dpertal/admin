@@ -21,23 +21,23 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <div id="navbar" class="navbar">
             <ul class="nav flaty-nav navbar-collapse collapse" id="nav-horizontal">
                 <?php foreach ($categories as $category) { ?>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-bars"></i>
-                            <span><?= $category->name ?></span>
-                            <b class="arrow fa fa-caret-down"></b>
-                        </a>
-                        <? 
-                        $child = RetailerCategory::model()->findAll("parent_id = '".$category->id."'");
-                        if(count($child) >0 ) {
-                        ?>
-                        <ul class="dropdown-menu dropdown-navbar">
-                            <?foreach($child as $cat) {?>
-                            <li class="active"><a href="ui_horizontal-menu.html"><i class="fa fa-bars"></i><?= $cat->name ?></a></li>
-                            <?}?>
-                        </ul>
-                        <? }?>
-                    </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-bars"></i>
+                        <span><?= $category->name ?></span>
+                        <b class="arrow fa fa-caret-down"></b>
+                    </a>
+                    <? 
+                    $child = RetailerCategory::model()->findAll("parent_id = '".$category->id."'");
+                    if(count($child) >0 ) {
+                    ?>
+                    <ul class="dropdown-menu dropdown-navbar">
+                        <?foreach($child as $cat) {?>
+                        <li class="active"><a href="<?php echo $BASE_URL."/index.php/site/category/".$cat->id ?>"><i class="fa fa-bars"></i><?= $cat->name ?></a></li>
+                        <?}?>
+                    </ul>
+                    <? }?>
+                </li>
                 <?php } ?>
 
             </ul>
@@ -52,17 +52,20 @@ $BASE_URL = Yii::app()->request->baseUrl;
 
 <div class="main-content">
 
-
-
-
     <div class="online-shop">
         <div class="section-1">
             <ul>
                 <?php foreach ($categories as $category) : ?>
-                
-                <li><a href="#"><img src="<?= $BASE_URL ?>/skin/luckybuys/images/img1.png" /></a></li>
+
+                <li><a href="<?php echo $BASE_URL."/index.php/site/category/".$category->id ?>">
+                        <? if($category->image != '') {?>
+                        <img src="<?= $BASE_URL .$category->image; ?>" />
+                        <?}else{
+                        echo $category->name;
+                        }?>
+                    </a></li>
                 <? endforeach;?>
-                
+
             </ul>
             <div class="clear"></div>
         </div>

@@ -36,7 +36,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         ?>
                         <ul class="dropdown-menu dropdown-navbar">
                             <?foreach($child as $cat) {?>
-                            <li class="active"><a href="ui_horizontal-menu.html"><i class="fa fa-bars"></i><?= $cat->name ?></a></li>
+                            <li class="active"><a href="<?php echo $BASE_URL . "/index.php/site/category/" . $cat->id ?>"><i class="fa fa-bars"></i><?= $cat->name ?></a></li>
                             <?}?>
                         </ul>
                         <? }?>
@@ -49,23 +49,23 @@ $BASE_URL = Yii::app()->request->baseUrl;
 </div>
 <div class="banner hidden-phone">
     <div class="banner-detail">
-        
-        <img src="<?= $BASE_URL .$current_cat->image; ?>" alt="" />
+
+        <img src="<?= $BASE_URL . $current_cat->image; ?>" alt="" />
     </div>
 </div><!-- END BANNER -->
 <div class="main-content" style="margin-top: 0px;">
     <div class="retailers">
         <div class="retailer-top">
-            
+
             <br/>
         </div>
         <div class="retailer-categories">
             <div class="category-paginator"  style="text-align: left;">
-                <h4><?=$current_cat->name?></h4>
+                <h4><?= $current_cat->name ?></h4>
             </div>
-            
+
             <div class="category-paginator">
-                
+
                 <span><a href="#"> << </a></span>
                 <span><a href="#"> < </a></span>
                 <span><a href="#"> 1 </a></span>
@@ -101,45 +101,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     </div>
 
                     <div style="display:none;">
-                        <div class="popup_wrap" id="popup<?= $retailer->id ?>">
-                            <div class="deal_popup" style="cursor: pointer;">
-                                <div class="right">
-                                    <h3 class="title"><?= $retailer->name ?></h3>
-                                    <div class="description">
-                                        <p><?= $retailer->description ?></p>
-                                        <br />
-
-
-
-                                        <?
-                                        if(isset($retailer->affiliateCoupons) && count($retailer->affiliateCoupons)>0) {
-                                        echo '<h4 class="title">Coupons</h4>';
-                                        foreach($retailer->affiliateCoupons as $coupon) {
-                                        ?>
-
-                                        <p><?= $coupon->description ?></p>
-                                        <br />
-                                        <? } }?>
-                                    </div>
-                                </div>
-                                <div class="left">
-                                    <img src="<?= $retailer->logo_url ?>" alt="" />
-                                    <h4><?= $retailer->bonus_cash ?> Bonus Cash</h4><br />
-                                    <div style="border:1px black solid;vertical-align: middle;float: left; width: 95%;">
-                                        <div style="float: left;padding: 5px;">
-                                            <img style="width:50px !important;" src="<?= $BASE_URL ?>/skin/luckybuys/images/ic_online_blue.png" alt="" />
-                                        </div>
-                                        <div style="float: right;padding: 5px;padding-top: 15px; text-align: center;">
-                                            Shop Online
-                                        </div>
-                                        <div style="float:left;width:100%;background-color:#003876;padding-top: 5px;padding-bottom: 5px;color: white;">
-                                            <a>SHOP NOW</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        <?php $this->renderPartial('_shopnow_popup', array('retailer' => $retailer,)); ?>
                     </div>
                     <script type="text/javascript">
                         $(".popup<?= $retailer->id ?>").colorbox({inline: true});
