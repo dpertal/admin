@@ -211,6 +211,7 @@ class SiteController extends Controller {
     }
 
     public function actionStore(){
+
         if (Yii::app()->request->isPostRequest){
 
             $pager = Yii::app()->request->getPost('pager');
@@ -221,16 +222,27 @@ class SiteController extends Controller {
             }
             else $offset = ($pager - 1) * 10;
 
-            $postcode = Yii::app()->request->getPost('store_query');
-            $location = Retailer::get_lat_long($postcode);
-            $latitude = $location['lat'];
-            $longitude = $location['lng'];
+            $location_search = Yii::app()->request->getPost('location');
+            $postcode = '';
+
+            if (empty($location_search)){
+                $postcode = Yii::app()->request->getPost('store_query');
+                $location = Retailer::get_lat_long($postcode);
+                $latitude = $location['lat'];
+                $longitude = $location['lng'];
+            }
+            else{
+                $latitude = Yii::app()->request->getPost('latitude');
+                $longitude = Yii::app()->request->getPost('longitude');
+            }
+
             $sql = "SELECT *,
                     (((acos(sin((".$latitude."*pi()/180)) * sin((`lat`*pi()/180))
                     +cos((".$latitude."*pi()/180)) * cos((`lat`*pi()/180))
                     * cos(((".$longitude."- `lng`)*pi()/180))))*180/pi())*60*1.1515)
                     as distance
                     FROM `retailer`
+                    WHERE lat <> '' AND lng <> ''
                     ORDER BY distance ASC LIMIT {$offset},10";
             $results = Yii::app()->db->createCommand($sql)->queryAll();
 
@@ -241,9 +253,15 @@ class SiteController extends Controller {
                 echo json_encode($results);
                 exit();
             }
-            return $this->render('store_locators', array('stores' => $results, 'query' => $postcode, 'pager' => $pager));
+            return $this->render('store_locators', array(
+                'stores' => $results,
+                'query' => $postcode,
+                'position' => $location_search,
+                'position_detail' => array('lat' => $latitude, 'lng' => $longitude),
+                'pager' => $pager
+            ));
         }
-        return $this->render('store_locators', array('query' => '', 'pager' => 0));
+        return $this->render('store_locators', array('query' => '', 'pager' => 0, 'position_detail' => array('lat' => '', 'lng' => '')));
     }
 
 }
