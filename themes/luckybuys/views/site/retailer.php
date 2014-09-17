@@ -1,6 +1,7 @@
 <?php
 $BASE_URL = Yii::app()->request->baseUrl;
 ?>
+77777777777777777777777777777
 <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/jquery/jquery.colorbox.js"></script>
 <div class="banner hidden-phone">
     <div class="banner-detail">
