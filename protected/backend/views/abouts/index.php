@@ -1,7 +1,7 @@
 <!-- BEGIN Page Title -->
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-file-o"></i> Abouts Management</h1>
+        <h1><i class="fa fa-file-o"></i> <?php if (isset($program)){ echo $program->name.' - '; } ?> About us Management</h1>
     </div>
 </div>
 <!-- END Page Title -->
@@ -14,9 +14,9 @@
             <a href="<?= Yii::app()->request->baseUrl . "/admin.php/admin/" ?>">Home</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Abouts Management</li>
+        <li class="active">About Us Management <?php if (isset($program)){ echo ' - ' . $program->name; } ?></li>
         <li style="float: right; margin-top: -5px;">
-            <a class="btn btn-primary btn-sm" href="<?php echo Yii::app()->request->baseUrl . "/admin.php/abouts/create";  ?>"><i class="fa fa-add"></i> Add Abouts</a>
+            <a class="btn btn-primary btn-sm" href="<?php if (isset($program)) { echo Yii::app()->request->baseUrl . "/admin.php/abouts/create/" . $program->id; } else { echo Yii::app()->request->baseUrl . "/admin.php/abouts/create"; } ?>"><i class="fa fa-add"></i> Add About us</a>
         </li>
     </ul>
 </div>
@@ -33,6 +33,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Template</th>
+								 <th>Program</th>
                                 <th>Title</th>              
                                 <th>Current</th>
                                 <th style="width: 145px">Action</th>

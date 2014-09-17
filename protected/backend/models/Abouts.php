@@ -11,6 +11,9 @@
  * @property string $description
  * @property string $content
  * @property integer $current
+ * @property integer $image_url
+ * @property integer $use_background
+ * @property integer $sort_order
  * @property string $created
  * @property integer $created_by
  * @property string $modified
@@ -37,27 +40,27 @@ class Abouts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('template_id, title, sub_title, description , content', 'required'),
-			array('template_id, current, created_by, modified_by', 'numerical', 'integerOnly'=>true),
+			array('template_id,program_id, title, sub_title, description', 'required'),
+			array('template_id,program_id, current, use_background,sort_order ,created_by, modified_by', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>140),
-			array('created, modified', 'safe'),
+			array('content, created, modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, template_id, title, sub_title, description, content ,current, created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
+			array('id,program_id, template_id, title, sub_title, description, content , image_url ,current, use_background, sort_order ,created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
 		);
 	}
 
 	/**
 	 * @return array relational rules.
 	 */
-	/*public function relations()
+	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'program' => array(self::BELONGS_TO, 'Program', 'template_id'),
+			'program' => array(self::BELONGS_TO, 'Program', 'program_id'),
 		);
-	}*/
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -67,10 +70,14 @@ class Abouts extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'template_id' => '1',
+			'program_id' => 'Program',
 			'title' => 'Title',
 			'sub_title' => 'Sub Title',
 			'description' => 'Description',
 			'content' => 'Content',
+			'image_url'=> 'Image',
+			'use_background' => 'Use Background',
+			'sort_order' => 'Sort order',
 			'current' => 'Current',
 			'created' => 'Created',
 			'created_by' => 'Created By',
@@ -104,6 +111,9 @@ class Abouts extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('current',$this->current);
+		$criteria->compare('image_url',$this->image_url);
+		$criteria->compare('use_background',$this->use_background);
+		$criteria->compare('sort_order',$this->sort_order);
 		$criteria->compare('created',$this->created,true);
 		$criteria->compare('created_by',$this->created_by);
 		$criteria->compare('modified',$this->modified,true);

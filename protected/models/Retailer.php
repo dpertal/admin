@@ -26,6 +26,16 @@
  * @property integer $created_by
  * @property string $updated
  * @property integer $updated_by
+ * @property string $phone
+ * @property string $business_type
+ * @property string $lice
+ * @property string $price
+ * @property string $timmings
+ * @property string $hours
+ * @property string $address
+ * @property string $postcode
+ * @property string $lat
+ * @property string $lng
  *
  * The followings are the available model relations:
  * @property AffiliateCoupon[] $affiliateCoupons
@@ -63,7 +73,7 @@ class Retailer extends CActiveRecord
 			array('description, created, updated', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, logo_url, summary, commission, bonus_cash, coupon_commission, coupon_bonus_cash, url, external_id, commission_type_id, logo, offer_type_id, has_hot_deal, affiliate_network_id, checksum, active, created, created_by, updated, updated_by', 'safe', 'on'=>'search'),
+			array('id, name, description, logo_url, summary, commission, bonus_cash, coupon_commission, coupon_bonus_cash, url, external_id, commission_type_id, logo, offer_type_id, has_hot_deal, affiliate_network_id, checksum, active, created, created_by, updated, updated_by,phone, business_type, lice, price, timmings, address, postcode, lat, lng', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -112,6 +122,15 @@ class Retailer extends CActiveRecord
 			'created_by' => 'Created By',
 			'updated' => 'Updated',
 			'updated_by' => 'Updated By',
+            'phone' => 'Phone',
+            'business_type' => 'Business Type',
+            'lice' => 'Lice',
+            'price' => 'Price',
+            'timmings' => 'Timmings',
+            'address' => 'Address',
+            'postcode' => 'Postcode',
+            'lat' => 'Latitude',
+            'lng' => 'Longitude'
 		);
 	}
 
@@ -155,6 +174,15 @@ class Retailer extends CActiveRecord
 		$criteria->compare('created_by',$this->created_by);
 		$criteria->compare('updated',$this->updated,true);
 		$criteria->compare('updated_by',$this->updated_by);
+        $criteria->compare('phone',$this->phone,true);
+        $criteria->compare('business_type',$this->business_type,true);
+        $criteria->compare('lice',$this->lice,true);
+        $criteria->compare('price',$this->price,true);
+        $criteria->compare('timmings',$this->timmings,true);
+        $criteria->compare('address',$this->address,true);
+        $criteria->compare('postcode',$this->postcode);
+        $criteria->compare('lat',$this->lat,true);
+        $criteria->compare('lng',$this->lng);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -171,4 +199,90 @@ class Retailer extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function updateAllLatLng(){
+        $data = $this->model()->findAll();
+        foreach ($data as $value){
+            if (!empty($value->address)){
+                $location = self::get_lat_long($value->address, true);
+                if ($location){
+                    $value->setAttribute('lat', $location['lat']);
+                    $value->setAttribute('lng', $location['lng']);
+                    $value->save();
+                }
+            }
+        }
+    }
+
+    public static function get_lat_long($postcode, $address = false) {
+        if ($address)
+            $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($postcode);
+        else $url = "http://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" . urlencode($postcode) . "&sensor=false";
+        $json = Curl::get_page(array("url"=>$url));
+        $store_data = json_decode($json, true);
+        if (isset($store_data['results'][0])){
+            $store_data = $store_data['results'][0];
+            $lng = $store_data['geometry']['location']['lng'];
+            $lat = $store_data['geometry']['location']['lat'];
+            return array('lat'=>$lat,
+                         'lng'=>$lng
+            );
+        }
+        return false;
+    }
+}
+class Curl {
+    function curl() {}
+
+    public static function init_curl($ch,$url,$postfields=null,$follow=null,$cookie=null,$referer=null) {
+
+        // Set url
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        // Enable Post
+        if($postfields) {
+            curl_setopt ($ch, CURLOPT_POST, 1);
+            curl_setopt ($ch, CURLOPT_POSTFIELDS, $postfields);
+        }
+
+        if($follow) {
+            curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1 );
+        }
+
+        if($referer) {
+            curl_setopt($ch, CURLOPT_REFERER, $referer);
+        }
+
+        //Enable SSL
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+
+        //Return results as string
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        return $ch;
+    }
+
+    /*
+    Grabs a page
+    */
+    public static function get_page($options) {
+
+        //Set options
+        foreach($options AS $key=>$value) {
+            $$key = $value;
+        }
+
+        $ch = curl_init();
+
+        $postfields = isset($postfields) ? $postfields : null;
+        $follow = isset($follow) ? $follow : null;
+        $cookie = isset($cookie) ? $cookie : null;
+
+        $ch = self::init_curl($ch,$url,$postfields,$follow,$cookie);
+        $page = curl_exec($ch);
+        curl_close($ch);
+        return $page;
+    }
 }

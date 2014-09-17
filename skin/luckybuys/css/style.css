@@ -929,6 +929,8 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+.store-search{ float: left; clear: none; }
+.store-search form{ display: inline-block; }
 .store-search-results{ margin-top: 25px; }
 .store-locator{
     float: left;
@@ -962,3 +964,130 @@ table {
     background: #F4F4F4;
 }
 .store-locator a{ color:  #000000; }
+.store-current-location{ width: 200px; float: left; }
+.store-gmap {
+    width: 98%;
+    height: 350px;
+    border: 10px solid #646464;
+    margin-top: 10px;
+}
+
+
+/************************************************************/
+/************************About Page*****************************/
+/************************************************************/
+div.about-extra {
+    margin-top: 30px;
+}
+a.about-join {
+    background-color: #003876;
+    margin-top: 10px;
+    padding: 5px 10px;
+	color: white;
+    text-decoration: none;
+}
+a.about-more {
+    color: #444;
+    cursor: pointer;
+}
+
+.about-row {
+    background-position: left center;
+    background-size: cover;
+    height: 250px;
+    margin: auto;
+    max-width: 1000px;
+}
+
+.about-row {
+    clear: both;
+    width: 100%;
+}
+.about-row > div {
+    display: inline-block;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+.about-row:nth-child(2n) .about-text, .about-row:nth-child(2n+1) .about-image {
+    float: right;
+}
+.about-row:nth-child(2n) .about-image, .about-row:nth-child(2n+1) .about-text {
+    float: left;
+}
+.about-row:nth-child(2n) .about-image {
+    text-align: right;
+}
+.about-row:nth-child(2n+1) .about-image {
+    text-align: right;
+}
+
+.row-1 .about-text{ text-align: right; float: right !important }
+
+div.about-text {
+	 color: grey;
+    font-size: 0.9em;
+    padding: 10px 20px;
+    width: 60%;
+}
+
+div.about-more-content {
+    border-bottom: thin solid lightgrey;
+    border-top: thin solid lightgrey;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.about-page {
+    margin: 0 auto;
+    min-width: 300px;
+    width: 1000px;
+}
+
+div.about-text  ul {
+    list-style: disc outside none;
+}
+.about-title {
+    color: black;
+    font-size: 1.8em;
+    font-weight: bold;
+	text-transform: uppercase;
+}
+.about-image {
+    padding: 5px;
+    text-align: right;
+    width: 35%;
+}
+.about-image img {
+    max-height: 200px;
+}
+.about-image:first-child {
+    text-align: center;
+}
+
+div.about-text p {
+    color: #000;
+    margin: 0;
+}
+
+.about-row ul {
+    margin-left: 0;
+    margin-top: 7px;
+    padding-left: 35px;
+}
+@media all and (max-width: 900px) {
+    .about-row > div {
+        width: 100%;
+    }
+    .about-image {
+        float: right;
+        text-align: center !important;
+        vertical-align: top;
+    }
+    .about-text {
+        float: left;
+    }
+    .about-row {
+        margin: auto;
+        width: 95%;
+    }
+}

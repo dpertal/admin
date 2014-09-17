@@ -1,7 +1,7 @@
 <!-- BEGIN Page Title -->
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-file-o"></i> Create Abouts</h1>
+        <h1><i class="fa fa-file-o"></i> Create About us</h1>
     </div>
 </div>
 <!-- END Page Title -->
@@ -16,12 +16,12 @@
         </li>
         <li>
             <i class="fa fa-home"></i>
-            <a href="<?= Yii::app()->request->baseUrl . "/admin.php/news/" ?>">Manage Abouts</a>
+            <a href="<?= Yii::app()->request->baseUrl . "/admin.php/news/" ?>">Manage About us</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Create Abouts</li>
+        <li class="active">Create About us</li>
     </ul>
 </div>
 <!-- END Breadcrumb -->
 
-<?php $this->renderPartial('_form', array('model' => $model, 'template' => $template)); ?>
+<?php $this->renderPartial('_form', array('model' => $model, 'template' => $template , 'program_id' => $program_id)); ?>

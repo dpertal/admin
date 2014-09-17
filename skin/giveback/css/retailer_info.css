@@ -1,0 +1,128 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/04/2014, 4:13:22 PM
+    Author     : oliver
+*/
+
+div.retailer-section {
+    border: thin solid lightgrey;
+    margin: 30px;
+}
+
+#voucherVal {
+    margin: 20px;
+}
+
+div.retailer-section input[type=submit] {
+    width: 100%;
+    padding: 5px 10px;
+    display: block;
+}
+
+div.retailer-section .title {
+    color: #105;
+    display: inline-block;
+    height:50px;
+    background: url('../images/ic_online_blue.png') left no-repeat;
+    padding-left: 55px;
+    padding-top: 30px;
+    vertical-align: middle;
+    margin: 10px;
+}
+
+div.retailer-section #codeTitle {
+    background-image: url('../images/ic_coupon_blue.png');
+    
+    margin-bottom: -20px;
+    margin-top: 0px;
+}
+
+ul.offer li {
+    background: #EEE;
+    margin:5px 10px;
+}
+
+ul.offer {
+    list-style: none;
+    padding-left: 0px;
+}
+
+
+div.retailer-section #voucherTitle {
+    background-image: url('../images/ic_voucher_blue.png');
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+div.retailer-section .img {
+    width: 50px;
+    margin-top: 50px;
+}
+
+#retailerInfo {
+    
+    float: left;
+    height: 100%;
+    margin: 20px;
+}
+
+#retailerInfo img#logo {
+    width: 200px;
+}
+
+#retailerDetail {
+    color: black;
+    margin: 20px;
+    padding: 20px;
+    float: left;
+    text-align: left;
+    max-width: 640px;
+    border-left: thin solid black;
+}
+
+.section {
+    display: inline-block;
+}
+
+#retailerDetail .title {
+    font-weight: bold;
+    vertical-align: top;
+    margin: 10px 0px;
+}
+
+#retailerDetail a {
+    color: black;
+    padding: 10px;
+}
+
+#retailerDetail a.terms {
+    color: lightblue;
+    font-size: 0.8em;
+    vertical-align: bottom;
+    position: relative;
+    bottom: 10px;
+}
+
+#retailerInfo input[type=submit] {
+    color: white;
+    background-color: #105;
+    border: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#retailerInfo .bonusCash {
+    color: #2682B1;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    margin: 20px;
+}
+
