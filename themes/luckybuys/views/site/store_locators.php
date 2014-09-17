@@ -27,7 +27,7 @@
                                     <a href=""><?php echo $store['name']; ?></a>
                                 </td>
                                 <td headers="store-distance" class="store-distance">
-                                    <img src="<?php echo $store['image_url'] ?>" width="80" height="80" />
+                                    <img src="<?php echo $store['logo_url'] ?>" width="80" height="80" />
                                 </td>
                                 <td headers="store-address" class="hide-for-tiny">
                                     <strong><?php echo $store['address']; ?></strong><br>
@@ -72,7 +72,7 @@
                                                 '<a href="">' + data[i].name + '</a>' +
                                             '</td>' +
                                             '<td headers="store-distance" class="store-distance">' +
-                                                '<img src="' + data[i].image_url + '" width="80" height="80" />' +
+                                                '<img src="' + data[i].logo_url + '" width="80" height="80" />' +
                                                 '</td>' +
                                             '<td headers="store-address" class="hide-for-tiny">' +
                                                 '<strong>' + data[i].address + '</strong><br>' +

@@ -221,7 +221,7 @@ class SiteController extends Controller {
             else $offset = ($pager - 1) * 10;
 
             $postcode = Yii::app()->request->getPost('store_query');
-            $location = Stores::get_lat_long($postcode);
+            $location = Retailer::get_lat_long($postcode);
             $latitude = $location['lat'];
             $longitude = $location['lng'];
             $sql = "SELECT *,
@@ -229,7 +229,7 @@ class SiteController extends Controller {
                     +cos((".$latitude."*pi()/180)) * cos((`lat`*pi()/180))
                     * cos(((".$longitude."- `lng`)*pi()/180))))*180/pi())*60*1.1515)
                     as distance
-                    FROM `stores`
+                    FROM `retailer`
                     ORDER BY distance ASC LIMIT {$offset},10";
             $results = Yii::app()->db->createCommand($sql)->queryAll();
 
@@ -242,7 +242,7 @@ class SiteController extends Controller {
             }
             return $this->render('store_locators', array('stores' => $results, 'query' => $postcode, 'pager' => $pager));
         }
-        return $this->render('store_locators', array('query' => '', 'pager' => ''));
+        return $this->render('store_locators', array('query' => '', 'pager' => 0));
     }
 
 }
