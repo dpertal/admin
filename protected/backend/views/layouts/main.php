@@ -291,8 +291,7 @@ else if ($this->uniqueid == 'config') {
 						
                         <!-- BEGIN Submenu -->
                         <ul class="submenu">
-                            <li><a href="<?= $BASE_URL ?>/admin.php/abouts/about">Manage About</a></li>
-					
+                          
                             <?php foreach ($programs as $id => $program) : ?>
 							<li><a href="<?= $BASE_URL ?>/admin.php/abouts/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
                             <?php endforeach; ?>  

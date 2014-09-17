@@ -41,16 +41,7 @@ class AboutsController extends Controller
 		));
 	
 	}
-	
-	/* View content filter about page*/
-	public function actionAbout(){
-		
-		$dataProvider=new CActiveDataProvider('Abouts', array('criteria' => array('condition' => 'program_id = ""')));
-		$this->render('index',array(
-		'dataProvider'=>$dataProvider,
-		));
-		
-	}
+
 	
 	/**
      * View content filter by program
