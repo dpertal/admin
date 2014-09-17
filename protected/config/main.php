@@ -14,7 +14,9 @@ if (isset($_REQUEST['program']) && $_REQUEST['program'] != '') {
         $_SESSION['program'] = 2;
     } else if ($_REQUEST['program'] == 'rider') {
         $_SESSION['program'] = 1;
-    }
+	} else if ($_REQUEST['program'] == 'giveback') {
+		$_SESSION['program'] = 8;
+	}
 }
 
 //set defult theme 

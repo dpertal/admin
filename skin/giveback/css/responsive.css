@@ -1,0 +1,115 @@
+@media screen and (max-width: 1024px){
+    .header-detail, .search-bar-detail, .banner-detail, .main-content, .footer-detail{ width: 100%; }
+    .steps-progress img{ width: 100%; }
+    .banner-detail img{ width: 100%; }
+    .footer-right{ padding-right: 2%; width: 98%; }
+}
+@media screen and (max-width: 1000px){
+    .header-detail{ position: relative; }
+    .logo{
+        text-align: center;
+        width: 100%;
+        float: none;
+    }
+    .top-navigator{
+        float: none;
+        margin: 0 auto;
+        width: 50%;
+    }
+    .top-navigator li{
+        padding-top: 0px;
+        padding-bottom: 10px;
+    }
+    .bag{
+        position: absolute;
+        top: 1px;
+        right: 10px;
+    }
+    .bottom-blocks{ width: 70%; margin: 0 auto; margin-top: 10%; }
+    .bottom-blocks .blocks{ margin-bottom: 2%; margin-left: 2%; }
+    .hidden-content{ width: 95%; margin: 0 auto; text-align: justify; }
+    .news{
+        text-align: justify;
+        padding: 5%;
+    }
+    .hot-deals{ padding: 5%; }
+    .retailers, .online-shop{ padding: 2%; }
+    .hot-deals-categories, .retailer-categories, .online-shop .section-1, .online-shop .section-2{
+        width: 60%;
+        margin: 0 auto;
+        margin-top: 3%;
+        text-align: center;
+    }
+    .hot-deals-categories .category,
+    .retailer-categories .category{ margin-bottom: 1%; float: none; display: inline-block; }
+    .hot-deals-list{ width: 95%; margin: 0 auto; text-align: center; }
+    .hot-deals-list .deal-box, .online-shop .section-1 .box,
+    .online-shop .section-2 .box{ float: none; display: inline-block; }
+    .retailer-categories, .online-shop .section-1{
+        width: 80%;
+    }
+    .retailer-boxes{
+        width: 100%; margin: 0 auto; text-align: center;
+    }
+    .retailer-box{
+        float: none; display: inline-block;
+    }
+}
+@media screen and (max-width: 900px){
+    .bottom-blocks{ width: 80%; }
+    .top-navigator{ width: 70%; }
+    .footer-blocks{ width: 60%; }
+    .footer-right{ width: 30%; }
+    .footer-blocks .blocks.last{ width: 90px; }
+    .online-shop .section-1{ width: 90%; }
+    .online-shop .section-2{ width: 80%; }
+    .winners-content{ padding: 2%; }
+    .search-winners{float: none; margin: 0 auto; width: 40%; }
+    .winners-details{ width: 100%; float: none; }
+}
+@media screen and (max-width: 768px){
+    .hidden-tablet{ display: none; }
+    .online-shop .section-1{ width: 100%; }
+}
+@media screen and (max-width: 640px){
+    .search-winners{ width: 80%; }
+    .collapse-menu-icon{
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        display: block;
+    }
+    .collapse-menu-icon img{ width: 25px; }
+    .hidden-phone{ display: none; }
+    .search-bar-detail{ text-align: center; }
+    .main-content{ padding: 2%; width: 96%; }
+    .footer-blocks{ width: 80%; float: none; margin: 0 auto; }
+    .footer-blocks .blocks.last{ width: 120px; }
+    .footer-right{ width: 100%; float: none; text-align: center; margin-top: 5%; }
+    .bottom-blocks{ width: 100%; }
+    .about-rows{
+        background: none;
+        text-align: left;
+        width: 60%;
+        margin: 0 auto;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .steps-progress{ display: none; }
+    .online-shop .section-1{ width: 60%; }
+    .online-shop .section-2{ width: 90%; }
+}
+@media screen and (max-width: 480px){
+    .online-shop .section-1{ width: 100%; }
+    .bag{
+        bottom: 1px;
+        top: inherit;
+    }
+    .footer-blocks{ width: 100%; float: none; margin: 0 auto; }
+    .bottom-blocks .blocks{ margin: 0 auto; margin-bottom: 2%; float: none; }
+    .about-rows{ width: 95%; }
+}
+@media screen and (max-width: 400px){
+    .hidden-small-phone{ display: none !important; }
+    .header-detail{ padding-top: 7%; }
+}
