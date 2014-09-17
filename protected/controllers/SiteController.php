@@ -263,5 +263,43 @@ class SiteController extends Controller {
         }
         return $this->render('store_locators', array('query' => '', 'pager' => 0, 'position_detail' => array('lat' => '', 'lng' => '')));
     }
+	
+	public function actionCalculate()
+    {
+        $model = RetailerCategory::model()->findAll();
+
+        if (isset($_GET['calccash'])) {
+            if ($_GET['calccash'] == 1) {
+                $param = true;
+            }
+        } else {
+            $param = false;
+        }
+
+        $retailer = array();
+        foreach ($model as $retailerValue) {
+            $retailer[$retailerValue->id] = $retailerValue->name;
+        }
+
+
+        if (!$param) {
+            $this->render('calculate_bonuscash', array(
+                'model' => $model,
+                'retailer' => $retailer
+            ));
+        } else {
+
+            $cat_id = $_POST['cat_id'];
+
+            $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    FROM retailer
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id ";
+            $command = Yii::app()->db->createCommand($sql);
+            $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+            $result = $command->queryAll();
+            echo $result[0]['avg_bonus_cash'];
+
+        }
+    }
 
 }
