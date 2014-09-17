@@ -100,8 +100,9 @@ class SiteController extends Controller {
 
     public function actionAboutUs() {
 		$template = Yii::app()->params['template_about'];
+		$program = Yii::app()->params['program'];
 		$idtemplate = $template["template_about"];
-		$result = Abouts::model()->findAll('template_id = '.$idtemplate.' and program_id = 0 and current = 1 ORDER BY sort_order ASC');
+		$result = Abouts::model()->findAll("template_id = ".$idtemplate." and program_id = $program  and current = 1 ORDER BY sort_order ASC");
 		
 		$this->render('aboutus' , array('abouts'=>$result));
     }
