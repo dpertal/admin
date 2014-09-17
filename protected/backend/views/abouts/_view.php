@@ -2,6 +2,7 @@
     <td><?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id' => $data->id)); ?></td>
     <td><?php $template = Yii::app()->params['template_about']; 
 	echo CHtml::encode($template[$data->template_id]); ?></td>
+	<td><?php echo CHtml::encode($data->program['name']); ?></td>
     <td><?php echo CHtml::encode($data->title); ?></td>
  
     <td><?php if($data->current==1) {echo "Yes";}else{echo "No";}; ?></td>

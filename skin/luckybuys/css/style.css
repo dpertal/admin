@@ -974,7 +974,7 @@ a.about-more {
     text-align: right;
 }
 
-.row-1 .about-text{ text-align: right; }
+.row-1 .about-text{ text-align: right; float: right !important }
 
 div.about-text {
 	 color: grey;

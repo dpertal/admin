@@ -40,27 +40,27 @@ class Abouts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('template_id, title, sub_title, description', 'required'),
-			array('template_id, current, use_background,sort_order ,created_by, modified_by', 'numerical', 'integerOnly'=>true),
+			array('template_id,program_id, title, sub_title, description', 'required'),
+			array('template_id,program_id, current, use_background,sort_order ,created_by, modified_by', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>140),
 			array('content, created, modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, template_id, title, sub_title, description, content , image_url ,current, use_background, sort_order ,created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
+			array('id,program_id, template_id, title, sub_title, description, content , image_url ,current, use_background, sort_order ,created, created_by, modified, modified_by', 'safe', 'on'=>'search'),
 		);
 	}
 
 	/**
 	 * @return array relational rules.
 	 */
-	/*public function relations()
+	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'program' => array(self::BELONGS_TO, 'Program', 'template_id'),
+			'program' => array(self::BELONGS_TO, 'Program', 'program_id'),
 		);
-	}*/
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -70,6 +70,7 @@ class Abouts extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'template_id' => '1',
+			'program_id' => 'Program',
 			'title' => 'Title',
 			'sub_title' => 'Sub Title',
 			'description' => 'Description',

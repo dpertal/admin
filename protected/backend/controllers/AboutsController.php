@@ -42,6 +42,31 @@ class AboutsController extends Controller
 	
 	}
 	
+	/* View content filter about page*/
+	public function actionAbout(){
+		
+		$dataProvider=new CActiveDataProvider('Abouts', array('criteria' => array('condition' => 'program_id = ""')));
+		$this->render('index',array(
+		'dataProvider'=>$dataProvider,
+		));
+		
+	}
+	
+	/**
+     * View content filter by program
+     */
+    public function actionProgram($id)
+    {
+        $dataProvider=new CActiveDataProvider('Abouts', array('criteria' => array('condition' => 'program_id = :id', 'params'=>array(':id' => $id))));
+        $program = Program::model()->findAllByPk($id);
+		
+        $this->render('index',array(
+		'dataProvider'=>$dataProvider,
+		'program' => $program[0]
+        ));
+    }
+	
+	
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -142,7 +167,8 @@ class AboutsController extends Controller
 		
 		$this->render('create',array(
 		'model'=>$model,
-		'template' => $arr
+		'template' => $arr,
+		 'program_id' => $id
 		));
 		
 		

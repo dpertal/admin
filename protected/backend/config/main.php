@@ -113,8 +113,8 @@ return array(
         // this is used in contact page
         'adminEmail' => 'info@crg.com.au',
 		'template_about'=> array(
-			'1'=> 'Lucky buys',
-			'2'=> 'Give Back'
+			'1'=> 'List',
+			'2'=> 'Grid'
 		),
 	
     ),

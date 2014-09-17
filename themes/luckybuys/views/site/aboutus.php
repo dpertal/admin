@@ -27,7 +27,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 					<a class="about-more" onclick="$('#aboutMore_<?=$about->id?>').toggle('medium')">Read more</a>
 					<?php } else { ?>
 					<a class="about-join" href="/Join">JOIN NOW</a>	
-					<?php } ?>
+					<?php }?>
 				</div>
 				
 			</div>

@@ -18,6 +18,19 @@
 					'htmlOptions' => array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data'),
                 ));
                 ?>
+				
+				<div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Program</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <?php
+							$promoBox = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+							if (!isset($program_id)) $program_id = $model->program_id;
+							echo $form->dropDownList($model, 'program_id', $promoBox, array('prompt' => 'Select Program', 'class' => 'form-control', 'options' => array($program_id => array('selected' => 'selected'))));
+                        ?>
+                        <span class="help-inline"><?php echo $form->error($model, 'program_id'); ?></span>
+                    </div>
+                </div>
+		
                 <div class="form-group">
                     <label class="col-sm-3 col-lg-2 control-label">Template</label>
                     <div class="col-sm-9 col-lg-10 controls">

@@ -291,7 +291,11 @@ else if ($this->uniqueid == 'config') {
 						
                         <!-- BEGIN Submenu -->
                         <ul class="submenu">
-                            <li><a href="<?= $BASE_URL ?>/admin.php/abouts">Manage About</a></li>
+                            <li><a href="<?= $BASE_URL ?>/admin.php/abouts/about">Manage About</a></li>
+					
+                            <?php foreach ($programs as $id => $program) : ?>
+							<li><a href="<?= $BASE_URL ?>/admin.php/abouts/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
+                            <?php endforeach; ?>  
                         </ul>
                         <!-- END Submenu -->
                     </li>
@@ -335,7 +339,7 @@ else if ($this->uniqueid == 'config') {
         <!-- END Container -->
 
         <!--basic scripts-->
-        <?php if ($news == "" && $abouts == "") { ?>
+        <?php if ($news == "") { ?>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.0.3.min.js"><\/script>')</script>
             <? }?>
