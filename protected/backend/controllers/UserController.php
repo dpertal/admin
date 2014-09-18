@@ -93,6 +93,9 @@ class UserController extends Controller {
 
     public function actionDelete($id) {
         $this->loadModel($id)->delete();
+        
+        if (!isset($_GET['ajax']))
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
     }
 
     public function actionAdmin() {

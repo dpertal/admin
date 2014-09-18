@@ -51,7 +51,7 @@ class RetailerController extends Controller {
     
     public function actionCoupon($id) {
         $cupons = AffiliateCoupon::model()->findAll('retailer_id ='.$id);
-        $this->render('coupon', array(
+        $this->render('coupons', array(
             'model' => $cupons,
         ));
     }
