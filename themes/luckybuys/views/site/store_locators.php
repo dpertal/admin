@@ -232,15 +232,16 @@
     <?php if (isset($stores) && !empty($store)) : ?>
     //For Gmap
     $(function(){
+        <?php if (!empty($lat) && !empty($lng)) :  ?>
         var map_markers = new GMaps({
             div: '#gmap-markers',
-            lat: -12.043333,
-            lng: -77.028333
+            lat: <?php echo $lat; ?>,
+            lng: <?php echo $lng; ?>
         });
         map_markers.addMarker({
-            lat: -12.043333,
-            lng: -77.03,
-            title: 'Lima',
+            lat: <?php echo $lat; ?>,
+            lng: <?php echo $lng; ?>,
+            title: 'My location',
             details: {
                 database_id: 42,
                 author: 'HPNeo'
@@ -248,6 +249,24 @@
             click: function(e){
             }
         });
+        <?php else : ?>
+        var map_markers = new GMaps({
+            div: '#gmap-markers',
+            lat: <?php echo $stores[0]['lat']; ?>,
+            lng: <?php echo $stores[0]['lng']; ?>
+        });
+        map_markers.addMarker({
+            lat: <?php echo $stores[0]['lat']; ?>,
+            lng: <?php echo $stores[0]['lng']; ?>,
+            title: '<?php echo $stores[0]['name']; ?>',
+            details: {
+                database_id: 42,
+                author: 'HPNeo'
+            },
+            click: function(e){
+            }
+        });
+        <?php endif; ?>
     });
     function locateMap(lat, lng, name, address){
         $("#gmap-markers").empty();

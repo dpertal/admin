@@ -16,6 +16,15 @@ $BASE_URL = Yii::app()->request->baseUrl;
 			$i++;
 		?>
 		<div class="about-row row-<?=(($i%2==0)?'1':'0')?>" <?= $style?> >
+			<?php if(!$about->use_background){ ?>
+				<div class="about-image">
+					<a style="cursor: pointer;" onclick="showOverlay('overlayHow', 'contentHow');">
+					
+					<img src="<?php echo $about->image_url ;?>" alt="<?php echo $about->title; ?>"/>
+					
+					</a>
+				</div>
+			<?php } ?>
 			<div class="about-text">
 				<div class="about-title"><?php echo $about->title ;?></div>
 				<p><?php echo $about->sub_title ; ?></p>
@@ -24,25 +33,17 @@ $BASE_URL = Yii::app()->request->baseUrl;
 				<div class="about-extra">
 				
 					<?php if(!empty($about->content)){ ?>
-					<a class="about-more" onclick="$('#aboutMore_<?=$about->id?>').toggle('medium')">Read more</a>
+					<a class="about-join" onclick="$('#aboutMore_<?=$about->id?>').toggle('medium')">Read more</a>
 					<?php } else { ?>
 					<a class="about-join" href="/Join">JOIN NOW</a>	
 					<?php }?>
 				</div>
 				
 			</div>
-			<?php if(!$about->use_background){ ?>
-			<div class="about-image">
-				<a style="cursor: pointer;" onclick="showOverlay('overlayHow', 'contentHow');">
-		
-				<img src="<?php echo $about->image_url ;?>" alt="<?php echo $about->title; ?>"/>
-				
-				</a>
-			</div>
-			<?php } ?>
+			
 		</div>
 		<?php if(!empty($about->content)){ ?>
-			<div id="aboutMore_<?=$about->id?>" style="display: none;"><?php echo $about->content; ?> </div>
+			<div id="aboutMore_<?=$about->id?>" class="content_more" style="display: none;"><?php echo $about->content; ?> </div>
 		<?php } ?> 
 	
 	<?php endforeach; }  ?>

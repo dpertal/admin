@@ -146,6 +146,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
             </div>
             <div class="clear"></div>
         </div>
+
     </div>
     <?php if($products != NULL):?>
     <div class="clear"></div>

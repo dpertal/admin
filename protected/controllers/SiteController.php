@@ -80,6 +80,7 @@ class SiteController extends Controller {
         $criteria_news->addCondition("program_id = $program and current = 1");
 
         $news = News::model()->findAll($criteria_news);
+        //$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
         
 //        $pages = new PageCategory();
         
@@ -94,6 +95,7 @@ class SiteController extends Controller {
         }
 
         $about = PageContent::model()->find("program_id = $program AND page_id = 2");
+      
         $this->render('index', array('productCount'=>$query_params['count'],'products' => $products,'offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
         
     }
@@ -126,7 +128,7 @@ class SiteController extends Controller {
     }
 
     public function actionContact() {
-        var_dump(Yii::app()->request->requestUri);exit;
+
         $model = new ContactForm;
         if (isset($_POST['ContactForm'])) {
             $model->attributes = $_POST['ContactForm'];
@@ -145,9 +147,16 @@ class SiteController extends Controller {
 		$program = Yii::app()->params['program'];
 		$idtemplate = $template["template_about"];
 		$result = Abouts::model()->findAll("template_id = ".$idtemplate." and program_id = $program  and current = 1 ORDER BY sort_order ASC");
+		//$program = Yii::app()->params['program'];
+		//$idtemplate = $template["template_about"];
+		if($template["template_about"] == 2){
+			Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/skin/giveback/css/grid.css');
+		}
+		else{
+			Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/skin/giveback/css/list.css');
+		}
+		$result = Abouts::model()->findAll("program_id = ".PROGRAM_ID."  and current = 1 ORDER BY sort_order ASC");
 		
-                
-                
 		$this->render('aboutus' , array('abouts'=>$result));
     }
 
@@ -226,6 +235,7 @@ class SiteController extends Controller {
 
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
+    
         $category = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 5");      
         
         $query_params = PageCategory::model()->find("page_id = 9");
@@ -251,6 +261,7 @@ class SiteController extends Controller {
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
 		$layout = Yii::app()->params['layout'];
+		
 	
         $query_params = PageCategory::model()->find("page_id = 5");
 //        var_dump($query_params);exit;
@@ -316,8 +327,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionStore(){
-
+  
+	public function actionStore(){
         $query_params = PageCategory::model()->find("page_id = 6");
         if($query_params == NULL){
             $products = NULL;
@@ -376,7 +387,46 @@ class SiteController extends Controller {
                 'products' => $products
             ));
         }
+
         return $this->render('store_locators', array('products' => $products,'query' => '', 'pager' => 0, 'position_detail' => array('lat' => '', 'lng' => '')));
+    }
+	
+	public function actionCalculate()
+    {
+        $model = RetailerCategory::model()->findAll();
+
+        if (isset($_GET['calccash'])) {
+            if ($_GET['calccash'] == 1) {
+                $param = true;
+            }
+        } else {
+            $param = false;
+        }
+
+        $retailer = array();
+        foreach ($model as $retailerValue) {
+            $retailer[$retailerValue->id] = $retailerValue->name;
+        }
+
+
+        if (!$param) {
+            $this->render('calculate_bonuscash', array(
+                'model' => $model,
+                'retailer' => $retailer
+            ));
+        } else {
+
+            $cat_id = $_POST['cat_id'];
+
+            $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    FROM retailer
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id ";
+            $command = Yii::app()->db->createCommand($sql);
+            $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+            $result = $command->queryAll();
+            echo $result[0]['avg_bonus_cash'];
+
+        }
     }
 
 }

@@ -19,10 +19,13 @@ if (isset($_REQUEST['program']) && $_REQUEST['program'] != '') {
 	}
 }
 
+
 //set defult theme 
 if (!isset($_SESSION['theme'])) {
-    $_SESSION['theme'] = 'luckybuys';
-    $_SESSION['program'] = 3;
+   // $_SESSION['theme'] = 'luckybuys';
+   // $_SESSION['program'] = 3;
+	$_SESSION['theme'] = 'giveback';
+	$_SESSION['program'] = 8;
 }
 
 define('PROGRAM_ID', $_SESSION['program']);

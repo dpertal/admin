@@ -72,8 +72,8 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 </div>
                 <div class="clear"></div>
             </div><!-- END HEADER -->
-		<?php /*
-           <!-- <div class="search-bar">
+	
+			<div class="search-bar main-content">
                 <div class="search-bar-detail">
                     <?php echo CHtml::link('Login', array('Login/index'), array('class' => 'login')); ?>
                     <form name="search_frm" method="post" action="<?= $BASE_URL ?>/index.php/site/search">
@@ -121,14 +121,14 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     ?>
                 </div>
             </div><!-- END SEARCH BAR -->
-			*/ ?>
+		
             <div class="content-wrapper main-content">
 
 				<!--show content introduce -->
                 <?php  echo $content; ?>
             </div>
-			<div class="bg_retailer">
-				<div class="main-content">
+			
+			<div class="main-content">
 					<div class="bottom-ads">
 						<ul>
 							<?php foreach (Retailers::getListRetailers() as $retailer) : ?>
@@ -140,11 +140,11 @@ $BASE_URL = Yii::app()->request->baseUrl;
 						
 						</ul>
 					</div>
-				</div>
 			</div>
+		
             <div class="clear"></div>
 
-            <div class="footer">
+            <div class="footer main-content">
                 <div class="footer-detail">
                     <div class="footer-blocks">
                         <div class="blocks">
