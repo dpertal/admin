@@ -21,6 +21,7 @@
  * @property integer $created_by
  * @property string $modified
  * @property integer $modified_by
+ * @property string $video_url
  *
  * The followings are the available model relations:
  * @property Colourbox $colourboxId1
@@ -51,10 +52,10 @@ class Program extends CActiveRecord {
             array('name', 'length', 'max' => 64),
             array('bgcolor_1, bgcolor_2, bgcolor_3, bgcolor_4', 'length', 'max' => 10),
             array('contact_email', 'length', 'max' => 128),
-            array('deleted, created, modified', 'safe'),
+            array('deleted, created, modified, video_url', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, name, colourbox_id_1, bgcolor_1, colourbox_id_2, bgcolor_2, colourbox_id_3, bgcolor_3, colourbox_id_4, bgcolor_4, contact_email, card_cost, deleted, created, created_by, modified, modified_by', 'safe', 'on' => 'search'),
+            array('id, name, colourbox_id_1, bgcolor_1, colourbox_id_2, bgcolor_2, colourbox_id_3, bgcolor_3, colourbox_id_4, bgcolor_4, contact_email, card_cost, deleted, created, created_by, modified, modified_by, video_url', 'safe', 'on' => 'search'),
         );
     }
 
@@ -94,6 +95,7 @@ class Program extends CActiveRecord {
             'created_by' => 'Created By',
             'modified' => 'Modified',
             'modified_by' => 'Modified By',
+            'video_url' => 'Video URL',
         );
     }
 
@@ -131,6 +133,7 @@ class Program extends CActiveRecord {
         $criteria->compare('created_by', $this->created_by);
         $criteria->compare('modified', $this->modified, true);
         $criteria->compare('modified_by', $this->modified_by);
+        $criteria->compare('video_url', $this->video_url);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
