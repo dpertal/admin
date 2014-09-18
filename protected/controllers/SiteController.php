@@ -288,17 +288,45 @@ class SiteController extends Controller {
                 'retailer' => $retailer
             ));
         } else {
+            if(!empty($_POST['userCash'])){
 
-            $cat_id = $_POST['cat_id'];
+                if(is_numeric($_POST['userCash']) && $_POST['userCash'] >= 0){
+                    $cat_id = $_POST['cat_id'];
+                    $cash_money = $_POST['userCash'];
+                    switch($_POST['currency']){
+                        case 'dollar':
+                            $currency_mark = '$';
+                            break;
+                        case 'euro':
+                            $currency_mark = '€';
+                            break;
+                        case 'pound':
+                            $currency_mark = '£';
+                            break;
+                    }
 
-            $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
                     FROM retailer
                     WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id ";
-            $command = Yii::app()->db->createCommand($sql);
-            $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
-            $result = $command->queryAll();
-            echo $result[0]['avg_bonus_cash'];
+                    $command = Yii::app()->db->createCommand($sql);
+                    $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+                    $result = $command->queryAll();
 
+                    $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
+
+                    $final_result = round( $temp_result, 2);
+
+                    echo $final_result . $currency_mark;
+                    exit;
+                } else {
+                    echo 'Please enter positive number';
+                    exit;
+                }
+
+            } else {
+                echo 'Please fill field';
+                exit;
+            }
         }
     }
 
