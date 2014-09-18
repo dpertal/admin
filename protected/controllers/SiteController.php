@@ -216,8 +216,7 @@ class SiteController extends Controller {
         }
     }
 
-
-
+	public function actionStore(){
         if (Yii::app()->request->isPostRequest){
 
             $pager = Yii::app()->request->getPost('pager');
