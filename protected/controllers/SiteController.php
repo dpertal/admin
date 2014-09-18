@@ -217,4 +217,94 @@ class SiteController extends Controller {
     }
 
 
+        if (Yii::app()->request->isPostRequest){
+
+            $pager = Yii::app()->request->getPost('pager');
+
+            if (empty($pager)){
+                $offset = 0;
+                $pager = 1;
+            }
+            else $offset = ($pager - 1) * 10;
+
+            $location_search = Yii::app()->request->getPost('location');
+            $postcode = '';
+
+            if (empty($location_search)){
+                $postcode = Yii::app()->request->getPost('store_query');
+                $location = Retailer::get_lat_long($postcode);
+                $latitude = $location['lat'];
+                $longitude = $location['lng'];
+            }
+            else{
+                $latitude = Yii::app()->request->getPost('latitude');
+                $longitude = Yii::app()->request->getPost('longitude');
+            }
+
+            $sql = "SELECT *,
+                    (((acos(sin((".$latitude."*pi()/180)) * sin((`lat`*pi()/180))
+                    +cos((".$latitude."*pi()/180)) * cos((`lat`*pi()/180))
+                    * cos(((".$longitude."- `lng`)*pi()/180))))*180/pi())*60*1.1515)
+                    as distance
+                    FROM `retailer`
+                    WHERE lat <> '' AND lng <> ''
+                    ORDER BY distance ASC LIMIT {$offset},10";
+            $results = Yii::app()->db->createCommand($sql)->queryAll();
+
+            $request_type = Yii::app()->request->getPost('type');
+
+            if ($request_type == 'json'){
+                header ('Content-Type: application/json');
+                echo json_encode($results);
+                exit();
+            }
+            return $this->render('store_locators', array(
+                'stores' => $results,
+                'query' => $postcode,
+                'position' => $location_search,
+                'position_detail' => array('lat' => $latitude, 'lng' => $longitude),
+                'pager' => $pager
+            ));
+        }
+        return $this->render('store_locators', array('query' => '', 'pager' => 0, 'position_detail' => array('lat' => '', 'lng' => '')));
+    }
+	
+	public function actionCalculate()
+    {
+        $model = RetailerCategory::model()->findAll();
+
+        if (isset($_GET['calccash'])) {
+            if ($_GET['calccash'] == 1) {
+                $param = true;
+            }
+        } else {
+            $param = false;
+        }
+
+        $retailer = array();
+        foreach ($model as $retailerValue) {
+            $retailer[$retailerValue->id] = $retailerValue->name;
+        }
+
+
+        if (!$param) {
+            $this->render('calculate_bonuscash', array(
+                'model' => $model,
+                'retailer' => $retailer
+            ));
+        } else {
+
+            $cat_id = $_POST['cat_id'];
+
+            $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    FROM retailer
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id ";
+            $command = Yii::app()->db->createCommand($sql);
+            $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+            $result = $command->queryAll();
+            echo $result[0]['avg_bonus_cash'];
+
+        }
+    }
+
 }
