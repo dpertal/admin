@@ -37,7 +37,7 @@
                                 <th>Name</th>
                                 <th>Summary</th>
                                 <th>Commission</th>
-                                <th style="width: 145px">Action</th>
+                                <th style="width: 367px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
