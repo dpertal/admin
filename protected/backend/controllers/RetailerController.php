@@ -30,7 +30,7 @@ class RetailerController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete'),
+                'actions' => array('create', 'update', 'admin', 'delete','coupon','banner'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -46,6 +46,20 @@ class RetailerController extends Controller {
     public function actionView($id) {
         $this->render('view', array(
             'model' => $this->loadModel($id),
+        ));
+    }
+    
+    public function actionCoupon($id) {
+        $cupons = AffiliateCoupon::model()->findAll('retailer_id ='.$id);
+        $this->render('coupon', array(
+            'model' => $cupons,
+        ));
+    }
+    
+    public function actionBanner($id) {
+        $cupons = Banner::model()->findAll('retailer_id ='.$id);
+        $this->render('banner', array(
+            'model' => $cupons,
         ));
     }
 
