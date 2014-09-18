@@ -47,11 +47,13 @@ return array(
         'application.models.*',
         'application.components.*',
         'ext.yii-mail.YiiMailMessage',
-        'ext.ECompositeUniqueValidator'
+        'ext.ECompositeUniqueValidator',
+        'application.modules.Pages.components.*',
+        'application.modules.Pages.models.*'
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
-
+        'Pages',
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => '555',
@@ -102,7 +104,7 @@ return array(
             'username' => 'crgtesti_user',
             'password' => 'Passme@14',
             'charset' => 'utf8',
-        ),
+        ),        
         'dblocal' => array(
             'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
             'emulatePrepare' => true,
