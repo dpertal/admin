@@ -203,32 +203,32 @@ class Retailer extends CActiveRecord
     public function updateAllLatLng(){
         $data = $this->model()->findAll();
         foreach ($data as $value){
-            $location = self::get_lat_long($value->postcode);
-            if ($location){
-                $value->setAttribute('lat', $location['lat']);
-                $value->setAttribute('lng', $location['lng']);
-                $value->save();
+            if (!empty($value->address)){
+                $location = self::get_lat_long($value->address, true);
+                if ($location){
+                    $value->setAttribute('lat', $location['lat']);
+                    $value->setAttribute('lng', $location['lng']);
+                    $value->save();
+                }
             }
         }
     }
 
-    public static function get_lat_long($postcode) {
-
-        $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($postcode);
+    public static function get_lat_long($postcode, $address = false) {
+        if ($address)
+            $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($postcode);
+        else $url = "http://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" . urlencode($postcode) . "&sensor=false";
         $json = Curl::get_page(array("url"=>$url));
         $store_data = json_decode($json, true);
-        $store_data = $store_data['results'][0];
-        $lng = $store_data['geometry']['location']['lng'];
-        $lat = $store_data['geometry']['location']['lat'];
-
-        //Return
-        if($lng && $lat) {
+        if (isset($store_data['results'][0])){
+            $store_data = $store_data['results'][0];
+            $lng = $store_data['geometry']['location']['lng'];
+            $lat = $store_data['geometry']['location']['lat'];
             return array('lat'=>$lat,
                          'lng'=>$lng
             );
-        } else {
-            return false;
         }
+        return false;
     }
 }
 class Curl {

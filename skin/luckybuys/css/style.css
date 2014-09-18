@@ -929,6 +929,8 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+.store-search{ float: left; clear: none; }
+.store-search form{ display: inline-block; }
 .store-search-results{ margin-top: 25px; }
 .store-locator{
     float: left;
@@ -962,6 +964,13 @@ table {
     background: #F4F4F4;
 }
 .store-locator a{ color:  #000000; }
+.store-current-location{ width: 200px; float: left; }
+.store-gmap {
+    width: 98%;
+    height: 350px;
+    border: 10px solid #646464;
+    margin-top: 10px;
+}
 
 
 /************************************************************/
@@ -1066,19 +1075,19 @@ div.about-text p {
     padding-left: 35px;
 }
 @media all and (max-width: 900px) {
-.about-row > div {
-    width: 100%;
-}
-.about-image {
-    float: right;
-    text-align: center !important;
-    vertical-align: top;
-}
-.about-text {
-    float: left;
-}
-.about-row {
-    margin: auto;
-    width: 95%;
-}
+    .about-row > div {
+        width: 100%;
+    }
+    .about-image {
+        float: right;
+        text-align: center !important;
+        vertical-align: top;
+    }
+    .about-text {
+        float: left;
+    }
+    .about-row {
+        margin: auto;
+        width: 95%;
+    }
 }

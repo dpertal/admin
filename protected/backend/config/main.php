@@ -24,10 +24,12 @@ return array(
         'backend.components.*',
         'backend.extensions.yii-mail.YiiMailMessage',
         'backend.extensions.ECompositeUniqueValidator',
+        'application.modules.Pages.components.*',
+        'application.modules.Pages.models.*'
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
-
+        'Pages',
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => '555',
