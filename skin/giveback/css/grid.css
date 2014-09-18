@@ -1,0 +1,39 @@
+.about-row {
+    float: left;
+    width: 50%;
+}
+.about-row {
+    background-position: left center;
+    background-size: cover;
+    min-height: 250px;
+	margin: 20px 0;
+}
+
+.row-0 { clear: both;}
+
+.about-row ul {
+    margin-left: 0;
+    margin-top: 12px;
+    padding-left: 16px;
+}
+.about-page {
+ padding-left: 136px;
+    width: 864px;
+}	
+
+.content_more {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #ccc -moz-use-text-color;
+    border-image: none;
+    border-style: solid none;
+    border-width: 1px medium;
+    clear: both;
+    left: -136px;
+    line-height: 22px;
+    padding: 20px 5px;
+    position: relative;
+    width: 960px;
+}

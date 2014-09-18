@@ -1,27 +1,24 @@
 <?php
     $BASE_URL = Yii::app ()->request->baseUrl;
 ?>
-<div class="banner hidden-phone">
+<div class="banner bannerhome hidden-phone">
     <div class="banner-detail">
-        <img src="<?= $BASE_URL . $home->image_url; ?>" alt="" />
+       <!-- <img src="<?= $BASE_URL . $home->image_url; ?>" alt="" />-->
+		<div id="bannerText">
+			<div class="banner-title">Introducing Give Back</div>
+			<div class="banner-tagline">The Donations Revolution</div>
+			<a href="Join">Sign up & start donating today</a>
+		</div>
     </div>
 </div><!-- END BANNER -->
 <div class="main-content">
-    <!--<div class="intro">
-        <h2><?php echo $home->headline; ?></h2>
-        <?php echo $home->tag_line; ?>
-    </div>-->
 	
 	<div class="intro">
-		<div class="intro_text">
-			<h2>Introducing Give Back</h2>
-			<p>The Donations Revolution</p>
-			<a href="#">Sign up today<br />
-			to start earning & donating</a>
-		</div>
-	</div>
+        <h2><?php echo $home->headline; ?></h2>
+        <?php echo $home->tag_line; ?>
+    </div>
 	
-	<div class="bottom-blocks">
+	<!--<div class="bottom-blocks">
 		<div class="blocks">
 			<img src="<?= $BASE_URL ?>/skin/giveback/images/latest-news.jpg" />
 			<div class="text">
@@ -44,9 +41,8 @@
 			</div>
 		</div>
 		<div class="clear"></div>	
-	</div>	
+	</div>-->	
 	
-	<?php /* 
     <div class="bottom-blocks">
         <div class="blocks about-us" id="homeAbout">
             <h3>About us &gt;</h3>
@@ -116,7 +112,7 @@
 		</div>	
         <div class="clear"></div>
     </div>
-	*/ ?>
+
     <div class="clear"></div>
 </div>
 

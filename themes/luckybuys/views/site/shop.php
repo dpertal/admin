@@ -58,13 +58,13 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 <?php foreach ($categories as $category) : ?>
 
                 <li><a href="<?php echo $BASE_URL."/index.php/site/category/".$category->id ?>">
-                        <? if($category->image != '') {?>
+                        <?php if(isset($category->image) &&  $category->image != '') {?>
                         <img src="<?= $BASE_URL .$category->image; ?>" />
-                        <?}else{
+                        <?php }else{
                         echo $category->name;
                         }?>
                     </a></li>
-                <? endforeach;?>
+                <?php endforeach;?>
 
             </ul>
             <div class="clear"></div>
@@ -101,3 +101,28 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <div class="clear"></div>
         </div>
     </div>
+   <?php if($products != NULL):?>
+    <div class="clear"></div>
+    <div style="width: 940px;height: auto;">
+        <?php 
+        $count = 0;
+//        var_dump($productCount);exit;
+        foreach ($products['data']->item as $product):             
+            if($count >= intval($productCount))
+                break;
+            
+        ?>
+        <div style="width: 200px;padding: 5px; height: 100px;margin: 10px;float:left;text-align: center;">
+            <img src="<?php echo $product->imageurl[0]; ?>" width="100px" height="70px" style="margin-left: 15px;" />
+            <div>
+                <a href="<?php echo $product->linkurl; ?>" target="_blank"><?php echo $product->productname; ?></a>
+            </div>
+            <div>
+                <?php echo $product->price; ?>
+            </div>
+        </div>
+            <?php $count++; endforeach; ?>
+    </div>
+    <div class="clear"></div>
+    <?php endif; ?>
+</div>

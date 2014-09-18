@@ -31,8 +31,36 @@ class SiteController extends Controller {
             return false;
         }
     }
+    function curl_get_contents($url) {
+
+
+        $curl = curl_init($url);
+
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(header('Content-Type: application/Json')));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+
+
+
+        $data = curl_exec($curl);
+
+        curl_close($curl);
+
+        $data = simplexml_load_string($data);
+        
+        return array(
+            'data' => $data
+        );
+    }
 
     public function actionIndex() {
+        
         $program = Yii::app()->params['program'];
         $homeContent = PageContent::model()->find("program_id = $program AND page_id = 1");
         $welcomeContent = PageContent::model()->find("program_id = $program AND page_id = 6");
@@ -53,8 +81,23 @@ class SiteController extends Controller {
 
         $news = News::model()->findAll($criteria_news);
         //$news = News::model()->findAll("program_id = $program and current = 1", array("limit" => "1"));
+        
+//        $pages = new PageCategory();
+        
+        $query_params = PageCategory::model()->find("page_id = 1");
+        if($query_params == NULL){
+            $query_params['count'] = 0;
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
+
         $about = PageContent::model()->find("program_id = $program AND page_id = 2");
-        $this->render('index', array('offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
+      
+        $this->render('index', array('productCount'=>$query_params['count'],'products' => $products,'offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
+        
     }
 
 	
@@ -85,6 +128,7 @@ class SiteController extends Controller {
     }
 
     public function actionContact() {
+
         $model = new ContactForm;
         if (isset($_POST['ContactForm'])) {
             $model->attributes = $_POST['ContactForm'];
@@ -103,6 +147,15 @@ class SiteController extends Controller {
 		$program = Yii::app()->params['program'];
 		$idtemplate = $template["template_about"];
 		$result = Abouts::model()->findAll("template_id = ".$idtemplate." and program_id = $program  and current = 1 ORDER BY sort_order ASC");
+		//$program = Yii::app()->params['program'];
+		//$idtemplate = $template["template_about"];
+		if($template["template_about"] == 2){
+			Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/skin/giveback/css/grid.css');
+		}
+		else{
+			Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/skin/giveback/css/list.css');
+		}
+		$result = Abouts::model()->findAll("program_id = ".PROGRAM_ID."  and current = 1 ORDER BY sort_order ASC");
 		
 		$this->render('aboutus' , array('abouts'=>$result));
     }
@@ -122,20 +175,59 @@ class SiteController extends Controller {
         $model = Offer::model()->findAll($criteria);
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 4");
-        $this->render('hotdeals', array('model' => $model, 'content' => $content));
+        
+        $query_params = PageCategory::model()->find("page_id = 4");
+        if($query_params == NULL){
+            $query_params['count'] = 0;
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
+        
+        $this->render('hotdeals', array('productCount'=>$query_params['count'],'products' => $products,'model' => $model, 'content' => $content));
     }
 
     public function actionNews() {
         $model = News::model()->findAll('program_id = ' . Yii::app()->params['program']);
+        
+        $query_params = PageCategory::model()->find("page_id = 3");
+        
+        if($query_params == NULL){
+            $query_params['count'] = 0;
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
+        
         $this->render('news', array(
             'model' => $model,
+            'products' => $products,
+            'productCount'=>$query_params['count']
         ));
     }
 
     public function actionFaq() {
         $model = Faq::model()->findAll();
+        
+        $query_params = PageCategory::model()->find("page_id = 11");
+        
+        if($query_params == NULL){
+            $query_params['count'] = 0;
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
+        
         $this->render('faq', array(
             'model' => $model,
+            'products' => $products,
+            'productCount'=>$query_params['count']
         ));
     }
 
@@ -143,9 +235,21 @@ class SiteController extends Controller {
 
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
-        $categories = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 5");
-
-        $this->render('shop', array('content' => $content, 'categories' => $categories));
+    
+        $category = RetailerCategory::model()->findAll("parent_id <> '' or parent_id is null ORDER BY RAND() limit 5");      
+        
+        $query_params = PageCategory::model()->find("page_id = 9");
+        
+        if($query_params == NULL){
+            $query_params['count'] = 0;
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
+        
+        $this->render('shop', array('productCount'=>$query_params['count'],'products' => $products,'content' => $content, 'categories' => $category));
     }
 
     public function actionRetailers() {
@@ -157,8 +261,21 @@ class SiteController extends Controller {
         $program = Yii::app()->params['program'];
         $content = PageContent::model()->find("program_id = $program AND page_id = 5");
 		$layout = Yii::app()->params['layout'];
-		 
-        $this->render('retailer', array('model' => $model, 'content' => $content, 'categories' => $categories , 'layout'=>$layout));
+		
+	
+        $query_params = PageCategory::model()->find("page_id = 5");
+//        var_dump($query_params);exit;
+        if($query_params == NULL){
+            $query_params['count'] = 0;
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
+                        
+                
+        $this->render('retailer', array('productCount'=>$query_params['count'],'products'=>$products,'model' => $model, 'content' => $content, 'categories' => $categories , 'layout'=>$layout));
     }
 
     public function actionCategory($id) {
@@ -210,8 +327,16 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionStore(){
-
+  
+	public function actionStore(){
+        $query_params = PageCategory::model()->find("page_id = 6");
+        if($query_params == NULL){
+            $products = NULL;
+        }else{
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+            $products = $this->curl_get_contents($url);
+        }
         if (Yii::app()->request->isPostRequest){
 
             $pager = Yii::app()->request->getPost('pager');
@@ -258,10 +383,12 @@ class SiteController extends Controller {
                 'query' => $postcode,
                 'position' => $location_search,
                 'position_detail' => array('lat' => $latitude, 'lng' => $longitude),
-                'pager' => $pager
+                'pager' => $pager,
+                'products' => $products
             ));
         }
-        return $this->render('store_locators', array('query' => '', 'pager' => 0, 'position_detail' => array('lat' => '', 'lng' => '')));
+
+        return $this->render('store_locators', array('products' => $products,'query' => '', 'pager' => 0, 'position_detail' => array('lat' => '', 'lng' => '')));
     }
 	
 	public function actionCalculate()

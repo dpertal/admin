@@ -99,6 +99,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Youtube video URL</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <?php echo $form->textField($model, 'video_url', array('size' => 128, 'class' => 'form-control', 'maxlength' => 128, 'placeholder' => 'Youtube Video URL')); ?>
+                        <span class="help-inline"><?php echo $form->error($model, 'video_url'); ?></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
                         <button type="reset" class="btn">Cancel</button>

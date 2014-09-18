@@ -5,6 +5,8 @@
     <td><?php echo CHtml::encode($data->commission); ?></td>
 
     <td>
+        <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/admin.php/retailer/coupon/" . $data->id ?>"><i class="fa fa-edit"></i> View Coupons</a>
+        <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/admin.php/retailer/banner/" . $data->id ?>"><i class="fa fa-edit"></i> View Banners</a>        
         <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/admin.php/retailer/update/" . $data->id ?>"><i class="fa fa-edit"></i> Edit</a>
         <?
         echo CHtml::link('<i class="fa fa-trash-o"></i>'.CHtml::encode(' Delete'), array('retailer/delete', 'id'=>$data->id),

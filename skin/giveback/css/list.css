@@ -1,0 +1,39 @@
+.about-row {
+    background-position: left center;
+    background-size: cover;
+    min-height: 250px;
+}
+
+.about-row {
+    float: left;
+    width: 100%;
+}
+.about-row > div {
+    display: inline-block;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+.row-0 .about-text {
+    color: grey;
+    float: left;
+    font-size: 0.9em;
+    padding: 10px 20px;
+    width: 59%;
+}
+
+.about-text ul{
+   margin-left: 16px;
+}
+
+.row-1 .about-image{
+	width: 50%;
+}
+
+.content_more { 
+	padding: 20px 5px;
+	border: 1px solid #ccc;
+	border-left: none;
+	border-right: none;
+	clear: both;
+}
