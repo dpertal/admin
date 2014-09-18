@@ -30,7 +30,7 @@ class RetailerController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete','coupon','banner'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'coupon', 'banner'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -48,16 +48,16 @@ class RetailerController extends Controller {
             'model' => $this->loadModel($id),
         ));
     }
-    
+
     public function actionCoupon($id) {
-        $cupons = AffiliateCoupon::model()->findAll('retailer_id ='.$id);
+        $cupons = AffiliateCoupon::model()->findAll('retailer_id =' . $id);
         $this->render('coupons', array(
             'model' => $cupons,
         ));
     }
-    
+
     public function actionBanner($id) {
-        $cupons = Banner::model()->findAll('retailer_id ='.$id);
+        $cupons = Banner::model()->findAll('retailer_id =' . $id);
         $this->render('banner', array(
             'model' => $cupons,
         ));
@@ -97,8 +97,29 @@ class RetailerController extends Controller {
 
         if (isset($_POST['Retailer'])) {
             $model->attributes = $_POST['Retailer'];
+
+            if (!empty($_FILES['logo']['name'])) {
+                $targetDir = dirname(Yii::app()->basePath) . '/assets/uploads/';
+                if (!file_exists($targetDir))
+                    mkdir($targetDir);
+
+                //Check for valid file type
+                if (strpos($_FILES['logo']['type'], 'image') >= 0) {
+
+                    //Check for valid image
+                    $imageSize = getimagesize($_FILES['logo']['tmp_name']);
+                    if ($imageSize[0] > 0) {
+                        move_uploaded_file($_FILES['logo']['tmp_name'], $targetDir . basename($_FILES['logo']['name']));
+                        $imagePath = '/assets/uploads/' . basename($_FILES['logo']['name']);
+                        $model->logo = $imagePath;
+                    } else
+                        unset($model->logo);
+                } else
+                    unset($model->logo);
+            }
+
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('index'));
         }
 
         $this->render('update', array(

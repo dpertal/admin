@@ -1,7 +1,7 @@
 <!-- BEGIN Page Title -->
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-file-o"></i> User Management</h1>
+        <h1><i class="fa fa-file-o"></i> Retailer Management</h1>
     </div>
 </div>
 <!-- END Page Title -->
@@ -14,9 +14,9 @@
             <a href="<?= Yii::app()->request->baseUrl . "/admin.php/admin/" ?>">Home</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">User Management</li>
+        <li class="active">Retailer Management</li>
         <li style="float: right; margin-top: -5px;">
-            <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/admin.php/user/create" ?>"><i class="fa fa-add"></i> Add New User</a>
+            <a class="btn btn-primary btn-sm" href="<?= Yii::app()->request->baseUrl . "/admin.php/user/create" ?>"><i class="fa fa-add"></i> Add New Retailer</a>
         </li>
     </ul>
 </div>
