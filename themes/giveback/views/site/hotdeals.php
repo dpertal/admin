@@ -4,11 +4,16 @@ $BASE_URL = Yii::app()->request->baseUrl;
 <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/jquery/jquery.colorbox.js"></script>
 <div class="banner hidden-phone">
     <div class="banner-detail">
+		<div id="bannerText" class="static">
+			<div class="banner-title"><?php echo $content->headline; ?></div>
+			<div class="banner-tagline"><?php echo $content->tag_line; ?></div>	
+		</div>
+
         <img src="<?= $BASE_URL . $content->image_url; ?>" alt="" />
     </div>
 </div><!-- END BANNER -->
 <div class="main-content">
-    <div class="hot-deals">
+    <div class="hot-deals-home">
         <div class="hot-deals-top">
             <h2><?php echo $content->headline; ?></h2>
             <p>Search our retailers for the latest deals</p>

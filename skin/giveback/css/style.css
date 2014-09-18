@@ -1,16 +1,8 @@
-@font-face {
-    font-family: "Lucida Grande";
-    src: url('fonts/LucidaGrande.eot');
-    src: url('fonts/LucidaGrande.eot?#iefix') format('embedded-opentype'),
-    url('fonts/LucidaGrande.svg#Lucida Grande') format('svg'),
-    url('fonts/LucidaGrande.woff') format('woff'),
-    url('fonts/LucidaGrande.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
 *{ margin: 0; padding: 0; }
 html, body{
-    font-family: "Lucida Grande", Arial, Verdana, Tahoma, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     direction: ltr;
     font-size: 13px;
     font-weight: normal;
@@ -18,7 +10,7 @@ html, body{
 }
 .clear{ clear: both; }
 ul{ list-style: none; }
-a{ text-decoration: none; }
+a{ text-decoration: none; color: #4e4e4e; }
 a:hover{ text-decoration: underline; }
 
 .header-detail{
@@ -26,9 +18,11 @@ a:hover{ text-decoration: underline; }
     margin: 0 auto;
 }
 .collapse-menu-icon{ display: none; }
-.logo{
-    width: 310px;
+.logo {
     float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 310px;
 }
 .top-navigator{
     width: 580px;
@@ -36,18 +30,23 @@ a:hover{ text-decoration: underline; }
     float: right;
 }
 
-.top-navigator li{
-		clear: none;
-		display: inline-block;
-		float: left;
-		font-size: 1.2em;
-		height: 50px;
-		line-height: 1em;
-		margin-top: 10px;
-		padding: 22px 5px 5px;
-		text-align: center;
-		vertical-align: middle;
-		width: 10%;
+.top-navigator li {
+    clear: none;
+    display: inline-block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 16px;
+    margin-top: 10px;
+    padding: 22px 18px 5px;
+    text-align: center;
+    vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.top-navigator li:first-child{
+	margin-top: 20px;
 }
 
 .top-navigator li.selected, .top-navigator li:hover {
@@ -70,7 +69,6 @@ a:hover{ text-decoration: underline; }
     float: left;
     height: 100%;
     text-decoration: none;
-    text-transform: capitalize;
     width: 100%;
 }
 
@@ -89,8 +87,7 @@ a:hover{ text-decoration: underline; }
 .bag span{}
 .search-bar{
     height: 43px;
-    border-top: 1px solid #DFA6A8;
-    border-bottom: 1px solid #DFA6A8;
+    background: #e5e5e5;
 }
 .search-bar-detail{
     width: 960px;
@@ -126,23 +123,53 @@ a:hover{ text-decoration: underline; }
     cursor: pointer;
 }
 .btn.blue{
-    background: #003876;
+    background: #2d95bf;
 }
-.banner{ background: url("../images/banner-bg.png") repeat-x top center; background-size: contain; }
+.bannerhome{ background: url("../images/bg_intro.jpg") repeat-x top center; background-size: contain; height: 386px; }
 .banner-detail{
+		position: relative;
     width: 1000px;
     margin: 0 auto;
-    text-align: right;
+    text-align: left;
 }
+
+.static {
+    color: #000 !important;
+    position: absolute;
+    width: 273px !important;
+}
+
+#bannerText {
+    color: white;
+    font-weight: 100;
+    padding: 20px;
+    width: 50%;
+}
+
+#bannerText a {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 27px;
+    text-decoration: underline;
+}
+
+#bannerText div {
+    margin: 30px 25px;
+}
+.banner-title {
+    font-size: 2.5em;
+}
+.banner-tagline {
+    font-size: 1.7em;
+    opacity: 0.8;
+}
+
 .main-content{
     width: 960px;
     margin: 0 auto;
 }
-.intro{
-    font-weight: bold;
-	background: url("../images/bg_intro.jpg");
-	 height: 386px;
-}
+
+.intro { text-align: center; }
 .intro h2{
     margin-bottom: 25px;
 }
@@ -171,34 +198,27 @@ a:hover{ text-decoration: underline; }
     text-decoration: underline;
 }
 .bottom-blocks{ margin-top: 45px; }
-.bottom-blocks .blocks {
+
+.bottom-blocks .blocks{
+    width: 230px;
     float: left;
-    margin-left: 8px;
-    margin-right: 8px;
-    width: 303px;
+    margin-right: 5px;
+	margin-left: 2px;
+    border: 1px solid #BBB;
+    height: 185px;
 }
-.bottom-blocks .blocks .text{
+
+.bottom-blocks .blocks h3{
     background: #2d95bf;
     color: #FFF;
-    height: 60px;
+    height: 30px;
     padding-top: 10px;
     padding-left: 10px
 }
 
-.bottom-blocks .blocks .text a{
-	color: #fff;
-	font-size: 11px;
-	text-transform: uppercase;
-}
-
-.bottom-blocks .blocks h3{
-	font-size: 19px;
-    text-transform: uppercase;
-	margin: 4px 0;
-}
-
 .bottom-blocks .blocks .detail{}
 .bottom-blocks .blocks .detail img{ width: 100%; }
+
 .bottom-ads{ margin-top: 30px; }
 .bottom-ads li {
     display: inline-block;
@@ -208,14 +228,13 @@ a:hover{ text-decoration: underline; }
 }
 .bottom-ads li img{ width: 100px; }
 
-.bg_retailer {
-    background: url("../images/bg_retailer.png") repeat-x scroll center 0 #f8f8f8;
-    height: 190px;
-    padding-top: 89px;
-}  
-.footer{
+
+.footer {
+    background: url("../images/bg_footer.jpg") repeat-x scroll 0 0 #5fbf6c;
+    height: 97px;
+    margin-top: 20px;
+    padding-right: 10px;
     padding-top: 20px;
-    background: url('../images/bg_footer.jpg') repeat-x #5fbf6c;
 }
 
 .footer-detail{
@@ -342,7 +361,10 @@ a:hover{ text-decoration: underline; }
     font-weight: normal;
 }
 .news-rows .detail{}
-.hot-deals{}
+.hot-deals-home{ 
+    position: relative;
+    top: -50px;
+}
 .hot-deals-top, .retailer-top{
     font-size: 16px;
     text-align: justify;
@@ -1010,55 +1032,23 @@ div.about-extra {
     margin-top: 30px;
 }
 a.about-join {
-    background-color: #003876;
+    background-color: #71c369;
     margin-top: 10px;
     padding: 5px 10px;
 	color: white;
     text-decoration: none;
+	text-transform: uppercase;
 }
 a.about-more {
     color: #444;
     cursor: pointer;
 }
 
-.about-row {
-    background-position: left center;
-    background-size: cover;
-    height: 250px;
-    margin: auto;
-    max-width: 1000px;
+.about-extra a{
+	cursor: pointer;
 }
 
-.about-row {
-    clear: both;
-    width: 100%;
-}
-.about-row > div {
-    display: inline-block;
-    margin-top: 20px;
-    vertical-align: middle;
-}
-.about-row:nth-child(2n) .about-text, .about-row:nth-child(2n+1) .about-image {
-    float: right;
-}
-.about-row:nth-child(2n) .about-image, .about-row:nth-child(2n+1) .about-text {
-    float: left;
-}
-.about-row:nth-child(2n) .about-image {
-    text-align: right;
-}
-.about-row:nth-child(2n+1) .about-image {
-    text-align: right;
-}
 
-.row-1 .about-text{ text-align: right; float: right !important }
-
-div.about-text {
-	 color: grey;
-    font-size: 0.9em;
-    padding: 10px 20px;
-    width: 60%;
-}
 
 div.about-more-content {
     border-bottom: thin solid lightgrey;
@@ -1070,7 +1060,7 @@ div.about-more-content {
 .about-page {
     margin: 0 auto;
     min-width: 300px;
-    width: 1000px;
+   
 }
 
 div.about-text  ul {
@@ -1099,11 +1089,7 @@ div.about-text p {
     margin: 0;
 }
 
-.about-row ul {
-    margin-left: 0;
-    margin-top: 7px;
-    padding-left: 35px;
-}
+
 @media all and (max-width: 900px) {
 .about-row > div {
     width: 100%;

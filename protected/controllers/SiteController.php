@@ -100,9 +100,15 @@ class SiteController extends Controller {
 
     public function actionAboutUs() {
 		$template = Yii::app()->params['template_about'];
-		$program = Yii::app()->params['program'];
-		$idtemplate = $template["template_about"];
-		$result = Abouts::model()->findAll("template_id = ".$idtemplate." and program_id = $program  and current = 1 ORDER BY sort_order ASC");
+		//$program = Yii::app()->params['program'];
+		//$idtemplate = $template["template_about"];
+		if($template["template_about"] == 2){
+			Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/skin/giveback/css/grid.css');
+		}
+		else{
+			Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/skin/giveback/css/list.css');
+		}
+		$result = Abouts::model()->findAll("program_id = ".PROGRAM_ID."  and current = 1 ORDER BY sort_order ASC");
 		
 		$this->render('aboutus' , array('abouts'=>$result));
     }
@@ -210,40 +216,5 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionStore(){
-        if (Yii::app()->request->isPostRequest){
-
-            $pager = Yii::app()->request->getPost('pager');
-
-            if (empty($pager)){
-                $offset = 0;
-                $pager = 1;
-            }
-            else $offset = ($pager - 1) * 10;
-
-            $postcode = Yii::app()->request->getPost('store_query');
-            $location = Retailer::get_lat_long($postcode);
-            $latitude = $location['lat'];
-            $longitude = $location['lng'];
-            $sql = "SELECT *,
-                    (((acos(sin((".$latitude."*pi()/180)) * sin((`lat`*pi()/180))
-                    +cos((".$latitude."*pi()/180)) * cos((`lat`*pi()/180))
-                    * cos(((".$longitude."- `lng`)*pi()/180))))*180/pi())*60*1.1515)
-                    as distance
-                    FROM `retailer`
-                    ORDER BY distance ASC LIMIT {$offset},10";
-            $results = Yii::app()->db->createCommand($sql)->queryAll();
-
-            $request_type = Yii::app()->request->getPost('type');
-
-            if ($request_type == 'json'){
-                header ('Content-Type: application/json');
-                echo json_encode($results);
-                exit();
-            }
-            return $this->render('store_locators', array('stores' => $results, 'query' => $postcode, 'pager' => $pager));
-        }
-        return $this->render('store_locators', array('query' => '', 'pager' => 0));
-    }
 
 }
