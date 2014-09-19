@@ -16,7 +16,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
         background: none !important;
     }
 </style>
-<div  style="background: #003876">
+<div  style="background: #f1595b">
     <div class="main-content" style="margin-top: 0px;">
         <div id="navbar" class="navbar">
             <ul class="nav flaty-nav navbar-collapse collapse" id="nav-horizontal">
@@ -55,7 +55,38 @@ $BASE_URL = Yii::app()->request->baseUrl;
     <div class="online-shop">
         <div class="section-1">
             <ul>
-                <?php foreach ($categories as $category) : ?>
+				<li>
+                    <img src="<?= $BASE_URL ?>/skin/giveback/images/category1.jpg" />
+					<h3>Fashion <br />& Footwear</h3>
+                      <a class="btnshop" href="#">shop now</a>
+				</li>
+				<li>
+                    <img src="<?= $BASE_URL ?>/skin/giveback/images/category2.jpg" />
+					<h3>Fashion <br />& Footwear</h3>
+                      <a class="btnshop" href="#">shop now</a>
+				</li>
+				<li>
+                    <img src="<?= $BASE_URL ?>/skin/giveback/images/category3.jpg" />
+					<h3>Fashion <br />& Footwear</h3>
+                      <a class="btnshop" href="#">shop now</a>
+				</li>
+				<li>
+                    <img src="<?= $BASE_URL ?>/skin/giveback/images/category4.jpg" />
+					<h3>Fashion <br />& Footwear</h3>
+                      <a class="btnshop" href="#">shop now</a>
+				</li>
+				<li>
+                    <img src="<?= $BASE_URL ?>/skin/giveback/images/category5.jpg" />
+					<h3>Fashion <br />& Footwear</h3>
+                      <a class="btnshop" href="#">shop now</a>
+				</li>
+				<li>
+                    <img src="<?= $BASE_URL ?>/skin/giveback/images/category6.jpg" />
+					<h3>Fashion <br />& Footwear</h3>
+                    <a class="btnshop" href="#">shop now</a>
+				</li>
+				
+                <!-- <?php foreach ($categories as $category) : ?>
 
                 <li><a href="<?php echo $BASE_URL."/index.php/site/category/".$category->id ?>">
                         <? if($category->image != '') {?>
@@ -64,7 +95,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                         echo $category->name;
                         }?>
                     </a></li>
-                <? endforeach;?>
+                <? endforeach;?> -->
 
             </ul>
             <div class="clear"></div>

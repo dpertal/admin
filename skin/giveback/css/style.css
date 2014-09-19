@@ -22,10 +22,10 @@ a:hover{ text-decoration: underline; }
     float: left;
     margin-left: 10px;
     margin-top: 10px;
-    width: 310px;
+    width: 175px;
 }
 .top-navigator{
-    width: 580px;
+    width: 660px;
     margin-left: 20px;
     float: right;
 }
@@ -124,6 +124,10 @@ a:hover{ text-decoration: underline; }
 }
 .btn.blue{
     background: #2d95bf;
+}
+
+.banner{
+    min-height: 325px;
 }
 .bannerhome{ background: url("../images/bg_intro.jpg") repeat-x top center; background-size: contain; height: 386px; }
 .banner-detail{
@@ -380,22 +384,31 @@ a:hover{ text-decoration: underline; }
     background-repeat: no-repeat;
     background-position: 9px center;
     float: left;
+	height: 30px;
 }
 .hot-deals-categories .instore{ background-image: url("../images/ic_instore_blue.png"); }
 .hot-deals-categories .instore:hover{ background-image: url("../images/ic_instore_white.png"); }
-.hot-deals-categories .online{ background-image: url("../images/ic_online_blue.png"); }
+.hot-deals-categories .online{ background-image: url("../images/ic_online_blue.png");  }
 .hot-deals-categories .online:hover{ background-image: url("../images/ic_online_white.png"); }
 .hot-deals-categories .ikoupons{ background-image: url("../images/ic_coupon_blue.png"); }
 .hot-deals-categories .ikoupons:hover{ background-image: url("../images/ic_coupon_white.png"); }
 .hot-deals-categories .cash-vouchers{ background-image: url("../images/ic_voucher_blue.png"); }
 .hot-deals-categories .cash-vouchers:hover{ background-image: url("../images/ic_voucher_white.png"); }
+
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+}
+
 .hot-deals-categories .category a{
     color: #003083;
     font-weight: bold;
     font-size: 14px;
     margin-left: 5px;
 }
-.hot-deals-categories .category:hover, .retailer-categories .category:hover{ background-color: #003876; }
+.hot-deals-categories .category:hover{ background-color: #003876; }
+.retailer-categories .category:hover{ background-color: #fcb040; }
 .hot-deals-categories .category:hover a,
 .retailer-categories .category:hover a{ color: #FFF;}
 .hot-deals-categories .category-paginator, .hot-deals-paginator,
@@ -421,7 +434,31 @@ a:hover{ text-decoration: underline; }
     color: #757575;
 }
 .hot-deals-list{}
-.deal-box{
+
+
+/****************************************************************/
+/***************************HOT DEAL PAGE************************/
+/*****************************************************************/
+.deal-box {
+    background: url("../images/ic_online_blue.png") no-repeat scroll 5px 5px / 40px auto rgba(0, 0, 0, 0);
+    border: 1px solid #b8b8b8;
+    float: left;
+    height: 90px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 5px 5px 5px 55px;
+    width: 42%;
+}
+
+.sepline{
+	display: block;
+	float: left;
+	height:90px;
+	width: 11px;
+}
+
+
+/*.deal-box{
     width: 245px;
     height: 90px;
     border: 1px solid #B8B8B8;
@@ -432,7 +469,7 @@ a:hover{ text-decoration: underline; }
     margin-bottom: 10px;
     margin-left: 1%;
     float: left;
-}
+}*/
 .deal-box .left{
     width: 70%;
     float: left;
@@ -453,6 +490,28 @@ a:hover{ text-decoration: underline; }
 }
 .deal-box .right img{ width: 100%; }
 .retailer-categories{ margin-top: 10px }
+
+/****************************************************************/
+/***************************HOT RETAILER PAGE************************/
+/*****************************************************************/
+
+.retailer-box {
+    border: 1px solid #b8b8b8;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 230px;
+}
+/*.retailer-box{
+    border: 1px solid #B8B8B8;
+    width: 225px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    float: left;
+    
+}*/
+
+
 .retailer-categories .category{
     width: 125px;
     height: 45px;
@@ -466,18 +525,15 @@ a:hover{ text-decoration: underline; }
 }
 .retailer-categories .category a{
     font-size: 15px;
-    color: #003083;
+    color: #383938;
     font-weight: bold;
 }
-.retailer-boxes{}
-.retailer-box{
-    border: 1px solid #B8B8B8;
-    width: 225px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    float: left;
-    
-}
+
+
+
+
+.retailer-boxes{ margin-left: -8px; }
+
 .retailer-box .image{
     width: 95%;
     margin: 0 auto;
@@ -493,6 +549,7 @@ a:hover{ text-decoration: underline; }
     padding-top: 15px;
     padding-bottom: 15px;
     color: #888;
+	height: 60px;
 }
 .cash-precent .left{
     display: inline-block;
@@ -501,14 +558,26 @@ a:hover{ text-decoration: underline; }
 .cash-precent .left p{
     height: 40px;
 }
-.cash-precent .left img{ width: 35px; }
-.cash-precent .right{ display: inline-block; }
-.cash-precent .right .percent{
+/* .cash-precent .left img{ width: 35px; }*/
+
+
+/*.cash-precent .right{ display: inline-block; } */
+
+.cash-precent .right {
+    background: url("../images/bg_sep.png") no-repeat scroll 0 center rgba(0, 0, 0, 0);
+    display: inline-block;
+    padding-left: 7px;
+    width: 63px;
+	font-weight: bold;
+	font-size: 14px;
+	width: 82px;
+} 
+/*.cash-precent .right .percent{
     height: 40px;
     font-size: 25px;
     color: #EA535E;
     font-weight: bold;
-}
+}*/
 .retailer-box .bottom{
     text-align: center;
     background: #EEE;
@@ -532,6 +601,23 @@ a:hover{ text-decoration: underline; }
     font-size: 1.3em;
     color: #105;
 }
+
+
+/********************************ONLINE SHOP******************************/
+.section-1 li{ position: relative;  height: 117px;  }
+
+.section-1 li a {
+    background: none repeat scroll 0 0 #262262;
+    bottom: 15px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    left: 8px;
+    padding: 4px 10px;
+    position: absolute;
+    text-transform: uppercase;
+}
+.section-1 li h3{ position: absolute; top : 8px; left: 8px; color: #262262; } 
 .online-shop{}
 .online-shop .section-1{ margin-bottom: 20px; }
 .online-shop .section-1 li{
@@ -564,10 +650,10 @@ a:hover{ text-decoration: underline; }
     font-size: 14px;
     margin-top: 10px;
 }
-.online-shop .section-2 .box.onsport{ background: #003876; }
-.online-shop .section-2 .box.balley-nelson{ background: #BE9A1E; }
-.online-shop .section-2 .box.iconic{ background: #B9102B; }
-.online-shop .section-2 .box.zanui{ background: #003876; }
+.online-shop .section-2 .box.onsport{ background: #2d95bf; }
+.online-shop .section-2 .box.balley-nelson{ background: #ad7bb6; }
+.online-shop .section-2 .box.iconic{ background: #fcb040; }
+.online-shop .section-2 .box.zanui{ background: #2d95bf; }
 .winners-content{}
 .search-winners{
     width: 20%;
@@ -990,7 +1076,14 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-.store-search-results{ margin-top: 25px; }
+.store-contents{ padding-top: 15px; }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.store-search{ float: left; clear: none; }
+.store-search form{ display: inline-block; }
+.store-search-results{ margin-top: 25px; border: 1px solid #092C52; position: relative; }
 .store-locator{
     float: left;
     width: 100%;
@@ -998,31 +1091,108 @@ table {
     font-size: 12px;
     margin-bottom: 20px;
 }
-.store-locator thead {
-    background: #3D3935;
+.store-search-results h3{
+    background: #144070;
+    padding: 10px;
     color: #FFF;
-    font-family: "MuseoSans500",Arial,sans-serif;
 }
-.store-locator td, .store-locator th {
-    padding: 15px 15px;
-    font-weight: inherit;
-    font-size: inherit;
-    line-height: 1.3em;
-    border: 2px solid #FFF;
+.store-result-left{
+    width: 450px;
+    height: 590px;
+    overflow-y: scroll;
+    float: left;
 }
-.store-locator .even {
-    background: #F8F8F9;
+.store-result-right{
+    width: 500px;
+    float: right;
+    border-left: 1px solid #CFCFCF;
 }
-.store-locator .even:hover {
-    background: #F1F1F1;
+.store-row{
+    padding: 12px 10px;
+    border-bottom: 1px solid #E6E6E6;
+    margin-left: 5px;
+    background: url("/assets/uploads/bc-icon.png") no-repeat 360px 5px;
 }
-.store-locator .odd {
+.store-row a.btn-locate{
+    display: block;
+    margin-left: 10px;
+    float: left;
+    margin-right: 10px;
+}
+.store-row .store-name{ color: #000; }
+.store-row a.btn-store-detail{
+    font-size: 11px;
+    color: #B40D0D;
+}
+.store-current-location{ width: 200px; float: left; }
+.store-gmap {
+    width: 500px;
+    height: 580px;
+}
+.popup-store{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.popup-store .bg{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    z-index: 1;
+    position: absolute;
+}
+.popup-detail{
+    z-index: 2;
+    position: relative;
     background: #FFF;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 915px;
+    height: 590px;
 }
-.store-locator .odd:hover {
-    background: #F4F4F4;
+.popup-store-left{
+    margin: 20px;
+    width: 235px;
+    padding: 10px;
+    border: 1px solid #BDBDBD;
+    border-radius: 10px;
+    height: 300px;
+    float: left;
 }
-.store-locator a{ color:  #000000; }
+.popup-store-left h4{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.popup-store-right{
+    width: 575px;
+    height: 500px;
+    margin: 20px;
+    float: right;
+}
+.popup-map{
+    width: 575px;
+    height: 330px;
+}
+.popup-timming{ margin-top: 20px; }
+.close-popup{
+    position: absolute;
+    bottom: 7px;
+    left: 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+    background: #6F6969;
+    padding: 5px 10px;
+    border-radius: 13px;
+}
+.close-popup a{
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 
 /************************************************************/
@@ -1107,3 +1277,105 @@ div.about-text p {
     width: 95%;
 }
 }
+
+/*Calculation form*/
+
+.calcForm{
+    width: 496px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.formBlock{
+    display: table;
+    margin-bottom: 10px;
+}
+.formBlock label{
+    font-size: 13px;
+    font-weight: bold;
+    width: 170px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding-right: 10px;
+    color: #737373;
+}
+.formBlock input,.formBlock select{
+    padding: 10px;
+}
+.formBlock input{
+    width: 250px;
+    margin-right: 10px;
+}
+.formBlock select{
+    width: 314px;
+}
+.formBlock select.currSel{
+    width: auto;
+}
+.calcResHead,.calcResAmount{
+    display: table;
+    width: 100%;
+}
+
+.calcHead{
+    margin: 10px 0 25px 0;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 25px;
+    color: #737373;
+}
+.calcBtn{
+    float: right;
+    border: 0 none;
+}
+.calcAmount{
+    font-size: 30px;
+    font-weight: bold;
+}
+.calcResult{
+    text-align: center;
+    margin: 50px 0;
+}
+.calcResult .calcHead,.calcAmount{
+    margin-bottom: 10px;
+    display: table-cell;
+    vertical-align: middle;
+    border-right: 1px solid #ddd;
+    width: 50%;
+}
+.calcResult .calcHead:last-child,.calcAmount:last-child{
+    border-right:0 none ;
+}
+.calcErr{
+    color: darkred;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 600px){
+    .calcForm,.formBlock,.formBlock select,.calcBtn,.formBlock input,
+    .formBlock select, .formBlock select.currSel{
+        width: 100%;
+    }
+    .formBlock,.formBlock label{
+       display: block;
+    }
+    .formBlock input,.formBlock label{
+        margin-bottom: 10px;
+    }
+    .formBlock label{
+        font-size: 15px;
+        width: auto;
+        text-align: left;
+    }
+    .calcBtn {
+        float: none;
+    }
+}
+
+/*End Calculation form*/
