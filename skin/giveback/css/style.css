@@ -1277,3 +1277,105 @@ div.about-text p {
     width: 95%;
 }
 }
+
+/*Calculation form*/
+
+.calcForm{
+    width: 496px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.formBlock{
+    display: table;
+    margin-bottom: 10px;
+}
+.formBlock label{
+    font-size: 13px;
+    font-weight: bold;
+    width: 170px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding-right: 10px;
+    color: #737373;
+}
+.formBlock input,.formBlock select{
+    padding: 10px;
+}
+.formBlock input{
+    width: 250px;
+    margin-right: 10px;
+}
+.formBlock select{
+    width: 314px;
+}
+.formBlock select.currSel{
+    width: auto;
+}
+.calcResHead,.calcResAmount{
+    display: table;
+    width: 100%;
+}
+
+.calcHead{
+    margin: 10px 0 25px 0;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 25px;
+    color: #737373;
+}
+.calcBtn{
+    float: right;
+    border: 0 none;
+}
+.calcAmount{
+    font-size: 30px;
+    font-weight: bold;
+}
+.calcResult{
+    text-align: center;
+    margin: 50px 0;
+}
+.calcResult .calcHead,.calcAmount{
+    margin-bottom: 10px;
+    display: table-cell;
+    vertical-align: middle;
+    border-right: 1px solid #ddd;
+    width: 50%;
+}
+.calcResult .calcHead:last-child,.calcAmount:last-child{
+    border-right:0 none ;
+}
+.calcErr{
+    color: darkred;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 600px){
+    .calcForm,.formBlock,.formBlock select,.calcBtn,.formBlock input,
+    .formBlock select, .formBlock select.currSel{
+        width: 100%;
+    }
+    .formBlock,.formBlock label{
+       display: block;
+    }
+    .formBlock input,.formBlock label{
+        margin-bottom: 10px;
+    }
+    .formBlock label{
+        font-size: 15px;
+        width: auto;
+        text-align: left;
+    }
+    .calcBtn {
+        float: none;
+    }
+}
+
+/*End Calculation form*/
