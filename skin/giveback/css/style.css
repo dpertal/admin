@@ -1076,6 +1076,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+.store-contents{ padding-top: 15px; }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.store-search{ float: left; clear: none; }
+.store-search form{ display: inline-block; }
 .store-search-results{ margin-top: 25px; }
 .store-locator{
     float: left;
@@ -1109,6 +1116,13 @@ table {
     background: #F4F4F4;
 }
 .store-locator a{ color:  #000000; }
+.store-current-location{ width: 200px; float: left; }
+.store-gmap {
+    width: 98%;
+    height: 350px;
+    border: 10px solid #646464;
+    margin-top: 10px;
+}
 
 
 /************************************************************/
