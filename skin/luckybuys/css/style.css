@@ -931,7 +931,7 @@ table {
 }
 .store-search{ float: left; clear: none; }
 .store-search form{ display: inline-block; }
-.store-search-results{ margin-top: 25px; }
+.store-search-results{ margin-top: 25px; border: 1px solid #092C52; position: relative; }
 .store-locator{
     float: left;
     width: 100%;
@@ -939,39 +939,108 @@ table {
     font-size: 12px;
     margin-bottom: 20px;
 }
-.store-locator thead {
-    background: #3D3935;
+.store-search-results h3{
+    background: #144070;
+    padding: 10px;
     color: #FFF;
-    font-family: "MuseoSans500",Arial,sans-serif;
 }
-.store-locator td, .store-locator th {
-    padding: 15px 15px;
-    font-weight: inherit;
-    font-size: inherit;
-    line-height: 1.3em;
-    border: 2px solid #FFF;
+.store-result-left{
+    width: 450px;
+    height: 590px;
+    overflow-y: scroll;
+    float: left;
 }
-.store-locator .even {
-    background: #F8F8F9;
+.store-result-right{
+    width: 500px;
+    float: right;
+    border-left: 1px solid #CFCFCF;
 }
-.store-locator .even:hover {
-    background: #F1F1F1;
+.store-row{
+    padding: 12px 10px;
+    border-bottom: 1px solid #E6E6E6;
+    margin-left: 5px;
+    background: url("/assets/uploads/bc-icon.png") no-repeat 360px 5px;
 }
-.store-locator .odd {
-    background: #FFF;
+.store-row a.btn-locate{
+    display: block;
+    margin-left: 10px;
+    float: left;
+    margin-right: 10px;
 }
-.store-locator .odd:hover {
-    background: #F4F4F4;
+.store-row .store-name{ color: #000; }
+.store-row a.btn-store-detail{
+    font-size: 11px;
+    color: #B40D0D;
 }
-.store-locator a{ color:  #000000; }
 .store-current-location{ width: 200px; float: left; }
 .store-gmap {
-    width: 98%;
-    height: 350px;
-    border: 10px solid #646464;
+    width: 500px;
+    height: 580px;
+}
+.popup-store{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.popup-store .bg{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    z-index: 1;
+    position: absolute;
+}
+.popup-detail{
+    z-index: 2;
+    position: relative;
+    background: #FFF;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 915px;
+    height: 590px;
+}
+.popup-store-left{
+    margin: 20px;
+    width: 235px;
+    padding: 10px;
+    border: 1px solid #BDBDBD;
+    border-radius: 10px;
+    height: 300px;
+    float: left;
+}
+.popup-store-left h4{
+    margin-bottom: 10px;
     margin-top: 10px;
 }
-
+.popup-store-right{
+    width: 575px;
+    height: 500px;
+    margin: 20px;
+    float: right;
+}
+.popup-map{
+    width: 575px;
+    height: 330px;
+}
+.popup-timming{ margin-top: 20px; }
+.close-popup{
+    position: absolute;
+    bottom: 7px;
+    left: 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+    background: #6F6969;
+    padding: 5px 10px;
+    border-radius: 13px;
+}
+.close-popup a{
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 /************************************************************/
 /************************About Page*****************************/
