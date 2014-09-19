@@ -22,7 +22,7 @@ echo CHtml::dropDownList('cat_id', '',
             'type' => 'POST',
             'url' => Yii::app()->createUrl('site/Calculate', array('calccash' => true)),
             'update' => '#data',
-            'data' => 'js:jQuery(this).parents("form").serialize()',``
+            'data' => 'js:jQuery(this).parents("form").serialize()',
         )));
 
 ?>
