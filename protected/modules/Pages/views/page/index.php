@@ -1,4 +1,5 @@
 <!-- BEGIN Page Title -->
+<?php //var_dump($productCount);die;?>
 <div class="page-title">
     <div>
         <h1><i class="fa fa-file-o"></i> <?php if (isset($program)){ echo $program->name.' - '; } ?> Pages</h1>
@@ -45,4 +46,92 @@
     </div>
 
 </div>
+<div class="row" id='user-grid'>
+    <div class="col-md-12">
+        <div class="box">
 
+            <div class="box-content">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover fill-head">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Img</th>
+                                <th>Visible</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        <?php if(isset($products)){?>
+                        
+                        <?php   $formprod = $this->beginWidget('CActiveForm', array(
+                                        'id'=>'select-prod',
+                                        'enableClientValidation'=>false,    
+                                        'clientOptions'=>array(
+                                            'validateOnSubmit'=>true,
+                                        ),
+                                )); 
+                        $count = 0;
+                        ?>   
+                        <?php foreach ( $products['data']->item as $product ){ ?>
+                            <?php if($count >= intval($productCount))
+                                    break; 
+                            ?>
+                            <tr class="product_data">
+                                <td><a class="product-name"  href="<?php echo $product->linkurl; ?>" target="_blank"><?php echo $product->productname; ?></a></td>
+                                <td class="product-price"><?php echo $product->price; ?></td>
+                                <td ><img class="product-img" src="<?php echo $product->imageurl[0]; ?>" width="100px" height="70px"  /></td>
+                                <td class="product-visible"> <input type="checkbox" class="product-check" /> </td>
+                            </tr>
+                       <?php 
+                       $count++;
+                        } ?>
+                            <div class="row buttons">
+                                    <?php echo CHtml::Button('SUBMIT AJAX',array('class'=>'save_prod')); ?>
+                           </div>
+                       <?php $this->endWidget(); ?>
+                       
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+$(document).ready(function () {
+    $('.save_prod').click(function(){
+        products = [];
+//        var count = 0;
+        $('.product_data').each(function(index){
+            
+            
+            if($(this).find(".product-check").is(':checked')){
+                products[index] =  {name:$(this).find(".product-name").text(),visible:1,price:$(this).find(".product-price").text(),img:$(this).find(".product-img").attr('src')};
+            }else{
+                products[index] =  {name:$(this).find(".product-name").text(),visible:0,price:$(this).find(".product-price").text(),img:$(this).find(".product-img").attr('src')};
+            }
+//            count++;   
+        });
+//        console.log(products);
+//        return false;
+        console.log($('#PageCategory_page_id').val());
+        //products = JSON.stringify(products);
+        $.ajax({
+            type: 'POST',
+             url: 'page/SaveProduct',
+             data:{data: products},
+             success:function(data){
+                         alert(data); 
+             },             
+
+           dataType:'Json'
+        });
+    });
+    
+});
+    
+</script>

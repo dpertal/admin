@@ -1,4 +1,7 @@
-<?php
+<?php 
+ob_start();
+header("Content-Type: text/html"); 
+ob_end_clean();
 $BASE_URL = Yii::app()->request->baseUrl;
 $bodyClass = '';
 $user = Yii::app()->user;
@@ -53,6 +56,7 @@ else if ($this->uniqueid == 'Pages/page'){
     <head>
         <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            
             <title>Admin Panel</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -60,11 +64,34 @@ else if ($this->uniqueid == 'Pages/page'){
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/font-awesome/css/font-awesome.min.css" />
             <link rel="stylesheet" type="text/css" href="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/css/datepicker.css" />
-
+            
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty-responsive.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.css" />
-            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/custom.css" />
+            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/custom.css" />    
+            
+            <!--basic scripts-->
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/bootstrap/js/bootstrap.min.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/jquery-cookie/jquery.cookie.js"></script>
+            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/jquery.dataTables.js"></script>
+            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.js"></script>
+
+            <!--page specific plugin scripts-->
+            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.resize.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.pie.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.stack.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.crosshair.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.tooltip.min.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/assets/sparkline/jquery.sparkline.min.js"></script>
+            <script src="<?php $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+            <!--flaty scripts-->
+            <script src="<?php echo $BASE_URL; ?>/js/flaty.js"></script>
+            <script src="<?php echo $BASE_URL; ?>/js/flaty-demo-codes.js"></script>
     </head>
 
 
@@ -349,27 +376,7 @@ else if ($this->uniqueid == 'Pages/page'){
         </div>
         <!-- END Container -->
 
-        <!--basic scripts-->
-            <script src="<?php echo $BASE_URL; ?>/assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/jquery-cookie/jquery.cookie.js"></script>
-            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/jquery.dataTables.js"></script>
-            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.js"></script>
-
-            <!--page specific plugin scripts-->
-            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.resize.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.pie.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.stack.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.crosshair.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/flot/jquery.flot.tooltip.min.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/assets/sparkline/jquery.sparkline.min.js"></script>
-            <script src="<?php $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-            <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
-            <!--flaty scripts-->
-            <script src="<?php echo $BASE_URL; ?>/js/flaty.js"></script>
-            <script src="<?php echo $BASE_URL; ?>/js/flaty-demo-codes.js"></script>
+        
 
     </body>
 </html>
