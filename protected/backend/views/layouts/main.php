@@ -18,7 +18,7 @@ $cont = "";
 $abouts = "";
 $config = "";
 $pages = "";
-
+$pageBanner = "";
 if ($this->uniqueid == 'content') {
     $cont = "active";
 } else if ($this->uniqueid == 'faq') {
@@ -47,6 +47,9 @@ else if ($this->uniqueid == 'config') {
     $config = "active";
 }
 else if ($this->uniqueid == 'Pages/page'){
+    $pages = "active";
+}
+else if ($this->uniqueid == 'pageBanner'){
     $pages = "active";
 }
 ?>
@@ -242,7 +245,15 @@ else if ($this->uniqueid == 'Pages/page'){
                             <b class="arrow fa fa-angle-right"></b>
                         </a>
                     </li>
-
+                    
+                    <li class="<?= $pageBanner ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/pageBanner/" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Page Banner</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+                    
                     <li class="<?= $news ?>">
                         <?php
                         $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
