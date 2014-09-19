@@ -26,7 +26,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                     </div>
                     <div class="right-categories">
                         <div class="clear"></div>
-                        <div class="category-paginator">
+                         <div class="category-paginator">
                             <span><a href="#"> << </a></span>
                             <span><a href="#"> < </a></span>
                             <span><a href="#"> 1 </a></span>
@@ -98,8 +98,113 @@ $BASE_URL = Yii::app()->request->baseUrl;
                                     <span><a href="#"> >> </a></span>
                                 </div>
                                 <div class="retailer-boxes">
-                                    <?php foreach ($model as $retailer) {
+									
+									<!--LOAD RETALER HERE-->
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer1.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+							
+									</div>
+									
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer2.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+							
+									</div>
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer3.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer4.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer1.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer2.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+										
+									</div>
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<img src="<?= $BASE_URL ?>/skin/giveback/images/retailer3.jpg" alt="" />
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="retailer-box popup" href=""  style="cursor:pointer;">
+										<div class="cash-precent">
+											<div class="left">
+												<p><img src="<?= $BASE_URL ?>/skin/giveback/images/retailer4.jpg" alt="" /></p>
+											</div>
+											<div class="right">
+												<p class="program">BonusCash Back</p>
+												<p class="percent">3%</p>	
+											</div>
+										</div>
+										
+									</div>
+									
+                                   <!-- <?php foreach ($model as $retailer) {
                                         ?>
+										
                                         <div class="retailer-box popup<?= $retailer->id ?>" href="#popup<?= $retailer->id ?>"  style="cursor:pointer;">
                                             <p class="image"><img src="<?= $retailer->logo_url ?>" alt="" /></p>
                                             <div class="cash-precent">
@@ -130,7 +235,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                                             $(".popup<?= $retailer->id ?>").colorbox({inline: true});
                                         </script>
                                         <? }?>
-
+										-->
                                         <div class="clear"></div>
                                         <div class="retailers-paginator">
                                             <span><a href="#"> << </a></span>

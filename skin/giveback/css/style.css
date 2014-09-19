@@ -22,10 +22,10 @@ a:hover{ text-decoration: underline; }
     float: left;
     margin-left: 10px;
     margin-top: 10px;
-    width: 310px;
+    width: 175px;
 }
 .top-navigator{
-    width: 580px;
+    width: 660px;
     margin-left: 20px;
     float: right;
 }
@@ -124,6 +124,10 @@ a:hover{ text-decoration: underline; }
 }
 .btn.blue{
     background: #2d95bf;
+}
+
+.banner{
+    min-height: 325px;
 }
 .bannerhome{ background: url("../images/bg_intro.jpg") repeat-x top center; background-size: contain; height: 386px; }
 .banner-detail{
@@ -380,22 +384,31 @@ a:hover{ text-decoration: underline; }
     background-repeat: no-repeat;
     background-position: 9px center;
     float: left;
+	height: 30px;
 }
 .hot-deals-categories .instore{ background-image: url("../images/ic_instore_blue.png"); }
 .hot-deals-categories .instore:hover{ background-image: url("../images/ic_instore_white.png"); }
-.hot-deals-categories .online{ background-image: url("../images/ic_online_blue.png"); }
+.hot-deals-categories .online{ background-image: url("../images/ic_online_blue.png");  }
 .hot-deals-categories .online:hover{ background-image: url("../images/ic_online_white.png"); }
 .hot-deals-categories .ikoupons{ background-image: url("../images/ic_coupon_blue.png"); }
 .hot-deals-categories .ikoupons:hover{ background-image: url("../images/ic_coupon_white.png"); }
 .hot-deals-categories .cash-vouchers{ background-image: url("../images/ic_voucher_blue.png"); }
 .hot-deals-categories .cash-vouchers:hover{ background-image: url("../images/ic_voucher_white.png"); }
+
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+}
+
 .hot-deals-categories .category a{
     color: #003083;
     font-weight: bold;
     font-size: 14px;
     margin-left: 5px;
 }
-.hot-deals-categories .category:hover, .retailer-categories .category:hover{ background-color: #003876; }
+.hot-deals-categories .category:hover{ background-color: #003876; }
+.retailer-categories .category:hover{ background-color: #fcb040; }
 .hot-deals-categories .category:hover a,
 .retailer-categories .category:hover a{ color: #FFF;}
 .hot-deals-categories .category-paginator, .hot-deals-paginator,
@@ -421,7 +434,31 @@ a:hover{ text-decoration: underline; }
     color: #757575;
 }
 .hot-deals-list{}
-.deal-box{
+
+
+/****************************************************************/
+/***************************HOT DEAL PAGE************************/
+/*****************************************************************/
+.deal-box {
+    background: url("../images/ic_online_blue.png") no-repeat scroll 5px 5px / 40px auto rgba(0, 0, 0, 0);
+    border: 1px solid #b8b8b8;
+    float: left;
+    height: 90px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 5px 5px 5px 55px;
+    width: 42%;
+}
+
+.sepline{
+	display: block;
+	float: left;
+	height:90px;
+	width: 11px;
+}
+
+
+/*.deal-box{
     width: 245px;
     height: 90px;
     border: 1px solid #B8B8B8;
@@ -432,7 +469,7 @@ a:hover{ text-decoration: underline; }
     margin-bottom: 10px;
     margin-left: 1%;
     float: left;
-}
+}*/
 .deal-box .left{
     width: 70%;
     float: left;
@@ -453,6 +490,28 @@ a:hover{ text-decoration: underline; }
 }
 .deal-box .right img{ width: 100%; }
 .retailer-categories{ margin-top: 10px }
+
+/****************************************************************/
+/***************************HOT RETAILER PAGE************************/
+/*****************************************************************/
+
+.retailer-box {
+    border: 1px solid #b8b8b8;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 230px;
+}
+/*.retailer-box{
+    border: 1px solid #B8B8B8;
+    width: 225px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    float: left;
+    
+}*/
+
+
 .retailer-categories .category{
     width: 125px;
     height: 45px;
@@ -466,18 +525,15 @@ a:hover{ text-decoration: underline; }
 }
 .retailer-categories .category a{
     font-size: 15px;
-    color: #003083;
+    color: #383938;
     font-weight: bold;
 }
-.retailer-boxes{}
-.retailer-box{
-    border: 1px solid #B8B8B8;
-    width: 225px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    float: left;
-    
-}
+
+
+
+
+.retailer-boxes{ margin-left: -8px; }
+
 .retailer-box .image{
     width: 95%;
     margin: 0 auto;
@@ -493,6 +549,7 @@ a:hover{ text-decoration: underline; }
     padding-top: 15px;
     padding-bottom: 15px;
     color: #888;
+	height: 60px;
 }
 .cash-precent .left{
     display: inline-block;
@@ -501,14 +558,26 @@ a:hover{ text-decoration: underline; }
 .cash-precent .left p{
     height: 40px;
 }
-.cash-precent .left img{ width: 35px; }
-.cash-precent .right{ display: inline-block; }
-.cash-precent .right .percent{
+/* .cash-precent .left img{ width: 35px; }*/
+
+
+/*.cash-precent .right{ display: inline-block; } */
+
+.cash-precent .right {
+    background: url("../images/bg_sep.png") no-repeat scroll 0 center rgba(0, 0, 0, 0);
+    display: inline-block;
+    padding-left: 7px;
+    width: 63px;
+	font-weight: bold;
+	font-size: 14px;
+	width: 82px;
+} 
+/*.cash-precent .right .percent{
     height: 40px;
     font-size: 25px;
     color: #EA535E;
     font-weight: bold;
-}
+}*/
 .retailer-box .bottom{
     text-align: center;
     background: #EEE;
@@ -532,6 +601,23 @@ a:hover{ text-decoration: underline; }
     font-size: 1.3em;
     color: #105;
 }
+
+
+/********************************ONLINE SHOP******************************/
+.section-1 li{ position: relative;  height: 117px;  }
+
+.section-1 li a {
+    background: none repeat scroll 0 0 #262262;
+    bottom: 15px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    left: 8px;
+    padding: 4px 10px;
+    position: absolute;
+    text-transform: uppercase;
+}
+.section-1 li h3{ position: absolute; top : 8px; left: 8px; color: #262262; } 
 .online-shop{}
 .online-shop .section-1{ margin-bottom: 20px; }
 .online-shop .section-1 li{
@@ -564,10 +650,10 @@ a:hover{ text-decoration: underline; }
     font-size: 14px;
     margin-top: 10px;
 }
-.online-shop .section-2 .box.onsport{ background: #003876; }
-.online-shop .section-2 .box.balley-nelson{ background: #BE9A1E; }
-.online-shop .section-2 .box.iconic{ background: #B9102B; }
-.online-shop .section-2 .box.zanui{ background: #003876; }
+.online-shop .section-2 .box.onsport{ background: #2d95bf; }
+.online-shop .section-2 .box.balley-nelson{ background: #ad7bb6; }
+.online-shop .section-2 .box.iconic{ background: #fcb040; }
+.online-shop .section-2 .box.zanui{ background: #2d95bf; }
 .winners-content{}
 .search-winners{
     width: 20%;

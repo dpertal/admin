@@ -28,7 +28,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
             <div class="category ikoupons"><a href="<?= $BASE_URL . "/index.php/site/hotdeals?cat=3" ?>">ikoupons</a></div>
             <div class="category cash-vouchers"><a href="<?= $BASE_URL . "/index.php/site/hotdeals?cat=4" ?>">Bonus Cash Vouchers</a></div>
             <div class="clear"></div>
-            <div class="category-paginator">
+          <!--  <div class="category-paginator">
                 <span><a href="#"> << </a></span>
                 <span><a href="#"> < </a></span>
                 <span><a href="#"> 1 </a></span>
@@ -36,10 +36,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 <span><a href="#"> 3 </a></span>
                 <span><a href="#"> > </a></span>
                 <span><a href="#"> >> </a></span>
-            </div>
+            </div>-->
         </div>
-        <div class="hot-deals-list">
-            <?php
+		
+		<div class="result">Result</div>
+		<div class="hot-deals-list">
+       <?php
             foreach ($model as $deal) {
                 ?>
                 <a href="#popup<?= $deal->id ?>" class="popup<?= $deal->id ?>">
@@ -55,6 +57,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                             <img src="<?= $deal->retailer->logo_url ?>" alt="" />
                         </div>
                     </div>
+					<div class="sepline"></div>
                 </a>
                 <div style="display:none;">
                     <div class="popup_wrap" id="popup<?= $deal->id ?>">
@@ -102,7 +105,9 @@ $BASE_URL = Yii::app()->request->baseUrl;
                 <script type="text/javascript">
                     $(".popup<?= $deal->id ?>").colorbox({inline: true});
             </script>
+				
             <? }?>
+
             <div class="clear"></div>
 
             <!--div class="hot-deals-paginator">
