@@ -1,0 +1,238 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02/05/2014, 12:21:53 PM
+    Author     : oliver
+*/
+#homeContainer {
+    margin: 40px auto;
+  /*  min-height: 400px; */
+    margin-bottom:0px;
+    text-align: center;
+    float: left;
+}
+
+
+    #homeContainer {
+        text-align: center;
+    }
+
+.home-box {
+    display: inline-block;
+    /*width: 323px;*/
+    width: 238px;
+    border: thin solid lightgrey;
+    margin-right: 9px;
+    height: 280px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    text-align: left;
+    float: left;
+}
+.home-box-second {
+    display: inline-block;
+    /*width: 323px;*/
+    width: 238px;
+    border: thin solid lightgrey;
+    margin-right: 9px;
+    height: 408px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 0px;
+    text-align: left;
+    float: left;
+    opacity: 0.8;
+}
+
+
+.home-box:last-child {
+    margin-right: 0px
+}
+
+.home-overlay {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.home-logo {
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 90px;
+}
+
+.home-title {
+    padding: 15px;
+    max-width: 150px;
+    margin-top: 20px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    font-weight: bold;
+    color: white;
+    background: black;
+}
+
+.home-title-second {
+    padding: 15px;
+    max-width: 150px;
+    margin-top: 20px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    font-weight: bold;
+    color: black;
+}
+
+.home-detail {
+    display: inline-block;
+    max-width: 230px;
+    vertical-align: top;
+
+}
+
+.home-detail.news {
+    max-width: 280px;
+}
+
+.home-content {
+    display: none;
+    padding: 5px 10px;
+}
+.home-content-second {
+    padding: 5px 10px;
+}
+.home-content-about-us {
+    padding: 5px 10px;
+}
+.home-row {
+    margin-top: 5px;
+}
+.home-row img {
+    max-width: 80px;
+    max-height: 50px;
+    padding: 10px;
+   
+}
+
+.home-box p {
+    font-size: 0.8em;
+    padding: 0px;
+    margin: 0px;
+}
+.home-box-second p {
+    font-size: 0.8em;
+    padding: 0px;
+    margin: 0px;
+    color: black !important;
+    margin-bottom: 3px;
+    color: grey;   
+ 	font-size: 0.8em;
+}
+div#intro {
+    text-align: center;
+}
+
+/* On Hover */
+/*
+.home-box:hover .home-overlay {
+    opacity: 0.8;
+    background: white;
+}
+
+.home-box:hover .home-logo {
+    display: none;
+}
+
+.home-box:hover .home-title {
+    color: black;
+    background: transparent;
+}
+
+.home-box:hover .home-content {
+    display: block;
+}
+*/
+
+/* Banners */
+
+.banner-row {
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 20px auto;
+    text-align: center;
+}
+.banner-row > div {
+    display: inline-block; 
+    text-align: center;
+    vertical-align: middle;   
+    margin: 0px;
+    padding: 0px;
+}
+
+.banner-row :first-child {
+}
+.banner-row :last-child {
+}
+
+.sq-banner {
+    width: 32%;
+}
+
+.long-banner {
+    width: 96%;
+}
+
+.banner-row img {
+    width: 95%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.long-banner img {
+    width: 100%;
+}
+
+.sq-banner.small {
+    width: 24%;
+}
+
+.home-row-deal{
+	width: 215px;
+	float:left;
+	min-height: 70px;
+	margin-top: 5px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.home-row-deal-img{
+    float:left;
+    padding-right: 5px;
+    width: 50px;
+}
+
+.home-detail-deal {
+    display: inline-block;
+    width: 160px;
+    float:left;
+    vertical-align: top;
+    text-align: left;
+	cursor: pointer;
+}
+.home-row-deal p {
+	color: grey;
+    font-size: 0.8em;
+}
+.headline-deal {
+    color: #000;
+    font-size: 0.8em;
+}
+.headline-deal p{
+ 	color: grey;   
+ 	font-size: 0.8em;
+}
+.headline-deal a{
+    color: #105;
+}

@@ -1,0 +1,116 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11/05/2014, 7:20:12 PM
+    Author     : oliver
+*/
+
+#search-bar {
+    text-align: center;
+}
+#search-results {
+    text-align: center;
+}
+#search-bar>* {
+    display: inline-block;
+    float: left;
+    width: 24%;
+    min-width: 200px;
+    margin: 10px 8px 0px 0px;
+    /*max-width: 250px;*/
+}
+
+#search-bar .select-holder {
+    height: 27px;
+}
+
+#search-bar input {
+    height: 30px;
+}
+
+ #search-bar input[type="button"].btn_yellow {
+    background-color: #E8A400;
+    margin-right:  0px;
+    margin-left:  0px;
+    height: 40px;
+    padding: 5px;
+    width: 22%;
+    float: right;
+}
+
+#search-results {
+    display: block;
+    margin: 30px 0px;
+}
+#map-canvas {
+    height: 400px;
+    width: 500px;
+    padding-top: 30px;
+}
+
+#mapHolder {
+    display: inline-block;
+    float: left;
+    margin-top: 30px;
+}
+#map-results {
+    margin-top: 30px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    width: 400px;
+    float: right;
+    color: grey;
+}
+.map-result {
+    margin: 20px;
+}
+.mr-title {
+    font-weight: bold;
+    color: black;
+}
+
+p.detail {
+    padding: 20px 0px;
+    clear: both;
+    font-size:  0.9em;
+}
+p { 
+    margin: 0px;
+}
+
+
+/* Responsive */
+  
+  @media all and (max-width:900px) {
+    #search-bar>* {
+        width: 95% !important;
+        margin: 10px;
+        float: none !important
+    }
+    
+    #search-bar select {
+        width: 110%;
+    }
+    
+    
+    #mapHolder, #map-results {
+        float: none;
+        width: 100%;
+    }
+    
+    #map-canvas {
+        margin: 10px auto;
+    }
+    
+      
+  }
+  @media all and (max-width:500px) {
+      #map-canvas {
+          width: 400px;
+          height: 300px;
+      }
+  }

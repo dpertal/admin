@@ -1,0 +1,377 @@
+/* Main style */
+html {
+
+}
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Lato', sans-serif;
+}
+form {
+    margin:0;
+}
+img {
+    border:0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.pageCenter, .contentContainer {
+    width:1000px;
+    min-width:300px;
+    margin: 0 auto;
+}
+
+
+/* Page Headers */
+.topBanner {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+#bannerText {
+    padding: 20px;
+    width: 50%;
+    color: white;
+    font-weight: 100;
+}
+#bannerText div {
+    margin: 30px 25px;
+}
+.banner-title {
+    font-size: 2.5em;
+}
+.banner-tagline {
+    font-size: 1.7em;
+    opacity: 0.8;
+}
+div.banner-link {
+    font-size: 1.4em;
+}
+a.banner-link {
+    text-decoration: underline;
+}
+
+.banner-generic {
+    margin-bottom: -70px;
+}
+
+
+
+/* === Convenience Classes === */
+.hidden {
+    display: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.responsive {
+    display: none;
+}
+/* ==== inputs ==== */
+
+input[type=text], input[type=password] {
+    border:1px solid #888888;
+    background:white;
+    color:black;
+    padding:4px;
+}
+input[type=text].small, input[type=password].small {
+    font-size:9px;
+}
+textarea {
+    border:1px solid #888888;
+    background:white;
+    color:black;
+    padding:4px;
+}
+select {
+    border:1px solid #ccc;
+}
+select.small {
+    font-size:9px;
+}
+
+
+a.more {
+    font-weight: bold;
+    color: #D00;
+    cursor: pointer;
+}
+
+/* ==== buttons ==== */
+input[type=submit], input[type=button] {
+    border: none;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    -moz-border-radius:2px;
+    font-size:13px;
+    color:#111;
+    background-color:#eee;
+}
+
+/* Footer */
+#footer {
+    position:relative;
+    bottom:0;
+    overflow: hidden;
+    width: 100%;
+    vertical-align: middle;
+    background: white;
+}
+
+#mainContent {
+    position:relative;
+    bottom: 0;
+    min-height: 200px;
+    margin-bottom: 10px;
+}
+
+#header {
+    top: 0;
+}
+
+/* Text */
+h1 {
+    font-weight: 100;
+}
+h2 {
+    margin-top: 20px;
+    text-align: left;
+    color: #D00;
+    font-size: 1.2em;
+    font-weight: 100;
+}
+
+p.detail {
+    font-size: 1.1em;
+    color: grey;
+}
+
+#intro p {
+    color: grey;
+}
+
+
+div.cart-overlay {
+
+    /* background-color: #e7e2d8; */ /* fff9f3; */
+    height: fit-content;
+    width: auto;
+    border: 1px solid #b5b1aa;
+    background: white;
+    z-index: 999999;
+    position: fixed; top: 75px; right: 0px;
+    overflow: visible;
+}
+
+.social_icons {float:right;}
+#ribbon form {float:right;}
+
+/* Responsive */
+
+@media only screen and (max-width: 1000px) {
+
+    .contentContainer {
+        padding: 10px;
+    }
+
+    div#logoHolder{ background: #FFF !important;}
+
+}
+
+/* @media all and (max-width:900px) {
+#main_tabbar {
+width: 30%;
+}
+}*/
+
+@media only screen and (max-width: 1000px) {
+
+    #main_tabholder ul, div.brandLogos, .r-hidden {
+        display: none !important;
+    }
+
+    .responsive {
+        display: block;
+    }
+
+
+    #bannerSpace {
+        height: 400px;
+        width: 100%;
+    }
+    .topBanner {
+        margin-bottom: 300px !important;
+        text-align: center;
+    }
+
+
+    #main_tabholder #main_tabbar {
+        min-width: 200px !important;
+        width: 10%;
+    }
+
+    #bannerText {
+        color: black;
+        width: 100%;
+        text-align: center;
+        padding: 0px;
+    }
+
+    #bannerText > div {
+        margin: 30px auto;
+        width: 100%;
+    }
+
+    .banner-generic {
+        margin-bottom: 200px !important;
+    }
+    .banner-generic > #bannerText {
+        width: 70%;
+        margin: auto;
+    }
+
+    #intro h1 {
+        display: none;
+    }
+
+    #intro p {
+        font-size:16px;
+        line-height:20px;
+    }
+
+
+    #rMenu li {width:300px !important;}
+    #homeContainer {width:502px; margin:0 auto !important; float:none !important;}
+    #header .pageCenter {width:100% !important;}
+    .pageCenter, .contentContainer {width:728px !important;}
+
+    #aboutProcess img {width:100%;}
+    #aboutBc ul, #aboutLucky ul, #aboutJoin ul, #aboutMore ul {list-style:none;}
+    #footerText {text-align:left;}
+    #footerNav5 {left:75px;}
+
+    /*******************/
+    #cartHolder {float:left; padding-left:0px; width:100%}
+    #cartLink a {color:#333;}
+    #cartHolder #cartLink {padding-left:10px}
+    div#logoHolder {width:100% !important; text-align:center;}
+
+    #bannerHomeContainer {width:748px !important; height:auto !important;}
+
+    #bannerHomeLeft {display:none !important;}
+    #bannerHomeRight {width:100% !important; margin-top:20px !important}
+    #bannerHomeRight div.home-box {width:33% !important; margin:0px;}
+
+
+    #bannerAbout {display:none;}
+
+    #aboutBc ul, #aboutBeyond ul, #aboutControl ul {list-style:none;}
+    .contentContainer .about-row {padding:0px; width:100%;}
+
+    #ribbon{ display: block !important; height: auto !important; }
+    #ribbon .social_icons{
+        text-align: center;
+        float: none;
+        margin-left: 0px;
+    }
+    #ribbon form{
+        text-align: center;
+        margin-top: 10px;
+        float: none;
+    }
+    #ribbon a.join{
+        padding: 10px 10px 14px !important;
+        height: 20px !important;
+        display: inline-block;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    #homeContainer {width:240px !important}
+
+    #rMenu li {width:200px !important;}
+    #rMenu li div {padding:10px 0 !important;}
+    #rMenu li a {margin-left:0px !important; font-size:16px !important;}
+    #rMenu input.search {height:30px !important;}
+
+    .about-row {width:85% !important;}
+
+    #header .pageCenter {width:100%; padding:0px;}
+    .pageCenter, .contentContainer {width:460px !important;}
+
+    #footerDetail, #footerDetail>div {height:150px !important;}
+    #footerText {text-align:center;}
+    #footerNav5 {left:0px !important; bottom:0px !important;}
+
+    .catContainer {width:330px !important;}
+
+    #rightPanel .heading {font-size:24px !important;}
+    #leftPanel {padding-top:0px !important;}
+    .top_bar .search {font-size:14px !important;}
+
+    #bannerHomeContainer {width:460px !important; height:auto !important;}
+    #bannerHomeRight div.home-box {width:100% !important;}
+    #banner4 {display:none;}
+
+
+    .bottom-featured {width: 310px; margin: 0 auto;}
+    .featured-item {width:146px !important; height:127px !important; margin:0 5px 5px 0 !important;}
+    #ribbon input#search{
+        display: block;
+        margin: 0 auto;
+        width: 52%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+
+}
+@media only screen and (max-width: 640px){
+    #aboutProcess{ display: none; }
+    #aboutBc, #aboutJoin, #aboutMore, #aboutLucky, #aboutBeyond, #aboutControl{ background-image: none !important; }
+    div.about-row:nth-child(2n) .about-text{ text-align: left !important; float: none !important; }
+}
+@media only screen and (max-width:460px) {
+    #header .pageCenter {width:100%; padding:0px;}
+    .pageCenter, .contentContainer {width:310px !important;}
+    .catContainer {width:310px !important;}
+
+    #joinContentHolder {padding:0px !important;}
+    #join_tabbar {min-width:100% !important;}
+    #join_tabbar li {padding:5px 0 !important;}
+    .page-intro p {margin-left:0px !important;}
+
+    .footer-nav {padding:10px 6px !important;}
+    .select-holder.large {width:264px !important;}
+    .section-row textarea {width:90% !important;}
+
+    #leftPanel {width:100% !important;}
+    #rightPanel {width:100% !important;}
+    #rightPanel .top_bar {float:left; margin:15px 0;}
+
+    div.about-title {font-size:20px !important;}
+    .about-image img {width:100%;}
+
+    #bannerHomeContainer {width:310px !important;}
+
+    .banner-row {overflow:visible !important;}
+    .banner-row .sq-banner {width:50%; float:left}
+    .banner-row img {height:130px;}
+    .sq-banner.small {width:50% !important; margin:0px;}
+    #ribbon .social_icons,
+    #ribbon form a.login, #ribbon form input#search{ display: none; }
+}

@@ -1,0 +1,52 @@
+#ajaxLoader {
+	margin-left:auto;
+	margin-right:auto;
+	height:500px;
+}
+#ajaxLoader img {
+	margin-top:200px;
+}
+
+#errorMessage {
+	background:#FFB1A8;
+	border:1px solid red;
+	padding:10px;
+	font-weight:bold;
+	font-size:14px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	width:400px;
+}
+#alertMessage {
+	background:#C5FDE3;
+	border:1px solid green;
+	padding:10px !important;
+	font-weight:bold;
+	font-size:14px;
+	color:#444444;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	width:400px;
+}
+
+
+.page-intro h1 {
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.page-intro p {
+    font-size: 0.8em;
+    color: grey;
+}
+
+p.info {
+    margin: 50px;
+    text-align: center;
+    font-size: 1.4em;
+    line-height: 1.5em;	
+}
