@@ -1,9 +1,10 @@
 <?php
-$BASE_URL = Yii::app()->request->baseUrl;
-?>
+$BASE_URL = Yii::app()->request->baseUrl;?>
+<?php header("Content-Type:text/html"); ?>
 <script type="text/javascript" src="<?php echo $BASE_URL; ?>/assets/jquery/jquery.colorbox.js"></script>
 <div class="banner hidden-phone">
     <div class="banner-detail">
+
         <img src="<?= $BASE_URL . $content->image_url; ?>" alt="" />
     </div>
 </div><!-- END BANNER -->
@@ -19,6 +20,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
         <div class="retailer-categories">
 
             <?php if ($layout) { ?>
+
                 <div class="left-categories">
                     <?php foreach ($categories as $category) { ?>
                         <div class="cattitle"><a href="<?php echo $BASE_URL . "/index.php/site/category/" . $category->id ?>"><?= $category->name ?></a><span class="check"></span></div>
@@ -82,9 +84,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
                             </div>
 
                         <?php } else { ?>
-                            <?php foreach ($categories as $category) { ?>
-                                <div class="category"><a href="<?php echo $BASE_URL . "/index.php/site/category/" . $category->id ?>"><?= $category->name ?></a></div>
-                                <? }?>
+
+                            <?php //foreach ($categories as $category) { ?>
+<!--                                <div class="category"><a href="--><?php ////echo $BASE_URL . "/index.php/site/category/" . $category->id ?><!--">--><?////= $category->name ?><!--</a></div>-->
+                                <?  } ?>
 
 
                                 <div class="clear"></div>
@@ -98,7 +101,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                                     <span><a href="#"> >> </a></span>
                                 </div>
                                 <div class="retailer-boxes">
-									
+
 									<!--LOAD RETALER HERE-->
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
@@ -107,12 +110,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-							
+
 									</div>
-									
+
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
 											<div class="left">
@@ -120,10 +123,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-							
+
 									</div>
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
@@ -132,12 +135,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
 											<div class="left">
@@ -145,12 +148,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
 											<div class="left">
@@ -158,12 +161,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
 											<div class="left">
@@ -171,10 +174,10 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-										
+
 									</div>
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
@@ -183,12 +186,12 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="retailer-box popup" href=""  style="cursor:pointer;">
 										<div class="cash-precent">
 											<div class="left">
@@ -196,15 +199,15 @@ $BASE_URL = Yii::app()->request->baseUrl;
 											</div>
 											<div class="right">
 												<p class="program">BonusCash Back</p>
-												<p class="percent">3%</p>	
+												<p class="percent">3%</p>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
                                    <!-- <?php foreach ($model as $retailer) {
                                         ?>
-										
+
                                         <div class="retailer-box popup<?= $retailer->id ?>" href="#popup<?= $retailer->id ?>"  style="cursor:pointer;">
                                             <p class="image"><img src="<?= $retailer->logo_url ?>" alt="" /></p>
                                             <div class="cash-precent">
@@ -234,7 +237,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                                         <script type="text/javascript">
                                             $(".popup<?= $retailer->id ?>").colorbox({inline: true});
                                         </script>
-                                        <? }?>
+                                        <?php }?>
 										-->
                                         <div class="clear"></div>
                                         <div class="retailers-paginator">
@@ -247,7 +250,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
                                             <span><a href="#"> >> </a></span>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                <?php //} ?>
             </div>
             <div class="clear"></div>
         </div>

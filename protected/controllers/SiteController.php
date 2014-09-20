@@ -84,19 +84,25 @@ class SiteController extends Controller {
         
 //        $pages = new PageCategory();
         
-        $query_params = PageCategory::model()->find("page_id = 1");
-        if($query_params == NULL){
-            $query_params['count'] = 0;
-            $products = NULL;
-        }else{
-            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
-            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
-            $products = $this->curl_get_contents($url);
-        }
+//        $query_params = PageCategory::model()->find("page_id = 1");
+//        if($query_params == NULL){
+//            $query_params['count'] = 0;
+//            $products = NULL;
+//        }else{
+//            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);
+//            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+//            $products = $this->curl_get_contents($url);
+//        }
+        $page_products = new PageProducts();
+
+        $products = $page_products->findByAttributes(array(
+            'page_id' => 1
+        ));
+        $data = unserialize($products['attributes']['data']);
 
         $about = PageContent::model()->find("program_id = $program AND page_id = 2");
       
-        $this->render('index', array('productCount'=>$query_params['count'],'products' => $products,'offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
+        $this->render('index', array('products' => $data,'offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
         
     }
 
@@ -269,7 +275,8 @@ class SiteController extends Controller {
             $query_params['count'] = 0;
             $products = NULL;
         }else{
-            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);
+
             $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
             $products = $this->curl_get_contents($url);
         }
@@ -427,20 +434,39 @@ class SiteController extends Controller {
                     $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
                     $result = $command->queryAll();
 
-                    $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
+                    if(count($result) != 0) {
+                        $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
 
-                    $final_result = round($temp_result, 2);
+                        $final_result = round($temp_result, 2);
+                        echo CJavaScript::jsonEncode(array("finalResult" => $final_result . $currency_mark, "bonusPercent" => $result[0]["avg_bonus_cash"]));
+                        exit;
+                    } else {
+                        echo CJavaScript::jsonEncode(array("errorNote" => 'There is not any retailer for this category'));
+                    }
 
-                    echo CHtml::encode($final_result . $currency_mark);
-                    exit;
                 } else {
-                    echo CHtml::encode('Please enter positive number');
+                    echo CJavaScript::jsonEncode(array("errorNote" => 'Please enter positive number'));
                     exit;
                 }
 
             } else {
-                echo CHtml::encode('Please fill field');
-                exit;
+                $cat_id = $_POST['chosenCat'];
+
+                $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    FROM retailer
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id";
+                $command = Yii::app()->db->createCommand($sql);
+                $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+                $result = $command->queryAll();
+
+                if(count($result) != 0) {
+                    echo CJavaScript::jsonEncode(array("bonusPercent" => $result[0]["avg_bonus_cash"]));
+                    exit;
+                } else {
+                    echo CJavaScript::jsonEncode(array("errorNote" => 'There is not any retailer for this category'));
+                    exit;
+                }
+
             }
 
             Yii::app()->end();

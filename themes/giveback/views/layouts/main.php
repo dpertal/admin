@@ -1,4 +1,5 @@
 <?php
+
 $BASE_URL = Yii::app()->request->baseUrl;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
