@@ -1,6 +1,6 @@
 <?php
 
-class RetailerController extends Controller {
+class PageBannerController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,8 +30,12 @@ class RetailerController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete', 'coupon', 'banner'),
+                'actions' => array('create', 'update', 'delete'),
                 'users' => array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('admin', 'delete'),
+                'users' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -49,35 +53,45 @@ class RetailerController extends Controller {
         ));
     }
 
-    public function actionCoupon($id) {
-        $cupons = AffiliateCoupon::model()->findAll('retailer_id =' . $id);
-        $this->render('coupons', array(
-            'model' => $cupons,
-        ));
-    }
-
-    public function actionBanner($id) {
-        $cupons = Banner::model()->findAll('retailer_id =' . $id);
-        $this->render('banner', array(
-            'model' => $cupons,
-        ));
-    }
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Retailer;
+        $model = new RetailerPageBanner;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Retailer'])) {
-            $model->attributes = $_POST['Retailer'];
+        if (isset($_POST['RetailerPageBanner'])) {
+            $model->attributes = $_POST['RetailerPageBanner'];
+            if (!empty($_FILES['image']['name'])) {
+                $targetDir = dirname(Yii::app()->basePath) . '/assets/uploads/';
+                if (!file_exists($targetDir))
+                    mkdir($targetDir);
+
+                //Check for valid file type
+                if (strpos($_FILES['image']['type'], 'image') >= 0) {
+
+                    //Check for valid image
+                    $imageSize = getimagesize($_FILES['image']['tmp_name']);
+                    if ($imageSize[0] > 0) {
+                        move_uploaded_file($_FILES['image']['tmp_name'], $targetDir . basename($_FILES['image']['name']));
+                        $imagePath = '/assets/uploads/' . basename($_FILES['image']['name']);
+                        $model->image = $imagePath;
+                    } else
+                        unset($model->image);
+                } else
+                    unset($model->image);
+            }
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('index', 'id' => $model->id));
+
+            print_r($model->errors);
+            print_r($_POST);
+            die();
         }
+
 
         $this->render('create', array(
             'model' => $model,
@@ -95,31 +109,29 @@ class RetailerController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Retailer'])) {
-            $model->attributes = $_POST['Retailer'];
-
-            if (!empty($_FILES['logo']['name'])) {
+        if (isset($_POST['RetailerPageBanner'])) {
+            $model->attributes = $_POST['RetailerPageBanner'];
+            if (!empty($_FILES['image']['name'])) {
                 $targetDir = dirname(Yii::app()->basePath) . '/assets/uploads/';
                 if (!file_exists($targetDir))
                     mkdir($targetDir);
 
                 //Check for valid file type
-                if (strpos($_FILES['logo']['type'], 'image') >= 0) {
+                if (strpos($_FILES['image']['type'], 'image') >= 0) {
 
                     //Check for valid image
-                    $imageSize = getimagesize($_FILES['logo']['tmp_name']);
+                    $imageSize = getimagesize($_FILES['image']['tmp_name']);
                     if ($imageSize[0] > 0) {
-                        move_uploaded_file($_FILES['logo']['tmp_name'], $targetDir . basename($_FILES['logo']['name']));
-                        $imagePath = '/assets/uploads/' . basename($_FILES['logo']['name']);
-                        $model->logo = $imagePath;
+                        move_uploaded_file($_FILES['image']['tmp_name'], $targetDir . basename($_FILES['image']['name']));
+                        $imagePath = '/assets/uploads/' . basename($_FILES['image']['name']);
+                        $model->image = $imagePath;
                     } else
-                        unset($model->logo);
+                        unset($model->image);
                 } else
-                    unset($model->logo);
+                    unset($model->image);
             }
-
             if ($model->save())
-                $this->redirect(array('index'));
+                $this->redirect(array('index', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -137,22 +149,16 @@ class RetailerController extends Controller {
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
     }
 
     /**
      * Lists all models.
      */
     public function actionIndex() {
-
-        $model = new Retailer('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Retailer']))
-            $model->attributes = $_GET['Retailer'];
-
-        //$dataProvider = new CActiveDataProvider('RetailerCategory');
+        $dataProvider = new CActiveDataProvider('RetailerPageBanner');
         $this->render('index', array(
-            'dataProvider' => $model,
+            'dataProvider' => $dataProvider,
         ));
     }
 
@@ -160,10 +166,10 @@ class RetailerController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Retailer('search');
+        $model = new RetailerPageBanner('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Retailer']))
-            $model->attributes = $_GET['Retailer'];
+        if (isset($_GET['RetailerPageBanner']))
+            $model->attributes = $_GET['RetailerPageBanner'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -174,11 +180,11 @@ class RetailerController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Retailer the loaded model
+     * @return RetailerPageBanner the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Retailer::model()->findByPk($id);
+        $model = RetailerPageBanner::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -186,10 +192,10 @@ class RetailerController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param Retailer $model the model to be validated
+     * @param RetailerPageBanner $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'retailer-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'retailer-page-banner-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

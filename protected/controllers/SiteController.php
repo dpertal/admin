@@ -402,32 +402,20 @@ class SiteController extends Controller {
     {
         $model = RetailerCategory::model()->findAll();
 
-        if (isset($_GET['calccash'])) {
-            if ($_GET['calccash'] == 1) {
-                $param = true;
-            }
-        } else {
-            $param = false;
-        }
-
         $retailer = array();
         foreach ($model as $retailerValue) {
             $retailer[$retailerValue->id] = $retailerValue->name;
         }
 
+        if (Yii::app()->request->isAjaxRequest) {
 
-        if (!$param) {
-            $this->render('calculate_bonuscash', array(
-                'model' => $model,
-                'retailer' => $retailer
-            ));
-        } else {
-            if(!empty($_POST['userCash'])){
+            if (!empty($_POST['userCash'])) {
 
-                if(is_numeric($_POST['userCash']) && $_POST['userCash'] >= 0){
-                    $cat_id = $_POST['cat_id'];
+                if (is_numeric($_POST['userCash']) && $_POST['userCash'] >= 0) {
+                    $cat_id = $_POST['chosenCat'];
                     $cash_money = $_POST['userCash'];
-                    switch($_POST['currency']){
+
+                    switch ($_POST['currency']) {
                         case 'dollar':
                             $currency_mark = '$';
                             break;
@@ -441,27 +429,54 @@ class SiteController extends Controller {
 
                     $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
                     FROM retailer
-                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id ";
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id";
                     $command = Yii::app()->db->createCommand($sql);
                     $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
                     $result = $command->queryAll();
 
-                    $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
+                    if(count($result) != 0) {
+                        $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
 
-                    $final_result = round( $temp_result, 2);
+                        $final_result = round($temp_result, 2);
+                        echo CJavaScript::jsonEncode(array("finalResult" => $final_result . $currency_mark, "bonusPercent" => $result[0]["avg_bonus_cash"]));
+                        exit;
+                    } else {
+                        echo CJavaScript::jsonEncode(array("errorNote" => 'There is not any retailer for this category'));
+                    }
 
-                    echo $final_result . $currency_mark;
-                    exit;
                 } else {
-                    echo 'Please enter positive number';
+                    echo CJavaScript::jsonEncode(array("errorNote" => 'Please enter positive number'));
                     exit;
                 }
 
             } else {
-                echo 'Please fill field';
-                exit;
+                $cat_id = $_POST['chosenCat'];
+
+                $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    FROM retailer
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id";
+                $command = Yii::app()->db->createCommand($sql);
+                $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+                $result = $command->queryAll();
+
+                if(count($result) != 0) {
+                    echo CJavaScript::jsonEncode(array("bonusPercent" => $result[0]["avg_bonus_cash"]));
+                    exit;
+                } else {
+                    echo CJavaScript::jsonEncode(array("errorNote" => 'There is not any retailer for this category'));
+                    exit;
+                }
+
             }
+
+            Yii::app()->end();
+        } else {
+            $this->render('calculate_bonuscash', array(
+                'model' => $model,
+                'retailer' => $retailer
+            ));
         }
+
     }
 
 }
