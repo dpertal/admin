@@ -427,20 +427,39 @@ class SiteController extends Controller {
                     $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
                     $result = $command->queryAll();
 
-                    $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
+                    if(count($result) != 0) {
+                        $temp_result = ($cash_money / 100) * rtrim($result[0]['avg_bonus_cash'], '%');
 
-                    $final_result = round($temp_result, 2);
+                        $final_result = round($temp_result, 2);
+                        echo CJavaScript::jsonEncode(array("finalResult" => $final_result . $currency_mark, "bonusPercent" => $result[0]["avg_bonus_cash"]));
+                        exit;
+                    } else {
+                        echo CJavaScript::jsonEncode(array("errorNote" => 'There is not any retailer for this category'));
+                    }
 
-                    echo CHtml::encode($final_result . $currency_mark);
-                    exit;
                 } else {
-                    echo CHtml::encode('Please enter positive number');
+                    echo CJavaScript::jsonEncode(array("errorNote" => 'Please enter positive number'));
                     exit;
                 }
 
             } else {
-                echo CHtml::encode('Please fill field');
-                exit;
+                $cat_id = $_POST['chosenCat'];
+
+                $sql = "SELECT CONCAT(ROUND(AVG(bonus_cash),2),'%') avg_bonus_cash
+                    FROM retailer
+                    WHERE retailer_category_id = :qterm and bonus_cash is NOT NULL and bonus_cash NOT LIKE '$%' GROUP BY retailer_category_id";
+                $command = Yii::app()->db->createCommand($sql);
+                $command->bindParam(":qterm", $cat_id, PDO::PARAM_STR);
+                $result = $command->queryAll();
+
+                if(count($result) != 0) {
+                    echo CJavaScript::jsonEncode(array("bonusPercent" => $result[0]["avg_bonus_cash"]));
+                    exit;
+                } else {
+                    echo CJavaScript::jsonEncode(array("errorNote" => 'There is not any retailer for this category'));
+                    exit;
+                }
+
             }
 
             Yii::app()->end();

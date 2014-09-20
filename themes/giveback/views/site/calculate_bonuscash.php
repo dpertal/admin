@@ -4,7 +4,7 @@ $BASE_URL = Yii::app()->request->baseUrl;
 
 <?php echo CHtml::form('', '', array('id' => 'calcForm', 'role' => 'form', 'class' => 'calcForm')); ?>
 <h3 class="calcHead">Calculate Bonus Cash</h3>
-<div class="calcErr">Your Data is not correct!</div>
+<div class="calcErr"></div>
 <div class="formBlock">
 
     <?php
@@ -23,12 +23,32 @@ $BASE_URL = Yii::app()->request->baseUrl;
 <?php
 
 echo CHtml::ajaxSubmitButton('Calculate', '', array(
-        'ajax' => array(
             'type' => 'POST',
-            'url' => Yii::app()->createUrl('site/Calculate'), //, array('calccash' => true)),
-            'update' => '\.calcAmount',
+            'url' => Yii::app()->createUrl('site/Calculate'),
             'data' => 'js:jQuery(this).parents("form").serialize()',
-        )),
+            'dataType' > 'json',
+            'success'=>'js:function(data){
+
+                $(".calcErr").html("");
+                $("#calculatePercent").html("0.00%");
+                $("#calculateAmount").html("0.00$");
+
+                var successData = JSON.parse(data);
+
+                if(typeof successData.errorNote == "undefined") {
+                    if(typeof successData.finalResult != "undefined") {
+                            $("#calculatePercent").html(successData.bonusPercent);
+                            $("#calculateAmount").html(successData.finalResult);
+                    } else {
+                        $("#calculatePercent").html(successData.bonusPercent);
+                    }
+                } else {
+                    $(".calcErr").html(successData.errorNote);
+                }
+
+            }'
+
+        ),
     array(
         'type' => 'submit',
         'class' => 'btn blue calcBtn'
@@ -45,8 +65,8 @@ echo CHtml::endForm();
         <h3 class="calcHead">Your Result</h3>
     </div>
     <div class="calcResAmount">
-        <span class="calcAmount">0.00 %</span>
-        <span class="calcAmount">0.00 $</span>
+        <span id="calculatePercent" class="calcAmount">0.00%</span>
+        <span id="calculateAmount" class="calcAmount">0.00$</span>
     </div>
 
 </div>
