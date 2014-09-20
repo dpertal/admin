@@ -119,7 +119,6 @@
             <div style="width: 940px;height: auto;">
                 <?php
 
-//        var_dump($productCount);exit;
                 foreach ($products as $product):
                     if ($product["visible"] == 1):
 
