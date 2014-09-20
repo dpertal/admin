@@ -84,19 +84,25 @@ class SiteController extends Controller {
         
 //        $pages = new PageCategory();
         
-        $query_params = PageCategory::model()->find("page_id = 1");
-        if($query_params == NULL){
-            $query_params['count'] = 0;
-            $products = NULL;
-        }else{
-            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
-            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
-            $products = $this->curl_get_contents($url);
-        }
+//        $query_params = PageCategory::model()->find("page_id = 1");
+//        if($query_params == NULL){
+//            $query_params['count'] = 0;
+//            $products = NULL;
+//        }else{
+//            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);
+//            $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
+//            $products = $this->curl_get_contents($url);
+//        }
+        $page_products = new PageProducts();
+
+        $products = $page_products->findByAttributes(array(
+            'page_id' => 1
+        ));
+        $data = unserialize($products['attributes']['data']);
 
         $about = PageContent::model()->find("program_id = $program AND page_id = 2");
       
-        $this->render('index', array('productCount'=>$query_params['count'],'products' => $products,'offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
+        $this->render('index', array('products' => $data,'offers' => $offers, 'home' => $homeContent, 'about' => $about, 'news' => $news, 'welcome' => $welcomeContent));
         
     }
 
@@ -269,7 +275,8 @@ class SiteController extends Controller {
             $query_params['count'] = 0;
             $products = NULL;
         }else{
-            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);        
+            $categories = RetailerCategory::model()->findByPk($query_params['category_id']);
+
             $url = 'http://productsearch.linksynergy.com/productsearch?token=004fdfcbd783c723a20436a65dab14dcd57c6094a9db8cb400bb866fd778e1a9&keyword='.$categories['name'].'&cat='.$categories['name'].'&MaxResults='.$query_params['count'].'&pagenumber=1&mid=2557&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc';
             $products = $this->curl_get_contents($url);
         }

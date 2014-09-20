@@ -1,5 +1,4 @@
 <!-- BEGIN Page Title -->
-<?php //var_dump($productCount);die;?>
 <div class="page-title">
     <div>
         <h1><i class="fa fa-file-o"></i> <?php if (isset($program)){ echo $program->name.' - '; } ?> Pages</h1>
@@ -78,7 +77,7 @@
                             <?php if($count >= intval($productCount))
                                     break; 
                             ?>
-                            <tr class="product_data">
+                            <tr class="product_data" linkurl="<?php echo $product->linkurl;  ?>">
                                 <td><a class="product-name"  href="<?php echo $product->linkurl; ?>" target="_blank"><?php echo $product->productname; ?></a></td>
                                 <td class="product-price"><?php echo $product->price; ?></td>
                                 <td ><img class="product-img" src="<?php echo $product->imageurl[0]; ?>" width="100px" height="70px"  /></td>
@@ -90,6 +89,8 @@
                             <div class="row buttons">
                                     <?php echo CHtml::Button('SUBMIT AJAX',array('class'=>'save_prod')); ?>
                            </div>
+                            <?php $id = (isset($page_id))? $page_id : ''; ?>
+                            <input id="page_id" type="hidden" value="<?php echo $id; ?>"/>
                        <?php $this->endWidget(); ?>
                        
                         <?php } ?>
@@ -110,23 +111,25 @@ $(document).ready(function () {
             
             
             if($(this).find(".product-check").is(':checked')){
-                products[index] =  {name:$(this).find(".product-name").text(),visible:1,price:$(this).find(".product-price").text(),img:$(this).find(".product-img").attr('src')};
+                products[index] =  {name:$(this).find(".product-name").text(),visible:1,price:$(this).find(".product-price").text(),img:$(this).find(".product-img").attr('src'),linkurl:$(this).attr('linkurl')};
             }else{
-                products[index] =  {name:$(this).find(".product-name").text(),visible:0,price:$(this).find(".product-price").text(),img:$(this).find(".product-img").attr('src')};
+                products[index] =  {name:$(this).find(".product-name").text(),visible:0,price:$(this).find(".product-price").text(),img:$(this).find(".product-img").attr('src'),linkurl:$(this).attr('linkurl')};
             }
 //            count++;   
         });
+
 //        console.log(products);
 //        return false;
-        console.log($('#PageCategory_page_id').val());
+        //products[++index] = {page_id: $('#page_id').val()};
+        //console.log($('#page_id').val());
         //products = JSON.stringify(products);
         $.ajax({
             type: 'POST',
              url: 'page/SaveProduct',
-             data:{data: products},
+             data:{data: products, page_id: $('#page_id').val() },
              success:function(data){
-                         alert(data); 
-             },             
+                         alert(data);
+             },
 
            dataType:'Json'
         });
