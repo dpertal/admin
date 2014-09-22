@@ -1,0 +1,340 @@
+/*
+ * Author: Carlos Alvarez
+ * URL: http://alvarez.is
+ *
+ * Project Name: STANLEY - Free Bootstrap 3 Theme
+ * Version: 1.0
+ * URL: http://blacktie.co
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+  	background-color: #ffffff;
+  	font-family:,sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #555;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+	font-family: Oswald;
+    font-weight: 700;
+    color: #333;
+}
+
+h1 {
+	font-size: 28px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+
+
+/* Paragraph & Typographic */
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Links */
+a {
+    color: #1abc9c;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    color: #7b7b7b;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+.navbar {
+	text-transform: uppercase;
+	margin-bottom: 0px;
+}
+
+.navbar-inverse {
+	padding-bottom:0px;
+	padding-top: 10px;
+}
+
+.navbar-inverse {
+	background:url(../img/Bonuscash_bg.png) repeat-x;
+	
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+	text-align:center;
+}
+.outer_div
+{
+	border:solid 1px #cac8c8;
+	
+	}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: #cbcdcd;
+}
+
+.navbar-brand {
+	font-weight: 700;
+	font-size: 20px;
+	letter-spacing: 2px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+}
+
+.navbar-inverse .navbar-toggle {
+	border-color: transparent;
+}
+
+.progress-bar-theme {
+  background-color: #1abc9c;
+}
+
+
+/* Helpers */
+
+/*.mt {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}*/
+
+.pt {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+
+/* +++++ WRAP SECTIONS +++++ */
+
+#ww {
+	padding-top: 70px;
+	padding-bottom: 70px;
+	background:url(../img/banner_bottam.png) center no-repeat;
+}
+
+
+#footer {
+	background-color: #2f2f2f;
+	padding-top: 50px;
+	padding-bottom: 50px; 
+}
+
+#footer p {
+	color: white;
+}
+
+#footer h4 {
+	color: white;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+}
+
+
+/* +++++ Color Wraps / Blog Page +++++ */
+
+#grey {
+	padding-top: 60px;
+	padding-bottom: 60px;
+	background-color: #f2f2f2;
+}
+
+#white {
+	padding-top: 60px;
+	padding-bottom: 60px;
+	background-color: #ffffff;
+}
+
+
+
+/* Blog Date*/
+bd {
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #d2d2d2;
+	font-weight: 700;
+}
+
+/* Blog Author*/
+ba {
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+/* Blog Quote */
+.bq {
+	font-size: 22px;
+	padding-top: 30px;
+}
+
+/* Blog Tags */
+bt {
+	font-size: 12px;
+}
+
+/* ================== PORTFOLIO IMAGES HOVER EFFECT ================== */
+/* Effects also are controled by hover.zoom.js */
+.zoom { 
+    display:block; 
+    position:relative; 
+    overflow:hidden; 
+    background:transparent url(../img/loader.gif) no-repeat center;
+}
+
+
+    .zoomOverlay {
+        position:absolute;
+        top:0; left:0;
+        bottom:0; right:0;
+        display:none;
+        background-image:url(../img/zoom.png);
+        background-repeat:no-repeat;
+        background-position:center;
+    }
+
+.zoom2 {
+	opacity: 1;
+}
+
+.zoom2:hover {
+	opacity: 0.5;
+}
+
+/* glyphicon Configuration */
+
+.glyphicon {
+	font-size: 40px;
+	color: #1abc9c ;
+}
+.loram
+{background:url(../img/Bonuscash_banner.png) center no-repeat;}
+
+.animate_img
+{
+	width:100%;
+	height:240px;
+	float:left;
+	/*background:url(../img/box1bg_l.png) no-repeat ;*/
+	}
+.animate_img2
+{
+	width:100%;
+	height:240px;
+	float:right;
+	/*background:url(../img/Bonuscash_box2bg.png) no-repeat ;*/
+	}
+.animate_img3
+{
+	width:100%;
+	height:240px;
+	float:right;
+	/*background:url(../img/Bonuscash_box3bg.png) no-repeat ;*/
+	}
+.animate_img4
+{
+	width:100%;
+	height:240px;
+	float:right;
+	/*background:url(../img/Bonuscash_box4bg.png) no-repeat ;*/
+	}
+.animate_img5
+{
+	width:100%;
+	height:240px;
+	float:right;
+/*	background:url(../img/Bonuscash_box5bg.png) no-repeat ;*/
+	}
+.bottam_banner
+{
+	width:100%;
+	height:441px;
+	float:right;
+	background:url(../img/img_bottam_cards.png) no-repeat ;
+	}
+.animat_txt{
+	list-style:none;
+	float:left;
+	margin-top:10px;
+	width:100%;
+}
+.animat_txt li{
+	text-align:left;
+	font-size: 18px;
+	font-weight:normal;
+}
+.bottam_banner_txt{
+	list-style:none;
+	float:left;
+	margin-top:10px;
+	width:100%;
+}
+.bottam_banner_txt li{
+	text-align:left;
+	font-size: 18px;
+	font-weight:normal;
+	color:#FFF;
+	line-height:36px;
+}
+.retailers{
+	font-size: 28px;
+	font-weight: bold;
+	font-family: Oswald;
+	margin-top: 15px;
+	text-align:left;
+	float:left;
+}
+.Bottam_banner_hd{
+	font-size: 28px;
+	font-weight: bold;
+	font-family: Oswald;
+	margin-top: 15px;
+	margin-left:20px;
+	color:#FFF;
+	text-align:left;
+	float:left;
+}
+.b_title{
+	font-size: 24px;
+	font-family: Oswald;
+	margin-top: 15px;
+}

@@ -1,6 +1,6 @@
-<?php 
+<?php
 ob_start();
-header("Content-Type: text/html"); 
+header("Content-Type: text/html");
 ob_end_clean();
 $BASE_URL = Yii::app()->request->baseUrl;
 $bodyClass = '';
@@ -59,7 +59,7 @@ else if ($this->uniqueid == 'pageBanner'){
     <head>
         <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-            
+
             <title>Admin Panel</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -67,12 +67,12 @@ else if ($this->uniqueid == 'pageBanner'){
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/font-awesome/css/font-awesome.min.css" />
             <link rel="stylesheet" type="text/css" href="<?php echo $BASE_URL; ?>/assets/bootstrap-datepicker/css/datepicker.css" />
-            
+
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/flaty-responsive.css" />
             <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/data-tables/bootstrap3/dataTables.bootstrap.css" />
-            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/custom.css" />    
-            
+            <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/css/custom.css" />
+
             <!--basic scripts-->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script src="<?php echo $BASE_URL; ?>/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -105,7 +105,7 @@ else if ($this->uniqueid == 'pageBanner'){
             <button type="button" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar">
                 <span class="fa fa-bars"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="<?= $BASE_URL ?>/admin.php">
                 <small>
                     <i class="fa fa-desktop"></i>
                     Admin Panel
@@ -117,9 +117,9 @@ else if ($this->uniqueid == 'pageBanner'){
                 <!-- BEGIN Button User -->
                 <li class="user-profile">
                     <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
-                        <img class="nav-user-photo" src="img/demo/avatar/avatar1.jpg" alt="Penny's Photo" />
+                       <!--  <img class="nav-user-photo" src="img/demo/avatar/avatar1.jpg" alt="Penny's Photo" /> -->
                         <span class="hhh" id="user_info">
-                            <?  {echo Yii::app()->user->user_name; }?>
+                           Welcome:  <?  {echo Yii::app()->user->user_name; }?>
                         </span>
                         <i class="fa fa-caret-down"></i>
                     </a>
@@ -128,26 +128,22 @@ else if ($this->uniqueid == 'pageBanner'){
                     <ul class="dropdown-menu dropdown-navbar" id="user_menu">
                         <li class="nav-header">
                             <i class="fa fa-clock-o"></i>
-                            <?php if (!Yii::app()->user->isGuest && isset(Yii::app()->user->last_login)) { ?>Last login: <?php echo date('F j, Y \a\t h:i a', Yii::app()->user->last_login); ?><?php } ?>
+                            <?php if (!Yii::app()->user->isGuest && isset(Yii::app()->user->last_login)) { ?>Last login:
                         </li>
 
                         <li>
                             <a href="#">
-                                <i class="fa fa-cog"></i>
-                                Account Settings
+                                <?php echo date('F j, Y \a\t h:i a', Yii::app()->user->last_login); ?><?php } ?>
                             </a>
                         </li>
-
+<!--
                         <li>
                             <a href="#">
                                 <i class="fa fa-user"></i>
                                 Edit Profile
                             </a>
                         </li>
-
-
-
-
+ -->
                         <li class="divider"></li>
 
                         <li>
@@ -176,7 +172,7 @@ else if ($this->uniqueid == 'pageBanner'){
                 <ul class="nav nav-list">
 
                     <li class="">
-                        <a href="<?= $BASE_URL ?>/">
+                        <a href="<?= $BASE_URL ?>/admin.php">
                             <i class="fa fa-dashboard"></i>
                             <span>Home</span>
                         </a>
@@ -187,7 +183,7 @@ else if ($this->uniqueid == 'pageBanner'){
                     <li class="<?= $userActive ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-desktop"></i>
-                            <span>Permission</span>
+                            <span>Users Management</span>
                             <b class="arrow fa fa-angle-right"></b>
                         </a>
 
@@ -199,75 +195,44 @@ else if ($this->uniqueid == 'pageBanner'){
                         </ul>
                         <!-- END Submenu -->
                     </li>
-                    <li class="<?= $promoActive ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/promo/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Promo Box</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
+                      <li class="<?= $cont ?>">
+                        <?php
+                        $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
+                        if (empty($programs)) :
+                            ?>
+                            <a href="<?= $BASE_URL ?>/admin.php/content/" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Content Pages</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                        <?php else : ?>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Content Pages</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                            <ul class="submenu">
+                                <?php foreach ($programs as $id => $program) : ?>
+                                    <li><a href="<?= $BASE_URL ?>/admin.php/content/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                     </li>
 
-                    <li class="<?= $programActive ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/program/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Manage Program</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                    </li>
-
-                    <li class="<?= $categoryActive ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/category/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Manage Category</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                    </li>
-
-                    <li class="<?= $offers ?>">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-desktop"></i>
-                            <span>Offers</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-
-                        <!-- BEGIN Submenu -->
-                        <ul class="submenu">
-                            <li><a href="<?= $BASE_URL ?>/admin.php/offerType/">Manage Type</a></li>
-                            <li><a href="<?= $BASE_URL ?>/admin.php/offer">Manage Offer</a></li>
-                        </ul>
-                        <!-- END Submenu -->
-                    </li>
-
-                    <li class="<?= $retailer ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/retailer/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Manage Retailer</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                    </li>
-                    
-                    <li class="<?= $pageBanner ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/pageBanner/" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Page Banner</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                    </li>
-                    
-                    <li class="<?= $news ?>">
+                     <li class="<?= $news ?>">
                         <?php
                         $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
                         if (empty($programs)) :
                             ?>
                             <a href="<?= $BASE_URL ?>/admin.php/news/" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Manage News</span>
+                                <span>News</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
                         <?php else : ?>
                             <a href="#" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Manage News</span>
+                                <span>News</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
                             <ul class="submenu">
@@ -284,13 +249,13 @@ else if ($this->uniqueid == 'pageBanner'){
                             ?>
                             <a href="<?= $BASE_URL ?>/admin.php/faq/" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Manage FAQ</span>
+                                <span>FAQ's</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
                         <?php else : ?>
                             <a href="#" class="dropdown-toggle">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Manage FAQ</span>
+                                <span>FAQ's</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
                             <ul class="submenu">
@@ -301,47 +266,92 @@ else if ($this->uniqueid == 'pageBanner'){
                         <?php endif; ?>
                     </li>
 
-                    <li class="<?= $cont ?>">
-                        <?php
-                        $programs = CHtml::listData(Program::model()->findAll(), 'id', 'name');
-                        if (empty($programs)) :
-                            ?>
-                            <a href="<?= $BASE_URL ?>/admin.php/content/" class="dropdown-toggle">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Manage Content</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                        <?php else : ?>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Manage Content</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                            <ul class="submenu">
-                                <?php foreach ($programs as $id => $program) : ?>
-                                    <li><a href="<?= $BASE_URL ?>/admin.php/content/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </li>
-					
+
+
 					<li class="<?= $abouts ?>">
                         <a href="#" class="dropdown-toggle">
 						<i class="fa fa-desktop"></i>
-						<span>About page</span>
+						<span>About Us Pages</span>
 						<b class="arrow fa fa-angle-right"></b>
                         </a>
-						
+
                         <!-- BEGIN Submenu -->
                         <ul class="submenu">
-                          
+
                             <?php foreach ($programs as $id => $program) : ?>
 							<li><a href="<?= $BASE_URL ?>/admin.php/abouts/program/<?php echo $id; ?>"><?php echo $program; ?></a></li>
-                            <?php endforeach; ?>  
+                            <?php endforeach; ?>
                         </ul>
                         <!-- END Submenu -->
                     </li>
-					
+
+
+                    <li class="<?= $categoryActive ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/category/" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Retailers Categories</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+
+                    <li class="<?= $retailer ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/retailer/" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Retailers</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+
+                    <li class="<?= $pageBanner ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/pageBanner/" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Retailer Banners</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+
+                     <li class="<?= $offers ?>">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-desktop"></i>
+                            <span>Hot Deals</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+
+                        <!-- BEGIN Submenu -->
+                        <ul class="submenu">
+                            <li><a href="<?= $BASE_URL ?>/admin.php/offerType/">Hot Deal Type</a></li>
+                            <li><a href="<?= $BASE_URL ?>/admin.php/offer">Hot Deals</a></li>
+                        </ul>
+                        <!-- END Submenu -->
+                    </li>
+
+                     <li class="<?= $promoActive ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/promo/" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Promo Boxes</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+
+
+
+                    <li class="<?= $pages ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/Pages/page" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Product Links</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+
+                    <li class="<?= $programActive ?>">
+                        <a href="<?= $BASE_URL ?>/admin.php/program/" class="dropdown-toggle">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Programs</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                    </li>
+
+
 					<li class="<?= $config ?>">
                         <a href="<?= $BASE_URL ?>/admin.php/config/" class="dropdown-toggle">
 						<i class="fa fa-list-alt"></i>
@@ -349,15 +359,9 @@ else if ($this->uniqueid == 'pageBanner'){
 						<b class="arrow fa fa-angle-right"></b>
                         </a>
                     </li>
-                    <li class="<?= $pages ?>">
-                        <a href="<?= $BASE_URL ?>/admin.php/Pages/page" class="dropdown-toggle">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Pages</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                    </li>
-					
-					
+
+
+
                 </ul>
                 <!-- END Navlist -->
 
@@ -377,7 +381,7 @@ else if ($this->uniqueid == 'pageBanner'){
                 <?php echo $content; ?>
 
                 <footer>
-                    <p>2013 © CRG.</p>
+                    <p><?php echo date('Y')?> &copy; Cash Rewards Global.</p>
                 </footer>
 
                 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
@@ -387,7 +391,7 @@ else if ($this->uniqueid == 'pageBanner'){
         </div>
         <!-- END Container -->
 
-        
+
 
     </body>
 </html>

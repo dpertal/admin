@@ -9,23 +9,27 @@
 if (isset($_REQUEST['program']) && $_REQUEST['program'] != '') {
     $_SESSION['theme'] = $_REQUEST['program'];
     if ($_REQUEST['program'] == 'luckybuys') {
+    	unset($_SESSION['program']);
         $_SESSION['program'] = 3;
     } else if ($_REQUEST['program'] == 'ritchies') {
-        $_SESSION['program'] = 2;
+    	unset($_SESSION['program']);
+    	$_SESSION['program'] = 2;
     } else if ($_REQUEST['program'] == 'rider') {
-        $_SESSION['program'] = 1;
+    	unset($_SESSION['program']);
+    	$_SESSION['program'] = 1;
 	} else if ($_REQUEST['program'] == 'giveback') {
+		unset($_SESSION['program']);
 		$_SESSION['program'] = 8;
 	}
 }
 
 
-//set defult theme 
+//set defult theme
 if (!isset($_SESSION['theme'])) {
-   // $_SESSION['theme'] = 'luckybuys';
-   // $_SESSION['program'] = 3;
-	$_SESSION['theme'] = 'giveback';
-	$_SESSION['program'] = 8;
+    $_SESSION['theme'] = 'luckybuys';
+    $_SESSION['program'] = 3;
+	//$_SESSION['theme'] = 'giveback';
+	//$_SESSION['program'] = 8;
 }
 
 define('PROGRAM_ID', $_SESSION['program']);
@@ -37,7 +41,7 @@ define('ROOT_THEME', dirname($frontend) . DIRECTORY_SEPARATOR . 'themes/' . $_SE
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'CRG.',
+    'name' => 'Cash Rewards Global',
     'defaultController' => 'site',
     'preload' => array('log'),
     'theme' => $_SESSION['theme'],
@@ -101,15 +105,16 @@ return array(
          */
         // uncomment the following to use a MySQL database
         //live
-        'db' => array(
+     /*    'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=crgtesti_db',
             'emulatePrepare' => true,
-            'username' => 'crgtesti_user',
+           'username' => 'crgtesti_user',
             'password' => 'Passme@14',
             'charset' => 'utf8',
-        ),        
-        'dblocal' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=cashrewardsweb_local',
+        ),
+       */
+        'db' => array(
+            'connectionString' => 'mysql:host=localhost;dbname=crgtesti_db',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
@@ -139,7 +144,7 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'info@crg.com.au',
+        'adminEmail' => 'info@bonuscash.com.au',
         'program' => $_SESSION['program'],
 		'template_about'=>require(dirname(__FILE__).'/params.php'),
     ),
