@@ -216,8 +216,8 @@ class Retailer extends CActiveRecord
 
     public static function get_lat_long($postcode, $address = false) {
         if ($address)
-            $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($postcode);
-        else $url = "http://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" . urlencode($postcode) . "&sensor=false";
+            $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($postcode) + " Australia";
+        else $url = "http://maps.googleapis.com/maps/api/geocode/json?components=country:AU|postal_code:" . urlencode($postcode) . "&sensor=false";
         $json = Curl::get_page(array("url"=>$url));
         $store_data = json_decode($json, true);
         if (isset($store_data['results'][0])){
