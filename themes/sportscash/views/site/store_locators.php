@@ -12,7 +12,7 @@
         <div class="store-search input">
             <label>Enter your ZipCode</label>
             <form name="store_query" action="" method="post">
-                <input type="text" class="store-query" name="store_query">
+                <input type="text" class="store-query" name="store_query" value="<?php echo $query; ?>">
                 <a href="javascript:;" class="btn blue" onclick="searchLocator();">Search</a>
             </form>
 
@@ -26,18 +26,19 @@
         <div class="store-search-results">
             <h3>Nearest Stores to Postcode</h3>
             <?php if (isset($stores) && !empty($stores)) : ?>
-            <div class="store-result-left">
+                <div class="store-result-left">
                 <?php foreach ($stores as $key => $store) : ?>
                     <div class="store-row">
                         <a class="btn-locate" href="javascript:;" onclick="locateMap('<?php echo $store['lat']?>', '<?php echo $store['lng']?>', '<?php echo $store['name']; ?>', '<?php echo $store['address']; ?> <?php echo $store['postcode']; ?> | <?php echo $store['phone']; ?>');" title="Locate this">
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/skin/luckybuys/images/store-pin.png" border="0" />
                         </a>
                         <h4 class="store-name"><?php echo $store['name']; ?></h4>
+                        <p class="sub-address"><?php echo $store['address'] . ' ' . $store['postcode']; ?></p>
                         <a class="btn-store-detail" href="javascript:;" onclick="popupStore(<?php echo $store['id']; ?>);">view store detail</a>
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="store-result-right">
+                <div class="store-result-right">
                 <div class="gmap store-gmap" id="gmap-markers"></div>
             </div>
             <?php endif; ?>
@@ -71,18 +72,18 @@
             <a href="javascript:;" class="btn blue btn-search-more" onclick="searchMoreLocatorPosition();">More results</a>
         <?php endif; ?>
     </div>
-     <?php if($products != NULL):?>
-    <div class="clear"></div>
-    <div style="width: 940px;height: auto;">
-        <?php 
-        $count = 0;
-//        var_dump($productCount);exit;
-        foreach ($products['data']->item as $product):             
-            if($count >= intval($productCount))
-                break;
-            
-        ?>
-        <div style="width: 200px;padding: 5px; height: 100px;margin: 10px;float:left;text-align: center;">
+    <?php if($products != NULL):?>
+        <div class="clear"></div>
+        <div style="width: 940px;height: auto;">
+        <?php
+            $count = 0;
+            //        var_dump($productCount);exit;
+            foreach ($products['data']->item as $product):
+                if($count >= intval($productCount))
+                    break;
+
+                ?>
+                <div style="width: 200px;padding: 5px; height: 100px;margin: 10px;float:left;text-align: center;">
             <img src="<?php echo $product->imageurl[0]; ?>" width="100px" height="70px" style="margin-left: 15px;" />
             <div>
                 <a href="<?php echo $product->linkurl; ?>" target="_blank"><?php echo $product->productname; ?></a>
@@ -91,9 +92,9 @@
                 <?php echo $product->price; ?>
             </div>
         </div>
-            <?php $count++; endforeach; ?>
+                <?php $count++; endforeach; ?>
     </div>
-    <div class="clear"></div>
+        <div class="clear"></div>
     <?php endif; ?>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
@@ -120,12 +121,12 @@
                         else var class_e = 'odd';
                         var content = data[i].address + ' ' + data[i].postcode + ' | ' + data[i].phone;
                         var html_element = '<div class="store-row">' +
-                                                '<a class="btn-locate" href="javascript:;" onclick="locateMap(\'' + data[i].lat + '\', \'' + data[i].lng + '\', \'' + data[i].name + '\', \'' + content + '\');" title="Locate this">' +
-                                                '<img src="<?php echo Yii::app()->request->baseUrl; ?>/skin/luckybuys/images/store-pin.png" border="0" />' +
-                                                '</a>' +
-                                            '<h4 class="store-name">' + data[i].name + '</h4>' +
-                                            '<a class="btn-store-detail" href="javascript:;" onclick="popupStore(' + data[i].id + ');">view store detail</a>' +
-                                            '</div>';
+                            '<a class="btn-locate" href="javascript:;" onclick="locateMap(\'' + data[i].lat + '\', \'' + data[i].lng + '\', \'' + data[i].name + '\', \'' + content + '\');" title="Locate this">' +
+                            '<img src="<?php echo Yii::app()->request->baseUrl; ?>/skin/luckybuys/images/store-pin.png" border="0" />' +
+                            '</a>' +
+                            '<h4 class="store-name">' + data[i].name + '</h4>' +
+                            '<a class="btn-store-detail" href="javascript:;" onclick="popupStore(' + data[i].id + ');">view store detail</a>' +
+                            '</div>';
                         stores[data[i].id] = {id: data[i].id,
                             name: data[i].name,
                             address: data[i].address + ' ' + data[i].postcode,
@@ -160,20 +161,20 @@
                         else var class_e = 'odd';
                         var content = data[i].address + ' ' + data[i].postcode + ' | ' + data[i].phone;
                         var html_element = '<div class="store-row">' +
-                                                '<a class="btn-locate" href="javascript:;" onclick="locateMap(\'' + data[i].lat + '\', \'' + data[i].lng + '\', \'' + data[i].name + '\', \'' + content + '\');" title="Locate this">' +
-                                                '<img src="<?php echo Yii::app()->request->baseUrl; ?>/skin/luckybuys/images/store-pin.png" border="0" />' +
-                                                '</a>' +
-                                                '<h4 class="store-name">' + data[i].name + '</h4>' +
-                                                '<a class="btn-store-detail" href="javascript:;" onclick="popupStore(' + data[i].id + ');">view store detail</a>' +
-                                            '</div>';
-                    stores[data[i].id] = {id: data[i].id,
+                            '<a class="btn-locate" href="javascript:;" onclick="locateMap(\'' + data[i].lat + '\', \'' + data[i].lng + '\', \'' + data[i].name + '\', \'' + content + '\');" title="Locate this">' +
+                            '<img src="<?php echo Yii::app()->request->baseUrl; ?>/skin/luckybuys/images/store-pin.png" border="0" />' +
+                            '</a>' +
+                            '<h4 class="store-name">' + data[i].name + '</h4>' +
+                            '<a class="btn-store-detail" href="javascript:;" onclick="popupStore(' + data[i].id + ');">view store detail</a>' +
+                            '</div>';
+                        stores[data[i].id] = {id: data[i].id,
                             name: data[i].name,
                             address: data[i].address + ' ' + data[i].postcode,
                             phone: data[i].phone,
                             timmings: data[i].timmings,
                             lat: data[i].lat,
                             lng: data[i].lng
-                    };
+                        };
                         $(".store-result-left").append(html_element);
                     }
                     pager = pager + 1;
@@ -230,17 +231,17 @@
         }
     }
     <?php if (isset($stores) && !empty($store)) : ?>
-        var stores = [];
-        <?php foreach ($stores as $key => $store) : ?>
-            stores[<?php echo $store['id']; ?>] = {id: <?php echo $store['id']; ?>,
-                name: '<?php echo $store['name']; ?>',
-                address: '<?php echo $store['address'] . ' ' . $store['postcode']; ?>',
-                phone: '<?php echo $store['phone']; ?>',
-                timmings: '<?php echo $store['timmings']; ?>',
-                lat: <?php echo $store['lat']; ?>,
-                lng: <?php echo $store['lng']; ?>
-            };
-        <?php endforeach; ?>
+    var stores = [];
+    <?php foreach ($stores as $key => $store) : ?>
+    stores[<?php echo $store['id']; ?>] = {id: <?php echo $store['id']; ?>,
+        name: '<?php echo $store['name']; ?>',
+        address: '<?php echo $store['address'] . ' ' . $store['postcode']; ?>',
+        phone: '<?php echo $store['phone']; ?>',
+        timmings: '<?php echo $store['timmings']; ?>',
+        lat: <?php echo $store['lat']; ?>,
+        lng: <?php echo $store['lng']; ?>
+    };
+    <?php endforeach; ?>
 
     //For Gmap
     $(function(){

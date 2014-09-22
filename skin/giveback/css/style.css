@@ -1120,6 +1120,13 @@ table {
     margin-right: 10px;
 }
 .store-row .store-name{ color: #000; }
+.store-row .sub-address{
+    font-size: 10px;
+    width: 60%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #A2A2A2;
+}
 .store-row a.btn-store-detail{
     font-size: 11px;
     color: #B40D0D;

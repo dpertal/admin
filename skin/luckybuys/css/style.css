@@ -959,15 +959,23 @@ table {
     padding: 12px 10px;
     border-bottom: 1px solid #E6E6E6;
     margin-left: 5px;
-    background: url("/assets/uploads/bc-icon.png") no-repeat 360px 5px;
+    background: url("/assets/uploads/bc-icon.png") no-repeat 345px 5px;
 }
 .store-row a.btn-locate{
     display: block;
     margin-left: 10px;
     float: left;
     margin-right: 10px;
+    height: 60px;
 }
 .store-row .store-name{ color: #000; }
+.store-row .sub-address{
+    font-size: 10px;
+    width: 60%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #A2A2A2;
+}
 .store-row a.btn-store-detail{
     font-size: 11px;
     color: #B40D0D;

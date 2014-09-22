@@ -12,7 +12,7 @@
         <div class="store-search input">
             <label>Enter your ZipCode</label>
             <form name="store_query" action="" method="post">
-                <input type="text" class="store-query" name="store_query">
+                <input type="text" class="store-query" name="store_query" value="<?php echo $query; ?>">
                 <a href="javascript:;" class="btn blue" onclick="searchLocator();">Search</a>
             </form>
 
@@ -33,6 +33,7 @@
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/skin/luckybuys/images/store-pin.png" border="0" />
                         </a>
                         <h4 class="store-name"><?php echo $store['name']; ?></h4>
+                        <p class="sub-address"><?php echo $store['address'] . ' ' . $store['postcode']; ?></p>
                         <a class="btn-store-detail" href="javascript:;" onclick="popupStore(<?php echo $store['id']; ?>);">view store detail</a>
                     </div>
                 <?php endforeach; ?>
